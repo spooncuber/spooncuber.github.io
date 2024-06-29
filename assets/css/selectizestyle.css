@@ -1,0 +1,50 @@
+.selectize-control {
+    display: inline;
+}
+
+label {
+    width: 10px;
+    line-height: 25px;
+    margin-left: 4px;
+}
+
+.selectize-dropdown,
+.selectize-input,
+.selectize-input input {
+    font-size: inherit;
+    white-space: nowrap;
+    font-family: Tahoma, arial, verdana, "黑体", sans-serif;
+    line-height: 25px;
+    text-align: center;
+}
+
+.selectize-input {
+    border: 0;
+    box-shadow: none;
+}
+
+.selectize-input.focus {
+    box-shadow: none;
+}
+
+.selectize-dropdown [data-selectable] .highlight {
+    background: rgba(255, 255, 255, 0);
+}
+
+.selectize-control.single .selectize-input:after {
+    margin-top: -0.2em;
+    right: 1em;
+    border-width: 0.3em 0.3em 0 0.3em;
+}
+
+.selectize-control.single .selectize-input.dropdown-active:after {
+    margin-top: -0.3em;
+    border-width: 0 0.3em 0.3em 0.3em;
+}
+
+.selectize-dropdown .option,
+.selectize-dropdown .optgroup-header,
+.selectize-dropdown .no-results,
+.selectize-dropdown .create {
+    padding: 0.3em 0.5em;
+}

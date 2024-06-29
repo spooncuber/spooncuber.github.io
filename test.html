@@ -1,0 +1,117 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+  <title>test</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes" />
+  <link rel="stylesheet" href="assets/css/main.css" />
+  <link rel="icon" href="images/logo.svg" type="image/x-icon" />
+  <link rel="apple-touch-icon" href="images/logo.png" />
+  <meta name="google-site-verification" content="s3hE2D_rJuuUUj4rVvWBADMHqHqiSM-bQh80mnwzDMA" />
+</head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-7X9DPS593M"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+
+  function gtag() {
+    dataLayer.push(arguments);
+  }
+  gtag('js', new Date());
+  gtag('config', 'G-7X9DPS593M');
+</script>
+
+<body>
+  <div class="allscreen">
+    <div id="wrapper">
+      <header id="header">
+        <div class="inner">
+          <a href="./" class="logo">
+            <span class="symbol"></span><span class="title">bldtrainer</span>
+          </a>
+          <div class="language">
+            <div class="status_circle">
+            </div>
+            <div class="dropdown-content">
+              <div class="status_circle" data-lang="zh">简体中文</div>
+            </div>
+          </div>
+        </div>
+      </header>
+      <div id="main">
+        <header>
+          <h2 style="text-align:center" class="lang" key="edgetrainer"></h2>
+        </header>
+        <strong>角块缓冲</strong>
+        <select style="width:3.5em;text-align:center" id="cornerbuffer">
+          <option>J</option>
+          <option>A</option>
+          <option>G</option>
+          <option>D</option>
+          <option>W</option>
+          <option>O</option>
+          <option>R</option>
+          <option>X</option>
+        </select>
+        <strong>角顺序</strong><input type="text" placeholder="" id="cornerorder" maxlength="7" value="GADXWRO"
+          style="text-align:center;width:10em;text-transform:uppercase" autocomplete="off"></input>
+
+        <strong>棱缓冲</strong>
+        <select style="width:8em;text-align:center" id="edgebuffer">
+          <option>A</option>
+          <option>G</option>
+          <option>E</option>
+          <option>C</option>
+          <option>I</option>
+          <option>K</option>
+          <option>M</option>
+          <option>O</option>
+          <option>Q</option>
+          <option>S</option>
+          <option>W</option>
+          <option>Y</option>
+        </select>
+        <strong>棱顺序</strong>
+
+        <strong>借位习惯</strong>
+        <select style="width:8em;text-align:center" id="orientflag">
+          <option value=1>保持色相借位</option>
+          <option value=0>无视色相借位</option>
+        </select>
+        <select style="width:6em;text-align:center" id="skipcyclenum">
+          <option value=0>正常借位</option>
+          <option value=1>固定借位</option>
+        </select>
+        
+        <input type="text" placeholder="" id="edgeorder" maxlength="11" value="GECIKMOQSWY"
+          style="text-align:center;width:8em;text-transform:uppercase" autocomplete="off"></input>
+        <br>
+        <input type="text" placeholder="" id="srcinput" maxlength="100" value="F' U D2 F U R2 L2 B' L2 U B2 D2 R2 U F2 D L2 U' F2 U" style="text-align:center;width:8em;" autocomplete="off"></input>
+        <button onclick="analyse()">analyse</button>
+        <button onclick="algSetGenerator(['J','G'])">algSetGenerator</button>
+        <button onclick="document.getElementById('outputP1').innerHTML = m2p(codeTrans(document.getElementById('testcodeinput').value,globalState))">m2p</button>
+        <br>
+        <input type="text" placeholder="" id="testcodeinput" maxlength="100" value="CNARPRDI" style="text-align:center;width:8em;" autocomplete="off"></input>        
+        <button onclick="codeCompatible(document.getElementById('testcodeinput').value)">codeCompatible</button>
+        <button onclick="edgeAccurateTest()">edgeAccurateTest</button>
+        <button onclick="cornerAccurateTest()">cornerAccurateTest</button>
+        <p id="outputP1"><p>
+        <div id="codeoutput"></div>
+        <div id="outputScrs"></div>
+      </div>
+    </div>
+  </div>
+  <script src="assets/js/jquery.min.js"></script>
+  <script src="assets/js/main.js"></script>
+  <script src="assets/js/setcode.js"></script>
+  <script src="assets/js/language.js"></script>
+  <script src="assets/js/bldhelper.js"></script>
+  <script src="assets/js/codetrans.js"></script>
+  <script src="assets/js/min2phase.js"></script>
+  <script src="assets/js/ltct.js"></script>
+  <script src="assets/js/test.js"></script>
+  <script src="assets/js/utils.js"></script>
+</body>
+
+</html>
