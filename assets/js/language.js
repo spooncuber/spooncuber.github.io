@@ -6,7 +6,7 @@ const arrLang = {
         'twisttrainer': "翻角训练",
         "ltct":"奇偶带翻",
         "float":"浮动训练",
-        "title": "三盲训练器",
+        "title": "三盲训练器(V-0.2)",
         "description": "三盲训练器的在线网页版本。",
         "corner": "角块",
         "twists": "翻角公式库",
@@ -356,8 +356,8 @@ const arrLang = {
 
 const langNames = {
     "zh": "简体中文",
-    "en": "English",
-    "ja": "日本語"
+    // "en": "English",
+    // "ja": "日本語"
 };
 
 // Check for cookie support

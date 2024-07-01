@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
-<svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="-0.9 -0.9 1.8 1.8">
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="180" height="180" viewBox="-0.9 -0.9 1.8 1.8">
 	<rect fill="#FFFFFF" x="-0.9" y="-0.9" width="1.8" height="1.8"/>
 	<g style="opacity:0.5;stroke-opacity:0.5;stroke-width:0;stroke-linejoin:round">
 		<polygon fill="#00D800" stroke="#000000" points="0.72746262741201,-0.42598357936906 0.49837764429031,-0.52509955722051 0.48348849357945,-0.27765557726842 0.70327814822137,-0.17245069122671"/>
