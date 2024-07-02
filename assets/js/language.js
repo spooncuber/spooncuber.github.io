@@ -1,9 +1,9 @@
 const arrLang = {    
     "zh": {
-        "edgetrainer": "棱块训练器",
-        "cornertrainer": "角块训练器",
+        "edgetrainer": "棱块公式训练",
+        "cornertrainer": "角块公式训练",
         'ltcttrainer': "奇偶带翻训练",
-        'twisttrainer': "翻角训练",
+        'twisttrainer': "翻角公式训练",
         "ltct":"奇偶带翻",
         "float":"浮动训练",
         "title": "三盲训练器(V-0.2)",
