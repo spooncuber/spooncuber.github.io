@@ -28,7 +28,7 @@
       <header id="header">
         <div class="inner">
           <a href="./" class="logo">
-            <span class="symbol"></span><span class="title">bldtrainer</span>
+            <span class="symbol"><img src="images/logo.svg" alt="" /></span><span class="title">bldtrainer</span>
           </a>
           <div class="language">
             <div class="status_circle">
@@ -89,13 +89,13 @@
           </select>
           <br>
           <strong>打乱公式：</strong>
-          <input type="text" placeholder="" id="srcinput" maxlength="100" value="R U" style="text-align:left;width:20em"
+          <input type="text" placeholder="" id="srcinput" maxlength="100" value="" style="text-align:left;width:20em"
             onkeyup="analyse()" autocomplete="off"></input>
           <br>
           <strong>读码结果：</strong>
           <br>
           <div id="codeoutput" style="width:max-content;text-align:left;"></div>
-          <twisty-player id="player" alg="R" control-panel="none"></twisty-player>
+          <twisty-player id="player" alg="" control-panel="none" ></twisty-player>
         </div>
       </div>
     </div>
@@ -110,7 +110,7 @@
   <script src="assets/js/codetrans.js"></script>
   <script src="assets/js/min2phase.js"></script>
   <script src="assets/js/utils.js"></script>
-  <script src="https://cdn.cubing.net/js/cubing/twisty" type="module"></script>
+  <script src="https://cdn.cubing.net/js/cubing/twisty" type="module" defer></script>
 </body>
 
 </html>

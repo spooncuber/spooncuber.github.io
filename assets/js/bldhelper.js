@@ -985,6 +985,7 @@ function analyse() {
     out = `${out}角块翻色：${cornerorientation(alg)}<br>`;
 
     document.getElementById("codeoutput").innerHTML = out;
+    document.getElementById("player").setAttribute("alg", alg);
     return out;
 }
 
