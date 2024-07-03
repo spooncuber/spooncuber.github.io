@@ -963,6 +963,7 @@ function cornerorientation(s1) {
 
 function analyse() {
     let alg = document.getElementById("srcinput").value;
+    document.getElementById("player").setAttribute("alg", cubeorientation() + alg);
 
     while(alg.charAt(alg.length-1) === " "){
         alg = alg.slice(0, -1);
@@ -971,13 +972,16 @@ function analyse() {
         alg = alg.slice(1);
     }    
     if(alg.length === 0){
-        document.getElementById("codeoutput").innerHTML = "请输入打乱公式。"; 
+        document.getElementById("alartoutput").innerHTML = "读码结果：请输入打乱公式。"; 
+        document.getElementById("codeoutput").innerHTML = "棱块读码：<br>棱块翻色：<br>角块读码：<br>角块翻色：";
         return;
     }
     if(operatealg(alg)===false){
-        document.getElementById("codeoutput").innerHTML = "输入的转动非法，或转动未用空格分隔。"; 
+        document.getElementById("alartoutput").innerHTML = "读码结果：空格不规范或输入的转动无法识别。"; 
+        document.getElementById("codeoutput").innerHTML = "棱块读码：<br>棱块翻色：<br>角块读码：<br>角块翻色：";
         return;
     }
+    document.getElementById("alartoutput").innerHTML = "读码结果："; 
 
     let out = `棱块读码：${edgeread(alg)}<br>`;
     out = `${out}棱块翻色：${edgeorientation(alg)}<br>`;
@@ -985,28 +989,40 @@ function analyse() {
     out = `${out}角块翻色：${cornerorientation(alg)}<br>`;
 
     document.getElementById("codeoutput").innerHTML = out;
-    document.getElementById("player").setAttribute("alg", alg);
+    console.log(cubeorientation());
     return out;
 }
 
-// function formatAlg(algInput){
-//     for(let i=0; i<algInput.length; i++){
-//         if(isAlphabet(algInput[i]) && algInput[i+1]){
-
-//         }
-//     }
-// }
-
-// function analyse(alg) {
-//     //console.log('alg',alg);
-//     let out = `棱块读码：${edgeread(alg)}\n`;
-//     out = `${out}棱块翻色：${edgeorientation(alg)}\n`;
-//     out = `${out}角块读码：${cornerread(alg)}\n`;
-//     out = `${out}角块翻色：${cornerorientation(alg)}\n`;
-
-//     //document.getElementById("testoutput").innerHTML += edgeread(alg) + "<br>";
-//     return edgeread(alg);    
-// }
+function cubeorientation() {
+    let  cubeorientation= Number(document.getElementById("cubeorientation").value);
+    
+    switch (cubeorientation) {
+        case 0: return "";
+        case 1: return "y ";
+        case 2: return "y2 ";
+        case 3: return "y' ";
+        case 4: return "x2 ";
+        case 5: return "x2 y ";
+        case 6: return "x2 y2 ";
+        case 7: return "x2 y' ";
+        case 8: return "x ";
+        case 9: return "x y ";
+        case 10: return "x y2 ";
+        case 11: return "x y' ";
+        case 12: return "x' ";
+        case 13: return "x' y ";
+        case 14: return "x' y2 ";
+        case 15: return "x' y' ";
+        case 16: return "z' ";
+        case 17: return "z' y ";
+        case 18: return "z' y2 ";
+        case 19: return "z' y' ";
+        case 20: return "z ";
+        case 21: return "z y ";
+        case 22: return "z y2 ";
+        case 23: return "z y' ";
+    }
+}
 
 function track1kongxue(track1Str) {
     switch (track1Str) {

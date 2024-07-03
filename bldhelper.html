@@ -43,9 +43,9 @@
         <header>
           <h2 style="text-align:center" class="lang" key="reader"></h2>
         </header>
-        <div class="inner" style="max-width:40em;place-items: centre">
+        <div class="inner" style="max-width:30em;place-items: centre">
           <strong>角块缓冲：</strong>
-          <select style="width:4em;text-align:center" id="cornerbuffer">
+          <select style="width:8em;text-align:center" id="cornerbuffer">
             <option>J</option>
             <option>A</option>
             <option>G</option>
@@ -55,11 +55,12 @@
             <option>R</option>
             <option>X</option>
           </select>
+          <br>
           <strong>角块顺序：</strong><input type="text" placeholder="" id="cornerorder" maxlength="7" value="GADXWRO"
-            style="text-align:center;width:10em;text-transform:uppercase" autocomplete="off"></input>
+            style="text-align:center;width:8em;text-transform:uppercase" autocomplete="off"></input>
           <br>
           <strong>棱块缓冲：</strong>
-          <select style="width:4em;text-align:center" id="edgebuffer">
+          <select style="width:8em;text-align:center" id="edgebuffer">
             <option>A</option>
             <option>G</option>
             <option>E</option>
@@ -73,28 +74,58 @@
             <option>W</option>
             <option>Y</option>
           </select>
+          <br>
           <strong>棱块顺序：</strong>
           <input type="text" placeholder="" id="edgeorder" maxlength="11" value="GECIKMOQSWY"
-            style="text-align:center;width:10em;text-transform:uppercase" autocomplete="off"
+            style="text-align:center;width:8em;text-transform:uppercase" autocomplete="off"
             onkeyup="changeOrder()"></input>
           <br>
           <strong>借位习惯：</strong>
           <select style="width:8em;text-align:center" id="orientflag">
-            <option value=1>保持色相借位</option>
             <option value=0>无视色相借位</option>
+            <option value=1>保持色相借位</option>
           </select>
-          <select style="width:6em;text-align:center" id="skipcyclenum">
+          <br>
+          <strong>借位技巧：</strong>
+          <select style="width:8em;text-align:center" id="skipcyclenum">
             <option value=0>正常借位</option>
             <option value=1>固定借位</option>
           </select>
           <br>
           <strong>打乱公式：</strong>
-          <input type="text" placeholder="" id="srcinput" maxlength="100" value="" style="text-align:left;width:20em"
+          <input type="text" placeholder="" id="srcinput" maxlength="100" value="" style="text-align:left;width:18em"
             onkeyup="analyse()" autocomplete="off"></input>
           <br>
-          <strong>读码结果：</strong>
+          <strong id="alartoutput">读码结果：</strong>
           <br>
-          <div id="codeoutput" style="width:max-content;text-align:left;"></div>
+          <p id="codeoutput">棱块读码：<br>棱块翻色：<br>角块读码：<br>角块翻色：</p>
+          <strong>打乱/还原坐标：</strong>
+          <select style="width:5em;text-align:left" id="cubeorientation" onchange="analyse()">
+            <option value=0>白顶绿前</option>
+            <option value=1>白顶红前</option>
+            <option value=2>白顶蓝前</option>
+            <option value=3>白顶橙前</option>
+            <option value=4>黄顶蓝前</option>
+            <option value=5>黄顶红前</option>
+            <option value=6>黄顶绿前</option>
+            <option value=7>黄顶橙前</option>
+            <option value=8>绿顶黄前</option>
+            <option value=9>绿顶红前</option>
+            <option value=10>绿顶白前</option>
+            <option value=11>绿顶橙前</option>
+            <option value=12>蓝顶白前</option>
+            <option value=13>蓝顶红前</option>
+            <option value=14>蓝顶黄前</option>
+            <option value=15>蓝顶橙前</option>
+            <option value=16>红顶绿前</option>
+            <option value=17>红顶黄前</option>
+            <option value=18>红顶蓝前</option>
+            <option value=19>红顶白前</option>
+            <option value=20>橙顶绿前</option>
+            <option value=21>橙顶白前</option>
+            <option value=22>橙顶蓝前</option>
+            <option value=23>橙顶黄前</option>
+          </select>
           <twisty-player id="player" alg="" control-panel="none" ></twisty-player>
         </div>
       </div>
@@ -110,7 +141,8 @@
   <script src="assets/js/codetrans.js"></script>
   <script src="assets/js/min2phase.js"></script>
   <script src="assets/js/utils.js"></script>
-  <script src="https://cdn.cubing.net/js/cubing/twisty" type="module" defer></script>
+  <script src="assets/js/cubing/twisty.js" type="module" defer></script>
+  <!-- <script src="https://cdn.cubing.net/js/cubing/twisty" type="module" defer></script> -->
 </body>
 
 </html>
