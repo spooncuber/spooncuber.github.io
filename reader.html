@@ -93,14 +93,35 @@
           </select>
           <br>
           <strong>打乱公式：</strong>
-          <input type="text" placeholder="" id="srcinput" maxlength="100" value="" style="text-align:left;width:18em"
-            onkeyup="analyse()" autocomplete="off"></input>
+          <input type="text" placeholder="" id="scrinput" maxlength="100" value="" style="text-align:left;width:18em"
+            onkeyup="codereader()" autocomplete="off"></input>
           <br>
-          <strong id="alartoutput">读码结果：</strong>
-          <br>
-          <p id="codeoutput">棱块读码：<br>棱块翻色：<br>角块读码：<br>角块翻色：</p>
+          <span id="alartoutput1"></span>
+
+          <!-- <div style="display:grid;grid-template-columns: 1fr 1fr;grid-gap: 0em;place-items: center start">
+            <span id="edge">棱块读码：</span>
+            <span><button onclick="edgeprev()" style="transform: scale(0.75);"><</button><button onclick="edgenext()" style="transform: scale(0.75);">></button></span>
+          </div>
+          <div style="display:grid;grid-template-columns: 1fr 1fr;grid-gap: 0em;place-items: center start">
+            <span id="flip">棱块翻色：</span>
+            <span><button onclick="flipprev()" style="transform: scale(0.75);"><</button><button onclick="flipnext()" style="transform: scale(0.75);">></button></span>
+          </div>
+          <div style="display:grid;grid-template-columns: 1fr 1fr;grid-gap: 0em;place-items: center start">
+            <span id="corn">角块读码：</span>
+            <span><button onclick="cornprev()" style="transform: scale(0.75);"><</button><button onclick="cornnext()" style="transform: scale(0.75);">></button></span>
+          </div>
+          <div style="display:grid;grid-template-columns: 1fr 1fr;grid-gap: 0em;place-items: center start">
+            <span id="twis">角块翻色：</span>
+            <span><button onclick="twisprev()" style="transform: scale(0.75);"><</button><button onclick="twisnext()" style="transform: scale(0.75);">></button></span>
+          </div> -->
+
+          <span id="edge">棱块读码：</span><br>
+          <span id="flip">棱块翻色：</span><br>
+          <span id="corn">角块读码：</span><br>
+          <span id="twis">角块翻色：</span><br>
+
           <strong>打乱/还原坐标：</strong>
-          <select style="width:5em;text-align:left" id="cubeorientation" onchange="analyse()">
+          <select style="width:5em;text-align:left" id="cubeorientation" onchange="codereader()">
             <option value=0>白顶绿前</option>
             <option value=1>白顶红前</option>
             <option value=2>白顶蓝前</option>
@@ -126,7 +147,21 @@
             <option value=22>橙顶蓝前</option>
             <option value=23>橙顶黄前</option>
           </select>
-          <twisty-player id="player" alg="" control-panel="none" ></twisty-player>
+          <br>
+          <span class="help">棱块还原<sup>[?]</sup>：<span class="help-content">支持三循环和翻棱(与缓冲)编码，如NM为缓冲块与NM块翻棱。</span></span>
+          <input type="text" placeholder="" id="edgesolve" maxlength="100" value=""
+            style="text-align:left;width:10em;text-transform:uppercase" onkeyup="solver()" autocomplete="off"></input>
+          <br>
+          <span class="help">角块还原<sup>[?]</sup>：<span class="help-content">支持三循环和翻角(与缓冲)编码，如ZX为缓冲块逆翻与XYZ块逆翻。</span></span>
+          <input type="text" placeholder="" id="cornersolve" maxlength="100" value=""
+            style="text-align:left;width:10em;text-transform:uppercase" onkeyup="solver()" autocomplete="off"></input>
+          <br>
+          <span class="help">奇偶还原<sup>[?]</sup>：<span class="help-content">每对编码先棱后角，如MX为棱缓冲与M交换、角缓冲与X交换。</span></span>
+          <input type="text" placeholder="" id="paritysolve" maxlength="100" value=""
+            style="text-align:left;width:10em;text-transform:uppercase" onkeyup="solver()" autocomplete="off"></input>
+          <br>
+          <span id="alartoutput2"></span>
+          <twisty-player id="player" style="transform: scale(0.9);" alg="" control-panel="none"></twisty-player>
         </div>
       </div>
     </div>
@@ -136,7 +171,8 @@
   <script src="assets/js/main.js"></script>
   <script src="assets/js/setcode.js"></script>
   <script src="assets/js/language.js"></script>
-  <script src="assets/js/bldhelper.js"></script>
+  <script src="assets/js/reader.js"></script>
+  <script src="assets/js/solver.js"></script>
   <script src="assets/js/scrambler.js"></script>
   <script src="assets/js/codetrans.js"></script>
   <script src="assets/js/min2phase.js"></script>
