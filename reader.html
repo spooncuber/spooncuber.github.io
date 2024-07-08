@@ -43,7 +43,7 @@
         <header>
           <h2 style="text-align:center" class="lang" key="reader"></h2>
         </header>
-        <div class="inner" style="max-width:30em;place-items: centre">
+        <div class="inner" style="max-width:30em;place-items:align-items">
           <strong>角块缓冲：</strong>
           <select style="width:8em;text-align:center" id="cornerbuffer">
             <option>J</option>
@@ -147,19 +147,52 @@
             <option value=22>橙顶蓝前</option>
             <option value=23>橙顶黄前</option>
           </select>
-          <br>
-          <span class="help">棱块还原<sup>[?]</sup>：<span class="help-content">支持三循环和翻棱(与缓冲)编码，如NM为缓冲块与NM块翻棱。</span></span>
+          <!-- <br>
+          <span class="help">棱块还原<sup>[?]</sup>：<span class="help-content">支持三循环和翻棱(与缓冲)编码，<br>如NM为缓冲块与NM块翻棱。</span></span>
           <input type="text" placeholder="" id="edgesolve" maxlength="100" value=""
             style="text-align:left;width:10em;text-transform:uppercase" onkeyup="solver()" autocomplete="off"></input>
           <br>
-          <span class="help">角块还原<sup>[?]</sup>：<span class="help-content">支持三循环和翻角(与缓冲)编码，如ZX为缓冲块逆翻与XYZ块逆翻。</span></span>
+          <span class="help">角块还原<sup>[?]</sup>：<span
+              class="help-content">支持三循环和翻角(与缓冲)编码，如ZX为缓冲块逆翻与XYZ块逆翻。</span></span>
           <input type="text" placeholder="" id="cornersolve" maxlength="100" value=""
             style="text-align:left;width:10em;text-transform:uppercase" onkeyup="solver()" autocomplete="off"></input>
           <br>
           <span class="help">奇偶还原<sup>[?]</sup>：<span class="help-content">每对编码先棱后角，如MX为棱缓冲与M交换、角缓冲与X交换。</span></span>
           <input type="text" placeholder="" id="paritysolve" maxlength="100" value=""
-            style="text-align:left;width:10em;text-transform:uppercase" onkeyup="solver()" autocomplete="off"></input>
-          <br>
+            style="text-align:left;width:10em;text-transform:uppercase" onkeyup="solver()"
+            autocomplete="off"></input>
+          <br> -->
+
+          <ol id = "solvelist">请在下方输入还原编码（拖拽可改变执行顺序）
+            <li id = "li1" draggable="true" ondragstart="drag(event)" ondrop="drop(event)" ondragover="allowDrop(event)">
+              <span class="help">棱块还原<sup>[?]</sup>：<span class="help-content">例：XY为缓冲块-X-Y的三棱换</span></span>
+              <input type="text" placeholder="" id="edgesolve" maxlength="100" value=""
+                style="text-align:left;width:10em;text-transform:uppercase" onkeyup="solver()" autocomplete="off"></input>
+            </li>
+            <li id = "li2" draggable="true" ondragstart="drag(event)" ondrop="drop(event)" ondragover="allowDrop(event)">
+              <span class="help">角块还原<sup>[?]</sup>：<span class="help-content">例：ZY为缓冲块-Z-Y的三角块</span></span>
+              <input type="text" placeholder="" id="cornersolve" maxlength="100" value=""
+                style="text-align:left;width:10em;text-transform:uppercase" onkeyup="solver()" autocomplete="off"></input>
+            </li>
+            <li id = "li3" draggable="true" ondragstart="drag(event)" ondrop="drop(event)" ondragover="allowDrop(event)">
+              <span class="help">奇偶还原<sup>[?]</sup>：<span class="help-content">先棱后角，例：MX为棱缓冲与M交换、角缓冲与X交换。</span></span>
+              <input type="text" placeholder="" id="paritysolve" maxlength="100" value=""
+               style="text-align:left;width:10em;text-transform:uppercase" onkeyup="solver()" autocomplete="off"></input>
+            </li>
+            <li id = "li4" draggable="true" ondragstart="drag(event)" ondrop="drop(event)" ondragover="allowDrop(event)">
+              <span class="help">翻棱编码<sup>[?]</sup>：<span class="help-content">例：NM为缓冲块与MN块翻棱。</span></span>
+              <input type="text" placeholder="" id="flipsolve" maxlength="100" value=""
+               style="text-align:left;width:10em;text-transform:uppercase" onkeyup="solver()" autocomplete="off"></input>
+            </li>
+            <li id = "li5" draggable="true" ondragstart="drag(event)" ondrop="drop(event)" ondragover="allowDrop(event)">
+              <span class="help">翻角编码<sup>[?]</sup>：<span class="help-content">例：ZX为缓冲块逆翻与XYZ块逆翻。</span></span>
+              <input type="text" placeholder="" id="twistsolve" maxlength="100" value=""
+               style="text-align:left;width:10em;text-transform:uppercase" onkeyup="solver()" autocomplete="off"></input>
+            </li>
+
+          </ol>
+
+
           <span id="alartoutput2"></span>
           <twisty-player id="player" style="transform: scale(0.9);" alg="" control-panel="none"></twisty-player>
         </div>
