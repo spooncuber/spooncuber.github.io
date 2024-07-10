@@ -35,6 +35,10 @@ function codereader() {
 }
 
 function solver() {
+    if(checkEdgeOrder() === false || checkCornerOrder === false){
+        return
+    }
+
     document.getElementById("alartoutput2").innerHTML = "";
 
     const cornerbuffer = String(document.getElementById("cornerbuffer").value).toUpperCase();
@@ -154,6 +158,12 @@ function drop(event) {
         targetElement = event.target.parentElement;
     }
     const targetHTML = targetElement.innerHTML;
+
+
+    // for (let j = 0; j < liList[i].children.length; j++) {
+        // let solveType = liList[i].children[j].id;
+
+
 
     if (solveList.dragSrcEl !== event.target) {
         targetElement.innerHTML = dragHTML;

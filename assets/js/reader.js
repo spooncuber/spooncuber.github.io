@@ -820,8 +820,8 @@ function edgeread(s1) {
     let edgereadChar = "";
     let edgereadpartChar = "";
 
-    const orientFlag = Number(document.getElementById("orientflag").value);
-    const skipCycleNum = Number(document.getElementById("skipcyclenum").value);
+    const orientFlag = Number(document.getElementById("edgeorientflag").checked);
+    const skipCycleNum = Number(document.getElementById("edgeskipcyclenum").checked);
     const edgebuffer = String(document.getElementById("edgebuffer").value).toUpperCase();
     const edgeorder = String(document.getElementById("edgeorder").value).toUpperCase();
 
@@ -879,8 +879,8 @@ function edgeread(s1) {
 function cornerread(s1) {
     operatealg(s1);
 
-    const orientFlag = Number(document.getElementById("orientflag").value);
-    const skipCycleNum = Number(document.getElementById("skipcyclenum").value);
+    const orientFlag = Number(document.getElementById("cornerorientflag").checked);
+    const skipCycleNum = Number(document.getElementById("cornerskipcyclenum").checked);
     const cornerbuffer = String(document.getElementById("cornerbuffer").value).toUpperCase();
     const cornerorder = String(document.getElementById("cornerorder").value).toUpperCase();
 
@@ -1118,4 +1118,42 @@ function getParity(alg) {
     } else {
         return 1;
     }
+}
+
+function checkEdgeOrder(){
+    let edgebuffer = String(document.getElementById("edgebuffer").value).toLowerCase();
+    let edgeorder = String(document.getElementById("edgeorder").value).toLowerCase();
+
+    if(edgeorder.length + edgebuffer.length === 12){
+        let allcodes = edgebuffer + edgeorder;
+        let allpos = [];
+        for(let i = 0;i < allcodes.length; i++){
+            allpos.push(posChichu(allcodes[i]));
+        }       
+        let posSet = new Set(allpos);
+        if(posSet.size !== 12){
+            window.alert("您输入的缓冲与棱顺序有误，请检查。");
+            return false;
+        } 
+    }
+    return true;
+}
+
+function checkCornerOrder(){
+    let cornerbuffer = String(document.getElementById("cornerbuffer").value);
+    let cornerorder = String(document.getElementById("cornerorder").value);
+
+    if(cornerorder.length + cornerbuffer.length === 8){
+        let allcodes = cornerbuffer + cornerorder;
+        let allpos = [];
+        for(let i = 0;i < allcodes.length; i++){
+            allpos.push(posChichu(allcodes[i]));
+        }       
+        let posSet = new Set(allpos);
+        if(posSet.size !== 8){
+            window.alert("您输入的缓冲与角顺序有误，请检查。");
+            return false;
+        } 
+    }
+    return true;
 }

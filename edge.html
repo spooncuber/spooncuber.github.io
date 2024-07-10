@@ -52,7 +52,7 @@
           <div style="display:grid;grid-template-columns: 3fr 2fr;grid-gap: 10px;place-items: left">
             <section>
               <strong>棱缓冲</strong>
-              <select style="width:3em;text-align:center" id="edgebuffer" onchange="changeOrder()">
+              <select style="width:3em;text-align:center" id="edgebuffer" onchange="checkEdgeOrder()">
                 <option>A</option>
                 <option>G</option>
                 <option>E</option>
@@ -68,17 +68,14 @@
               </select>
               <strong>棱顺序</strong>
               <input type="text" placeholder="" id="edgeorder" maxlength="11" value="GECIKMOQSWY"
-                style="text-align:center;width:8em;text-transform:uppercase" autocomplete="off" onkeyup="changeOrder()"></input>
+                style="text-align:center;width:8em;text-transform:uppercase" autocomplete="off"
+                onkeyup="checkEdgeOrder()"></input>
               <br>
-              <strong>借位习惯</strong>
-              <select style="width:8em;text-align:center" id="orientflag">
-                <option value=1>保持色相借位</option>
-                <option value=0>无视色相借位</option>
-              </select>
-              <select style="width:6em;text-align:center" id="skipcyclenum">
-                <option value=0>正常借位</option>
-                <option value=1>固定借位</option>
-              </select>
+              <input type="checkbox" id="edgeorientflag"></input>
+              <span class="help">棱块保持色相借位<sup>[?]</sup><span class="help-content">根据教程选择</span></span>
+              <br>
+              <input type="checkbox" id="edgeskipcyclenum"></input>
+              <span class="help">棱块跳编法<sup>[?]</sup><span class="help-content">即“固定借位法”，新手不用选</span></span>
               <br>
               <section style="display:grid;grid-template-columns: 1fr 2fr;">
                 <strong style="display: block" id="othercodetext">编码补充模式</strong>
@@ -112,7 +109,7 @@
             <span style="display: block; padding: 1em 0;">
               <p style="display: inline"><b>输出训练打乱：</b></p>
               <button id="copyBtn" style="display: none; float: right;transform: scale(0.75);"
-                onclick="copyScrs()">COPY</button><br>
+                onclick="copyScrs()">&Xi;</button><br>
             </span>
             <textarea readonly id="outputScrs" style="resize:none;min-height:30em;border-style:inset"></textarea>
           </div>

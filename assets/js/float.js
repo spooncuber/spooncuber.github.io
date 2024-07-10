@@ -4,14 +4,16 @@ function float() {
     document.getElementById("outputScrs").value = "";
     document.getElementById("outputInfo").value = "输出信息统计:";
 
-    var eBufferList = document.getElementById("edgefloatorder").value.toLowerCase().split("");
+    let eBufferList = document.getElementById("edgefloatorder").value.toLowerCase().split("");
+    let eEjectList = document.getElementById("edgeejectpos").value.toLowerCase().split("");
+    let cornerscramble = document.getElementById("cornerscramble").checked;
     let algAllList1 = [];
     let algAllList0 = [];
-    let algSet = algSetGenerator(eBufferList);
+    let algSet = algSetGenerator(eBufferList+eEjectList);
     algSet = shuffle(algSet);
     algAllList1.push(algSet);
     
-    let algSet0 = algSetGenerator(eBufferList);
+    let algSet0 = algSetGenerator(eBufferList+eEjectList);
     algSet0 = shuffle(algSet0);
     algAllList0.push(algSet0);
 
@@ -30,11 +32,19 @@ function float() {
                 break;
         }
 
-        var state = randomCorner(parity);
+        let state = globalState;
+        if(cornerscramble){
+            state = randomCorner(parity);
+        }else{
+            if(parity){
+                state = codeTrans("JG", state);
+            }
+        }
+
 
         var pos = [posChichu(eBufferList[0].toString()),posChichu(eBufferList[1].toString())];
         var codes = Array.from(eBufferList);
-        for (let j = 0; j < ~~(Math.random() * (4 - parity)); j++) {
+        for (let j = 0; j < ~~(Math.random() * (4 - Math.floor((eEjectList.length + 1) / 2) - parity)); j++) {
             var breakFlag = 0;
             for (let m = 0; m < algAllList1.length; m++) {
                 for (let n = 0; n < algAllList1[m].length; n++) {
@@ -58,7 +68,7 @@ function float() {
             }
         }
 
-        for (let j = 0; j < (11 - codes[1].length) / 2 - parity; j++) {
+        for (let j = 0; j < (11 - eEjectList.length - codes[1].length) / 2 - parity; j++) {
             var breakFlag = 0;
             for (let m = 0; m < algAllList0.length; m++) {
                 for (let n = 0; n < algAllList0[m].length; n++) {
@@ -94,7 +104,7 @@ function float() {
         state = codeTrans(codes[0], state);
         document.getElementById("outputScrs").value += (i + 1).toString() + ". " + m2p(state) + "\n";
         times += 1;
-        //console.log(codes[0], codes[1], algAllList1, algAllList1[0].length, algAllList1[0]);
+        // console.log(codes[0], codes[1], algAllList1, algAllList1[0].length, algAllList1[0]);
         if (algAllList1[0].length === 0) {
             break;
         }

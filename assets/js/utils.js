@@ -38,3 +38,13 @@ function copyScrs() {
     navigator.clipboard.writeText(copyText);
 }
 
+function isPC() {
+	var sUserAgent = navigator.userAgent.toLowerCase();
+	if (/ipad|iphone|midp|rv:1.2.3.4|ucweb|android|windows ce|windows mobile/.test(sUserAgent)) {
+	    document.getElementById("innerdiv").style.width = $('html').css('max-width');      
+        alert('mobile');  
+	} else {
+	    document.getElementById("innerdiv").style.width = $('html').css('max-width') / 2;
+        alert('pc');
+	}
+}

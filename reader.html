@@ -43,9 +43,9 @@
         <header>
           <h2 style="text-align:center" class="lang" key="reader"></h2>
         </header>
-        <div class="inner" style="max-width:30em;place-items:align-items">
+        <div id="innerdiv" class="inner" style="width:30em;text-align: left">
           <strong>角块缓冲：</strong>
-          <select style="width:8em;text-align:center" id="cornerbuffer">
+          <select style="width:8em;text-align:center" id="cornerbuffer" onchange="checkCornerOrder()">
             <option>J</option>
             <option>A</option>
             <option>G</option>
@@ -56,11 +56,12 @@
             <option>X</option>
           </select>
           <br>
-          <strong>角块顺序：</strong><input type="text" placeholder="" id="cornerorder" maxlength="7" value="GADXWRO"
-            style="text-align:center;width:8em;text-transform:uppercase" autocomplete="off"></input>
+          <strong>借位顺序：</strong>
+          <input type="text" placeholder="" id="cornerorder" maxlength="7" value="GADXWRO"
+            style="text-align:center;width:8em;text-transform:uppercase" autocomplete="off" onkeyup="checkCornerOrder()"></input>
           <br>
           <strong>棱块缓冲：</strong>
-          <select style="width:8em;text-align:center" id="edgebuffer">
+          <select style="width:8em;text-align:center" id="edgebuffer" onchange="checkEdgeOrder()">
             <option>A</option>
             <option>G</option>
             <option>E</option>
@@ -75,12 +76,11 @@
             <option>Y</option>
           </select>
           <br>
-          <strong>棱块顺序：</strong>
+          <strong>借位顺序：</strong>
           <input type="text" placeholder="" id="edgeorder" maxlength="11" value="GECIKMOQSWY"
             style="text-align:center;width:8em;text-transform:uppercase" autocomplete="off"
-            onkeyup="changeOrder()"></input>
-          <br>
-          <strong>借位习惯：</strong>
+            onkeyup="checkEdgeOrder()"></input>
+          <!-- <strong>借位习惯：</strong>
           <select style="width:8em;text-align:center" id="orientflag">
             <option value=0>无视色相借位</option>
             <option value=1>保持色相借位</option>
@@ -90,7 +90,19 @@
           <select style="width:8em;text-align:center" id="skipcyclenum">
             <option value=0>正常借位</option>
             <option value=1>固定借位</option>
-          </select>
+          </select> -->
+          <br>
+          <input type="checkbox" id="cornerorientflag" onchange="codereader()"></input>
+          <span class="help">角块保持色相借位<sup>[?]</sup><span class="help-content">根据教程选择</span></span>
+          <br>
+          <input type="checkbox" id="edgeorientflag" onchange="codereader()"></input>
+          <span class="help">棱块保持色相借位<sup>[?]</sup><span class="help-content">根据教程选择</span></span>
+          <br>
+          <input type="checkbox" id="cornerskipcyclenum" onchange="codereader()"></input>
+          <span class="help">角块跳编法<sup>[?]</sup><span class="help-content">即“固定借位法”，新手不用选</span></span>
+          <br>
+          <input type="checkbox" id="edgeskipcyclenum" onchange="codereader();"></input>
+          <span class="help">棱块跳编法<sup>[?]</sup><span class="help-content">即“固定借位法”，新手不用选</span></span>
           <br>
           <strong>打乱公式：</strong>
           <input type="text" placeholder="" id="scrinput" maxlength="100" value="" style="text-align:left;width:18em"
@@ -162,8 +174,9 @@
             style="text-align:left;width:10em;text-transform:uppercase" onkeyup="solver()"
             autocomplete="off"></input>
           <br> -->
-
-          <ol id = "solvelist">请在下方输入还原编码（拖拽可改变执行顺序）
+          <br>
+          <strong>请输入还原编码（拖拽可交换执行顺序）</strong>
+          <ol id = "solvelist">
             <li id = "li1" draggable="true" ondragstart="drag(event)" ondrop="drop(event)" ondragover="allowDrop(event)">
               <span class="help">棱块还原<sup>[?]</sup>：<span class="help-content">例：XY为缓冲块-X-Y的三棱换</span></span>
               <input type="text" placeholder="" id="edgesolve" maxlength="100" value=""
@@ -194,7 +207,7 @@
 
 
           <span id="alartoutput2"></span>
-          <twisty-player id="player" style="transform: scale(0.9);" alg="" control-panel="none"></twisty-player>
+          <twisty-player id="player" style="transform: scale(1);" alg="" control-panel="none"></twisty-player>
         </div>
       </div>
     </div>

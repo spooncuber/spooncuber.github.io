@@ -3,27 +3,12 @@
 let newCodes = [];
 let generateMode = 0;
 
-const orientFlag = Number(document.getElementById("orientflag").value);
-const skipCycleNum = Number(document.getElementById("skipcyclenum").value);
+const orientFlag = Number(document.getElementById("edgeorientflag").value);
+const skipCycleNum = Number(document.getElementById("edgeskipcyclenum").value);
 const edgebuffer = String(document.getElementById("edgebuffer").value).toLowerCase();
 const edgeorder = String(document.getElementById("edgeorder").value).toLowerCase();
 
-function changeOrder(){
-    let edgebuffer = String(document.getElementById("edgebuffer").value).toLowerCase();
-    let edgeorder = String(document.getElementById("edgeorder").value).toLowerCase();
 
-    if(edgeorder.length + edgebuffer.length === 12){
-        let allcodes = edgebuffer + edgeorder;
-        let allpos = [];
-        for(let i = 0;i < allcodes.length; i++){
-            allpos.push(posChichu(allcodes[i]));
-        }       
-        let posSet = new Set(allpos);
-        if(posSet.size !== 12){
-            window.alert("您输入的缓冲与棱顺序有误，请检查。");
-        } 
-    }
-}
 
 function getEdgeScrs() {
     if (generateMode === 0) {

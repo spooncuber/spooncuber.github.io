@@ -1750,13 +1750,34 @@ input[type=radio] {
   -webkit-appearance: none;
   -ms-appearance: none;
   appearance: none;
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  vertical-align: middle;
+  z-index: -1;
+  border: 1px solid #999;
+}
+input[type="checkbox"]:checked::after {
+  content: "✔";
+  color: rgb(0, 0, 0);
+  display: inline-block;
+  position: absolute;
+  transform: translate(0, -25%);
+  font-size: 1em;
+}
+/* input[type=checkbox],
+input[type=radio] {
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  -ms-appearance: none;
+  appearance: none;
   display: block;
   float: left;
   margin-right: -2em;
   opacity: 0;
   width: 1em;
   z-index: -1;
-}
+} */
 input[type=checkbox] + label,
 input[type=radio] + label {
   text-decoration: none;
