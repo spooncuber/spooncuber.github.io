@@ -43,55 +43,55 @@
         <header>
           <h2 style="text-align:center" class="lang" key="edgetrainer"></h2>
         </header>
-        <div class="inner" style="max-width:40em;place-items: centre">
+        <div class="inner" style="max-width:30em;place-items: centre">
           <section style="display:grid;grid-template-columns: 2fr 2fr;grid-gap: 0em;place-items: centre">
             <button style="border-radius:0" id="accuratemode" onclick="accurateMode()" value=0>精准生成模式</button>
             <button style="border-radius:0" id="randomedmode" onclick="randomedMode()" value=1>随机生成模式</button>
           </section>
           <br>
-          <div style="display:grid;grid-template-columns: 3fr 2fr;grid-gap: 10px;place-items: left">
-            <section>
-              <strong>棱缓冲</strong>
-              <select style="width:3em;text-align:center" id="edgebuffer" onchange="checkEdgeOrder()">
-                <option>A</option>
-                <option>G</option>
-                <option>E</option>
-                <option>C</option>
-                <option>I</option>
-                <option>K</option>
-                <option>M</option>
-                <option>O</option>
-                <option>Q</option>
-                <option>S</option>
-                <option>W</option>
-                <option>Y</option>
-              </select>
-              <strong>棱顺序</strong>
-              <input type="text" placeholder="" id="edgeorder" maxlength="11" value="GECIKMOQSWY"
-                style="text-align:center;width:8em;text-transform:uppercase" autocomplete="off"
-                onkeyup="checkEdgeOrder()"></input>
-              <br>
+          <!-- <div style="display:grid;grid-template-columns: 3fr 2fr;grid-gap: 10px;place-items: left"> -->
+          <section>
+            <strong>棱缓冲</strong>
+            <select style="width:8em;text-align:center" id="edgebuffer" onchange="checkEdgeOrder()">
+              <option>A</option>
+              <option>G</option>
+              <option>E</option>
+              <option>C</option>
+              <option>I</option>
+              <option>K</option>
+              <option>M</option>
+              <option>O</option>
+              <option>Q</option>
+              <option>S</option>
+              <option>W</option>
+              <option>Y</option>
+            </select>
+            <br>
+            <strong>棱顺序</strong>
+            <input type="text" placeholder="" id="edgeorder" maxlength="11" value="GECIKMOQSWY"
+              style="text-align:center;width:8em;text-transform:uppercase" autocomplete="off"
+              onkeyup="checkEdgeOrder()"></input>
+            <br>
+            <section id="othercodemode1">
               <input type="checkbox" id="edgeorientflag"></input>
-              <span class="help">棱块保持色相借位<sup>[?]</sup><span class="help-content">根据教程选择</span></span>
+              <label  style="line-height:1em" for="edgeorientflag" class="help">棱块保持色相借位<sup>[?]</sup><span
+                  class="help-content">根据教程选择</span></label>
               <br>
               <input type="checkbox" id="edgeskipcyclenum"></input>
-              <span class="help">棱块跳编法<sup>[?]</sup><span class="help-content">即“固定借位法”，新手不用选</span></span>
+              <label  style="line-height:1em" for="edgeskipcyclenum" class="help">棱块跳编法<sup>[?]</sup><span
+                  class="help-content">即“固定借位法”，新手不用选</span></label>
               <br>
-              <section style="display:grid;grid-template-columns: 1fr 2fr;">
-                <strong style="display: block" id="othercodetext">编码补充模式</strong>
-                <select style="display: block" id="othercodemode" style="text-align:center">
-                  <option value=0>不会出现其他编码</option>
-                  <option value=1>可以出现其他编码</option>
-                </select>
-              </section>
+              <input type="checkbox" id="othercodemode"></input>
+              <label style="line-height:1em" for="othercodemode" class="help">允许出现其他编码</label>
             </section>
-            <section>
-              <button onclick="showPopup()">输入训练编码</button>
-              <button onclick="getEdgeScrs()">生成</button>
-            </section>
-            <br>
-          </div>
+          </section>
+          <br>
+          <button onclick="showPopup()">输入训练编码</button>
+          <br>
+          <!-- </div> -->
           <p id="inputInfo"><b>输入信息统计: </b>请输入编码。</p>
+          <button onclick="getEdgeScrs()">生成</button>
+          <br>
           <p id="outputInfo"><b>输出信息统计: </b>暂无输出打乱。</p>
 
           <div id="popup"

@@ -24,7 +24,7 @@ function edgeAccurateCodes() {
     document.getElementById("outputScrs").value = "";
     document.getElementById("outputInfo").value = "输出信息统计:";
 
-    let otherCodeMode = Number(document.getElementById("othercodemode").value);
+    let otherCodeMode = Number(document.getElementById("othercodemode").checked);
     let eBuffer = document.getElementById("edgebuffer").value.toLowerCase();
     let algAllList = [];
     let algSet = algSetGenerator(Array.from(eBuffer));
@@ -205,8 +205,7 @@ function accurateMode() {
     document.getElementById("accuratemode").innerHTML = "★ 精准生成模式";
     document.getElementById("randomedmode").innerHTML = "随机生成模式";
     generateMode = 0;
-    document.getElementById("othercodetext").style.display = "block";
-    document.getElementById("othercodemode").style.display = "block";
+    document.getElementById("othercodemode1").style.display = "block";
 }
 
 function randomedMode() {
@@ -215,8 +214,7 @@ function randomedMode() {
     document.getElementById("randomedmode").innerHTML = "★ 随机生成模式";
     document.getElementById("accuratemode").innerHTML = "精准生成模式";
     generateMode = 1;
-    document.getElementById("othercodetext").style.display = "none";
-    document.getElementById("othercodemode").style.display = "none";
+    document.getElementById("othercodemode1").style.display = "none";
 }
 
 document.addEventListener('keydown', function (event) {

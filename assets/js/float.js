@@ -17,9 +17,9 @@ function float() {
     algSet0 = shuffle(algSet0);
     algAllList0.push(algSet0);
 
-    var times = 0;
+    let times = 0;
     for (let i = 0; i < 10000; i++) {
-        var parity = 0;
+        let parity = 0;
         switch (Number(document.getElementById("parity").value)) {
             case 0:
                 parity = 0;
@@ -41,14 +41,16 @@ function float() {
             }
         }
 
-
-        var pos = [posChichu(eBufferList[0].toString()),posChichu(eBufferList[1].toString())];
-        var codes = Array.from(eBufferList);
+        let pos = [];
+        for(code in eBufferList.concat(eEjectList)){
+            pos.push(posChichu(code.toString()));
+        }
+        let codes = Array.from(eBufferList);
         for (let j = 0; j < ~~(Math.random() * (4 - Math.floor((eEjectList.length + 1) / 2) - parity)); j++) {
-            var breakFlag = 0;
+            let breakFlag = 0;
             for (let m = 0; m < algAllList1.length; m++) {
                 for (let n = 0; n < algAllList1[m].length; n++) {
-                    var code = algAllList1[m][n];
+                    let code = algAllList1[m][n];
                     if (pos.indexOf(posChichu(code[0])) === -1 && pos.indexOf(posChichu(code[1])) === -1) {
                         pos.push(posChichu(code[0]));
                         pos.push(posChichu(code[1]));
@@ -72,7 +74,7 @@ function float() {
             var breakFlag = 0;
             for (let m = 0; m < algAllList0.length; m++) {
                 for (let n = 0; n < algAllList0[m].length; n++) {
-                    var code = algAllList0[m][n];
+                    let code = algAllList0[m][n];
                     if (pos.indexOf(posChichu(code[0])) === -1 && pos.indexOf(posChichu(code[1])) === -1) {
                         pos.push(posChichu(code[0]));
                         pos.push(posChichu(code[1]));
@@ -93,10 +95,10 @@ function float() {
         }
 
         if (parity === 1) {
-            var allpos = Array.from({ length: 11 }, (_, i) => i + 1);
-            var otherpos = allpos.filter(item => !pos.includes(item));
-            var choosepos = otherpos[~~(Math.random() * 2)];
-            var paritycode = globalState[24+choosepos*2+~~(Math.random() * 2)];
+            let allpos = Array.from({ length: 11 }, (_, i) => i + 1);
+            let otherpos = allpos.filter(item => !pos.includes(item));
+            let choosepos = otherpos[~~(Math.random() * 2)];
+            let paritycode = globalState[24+choosepos*2+~~(Math.random() * 2)];
             codes[~~(Math.random() * 2)] += paritycode;
         }
 

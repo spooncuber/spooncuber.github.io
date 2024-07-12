@@ -44,22 +44,6 @@
           <h2 style="text-align:center" class="lang" key="reader"></h2>
         </header>
         <div id="innerdiv" class="inner" style="width:30em;text-align: left">
-          <strong>角块缓冲：</strong>
-          <select style="width:8em;text-align:center" id="cornerbuffer" onchange="checkCornerOrder()">
-            <option>J</option>
-            <option>A</option>
-            <option>G</option>
-            <option>D</option>
-            <option>W</option>
-            <option>O</option>
-            <option>R</option>
-            <option>X</option>
-          </select>
-          <br>
-          <strong>借位顺序：</strong>
-          <input type="text" placeholder="" id="cornerorder" maxlength="7" value="GADXWRO"
-            style="text-align:center;width:8em;text-transform:uppercase" autocomplete="off" onkeyup="checkCornerOrder()"></input>
-          <br>
           <strong>棱块缓冲：</strong>
           <select style="width:8em;text-align:center" id="edgebuffer" onchange="checkEdgeOrder()">
             <option>A</option>
@@ -78,7 +62,7 @@
           <br>
           <strong>借位顺序：</strong>
           <input type="text" placeholder="" id="edgeorder" maxlength="11" value="GECIKMOQSWY"
-            style="text-align:center;width:8em;text-transform:uppercase" autocomplete="off"
+            style="text-align:center;width:8em;text-transform:uppercase;" autocomplete="off"
             onkeyup="checkEdgeOrder()"></input>
           <!-- <strong>借位习惯：</strong>
           <select style="width:8em;text-align:center" id="orientflag">
@@ -92,21 +76,41 @@
             <option value=1>固定借位</option>
           </select> -->
           <br>
-          <input type="checkbox" id="cornerorientflag" onchange="codereader()"></input>
-          <span class="help">角块保持色相借位<sup>[?]</sup><span class="help-content">根据教程选择</span></span>
+          <strong>角块缓冲：</strong>
+          <select style="width:8em;text-align:center" id="cornerbuffer" onchange="checkCornerOrder()">
+            <option>J</option>
+            <option>A</option>
+            <option>G</option>
+            <option>D</option>
+            <option>W</option>
+            <option>O</option>
+            <option>R</option>
+            <option>X</option>
+          </select>
+          <br>
+          <strong>借位顺序：</strong>
+          <input type="text" placeholder="" id="cornerorder" maxlength="7" value="GADXWRO"
+            style="text-align:center;width:8em;text-transform:uppercase" autocomplete="off" onkeyup="checkCornerOrder()"></input>
           <br>
           <input type="checkbox" id="edgeorientflag" onchange="codereader()"></input>
-          <span class="help">棱块保持色相借位<sup>[?]</sup><span class="help-content">根据教程选择</span></span>
+          <label style="line-height:1em" for="edgeorientflag" class="help">棱块保持色相借位<sup>[?]</sup><span
+              class="help-content">根据教程选择</span></label>
           <br>
-          <input type="checkbox" id="cornerskipcyclenum" onchange="codereader()"></input>
-          <span class="help">角块跳编法<sup>[?]</sup><span class="help-content">即“固定借位法”，新手不用选</span></span>
+          <input type="checkbox" id="cornerorientflag" onchange="codereader()"></input>
+          <label style="line-height:1em" for="cornerorientflag" class="help">角块保持色相借位<sup>[?]</sup><span
+              class="help-content">根据教程选择</span></label>
           <br>
           <input type="checkbox" id="edgeskipcyclenum" onchange="codereader();"></input>
-          <span class="help">棱块跳编法<sup>[?]</sup><span class="help-content">即“固定借位法”，新手不用选</span></span>
+          <label style="line-height:1em" for="edgeskipcyclenum" class="help">棱块跳编法<sup>[?]</sup><span
+              class="help-content">即“固定借位法”，新手不用选</span></label>
+          <br>
+          <input type="checkbox" id="cornerskipcyclenum" onchange="codereader()"></input>
+          <label style="line-height:1em" for="cornerskipcyclenum" class="help">角块跳编法<sup>[?]</sup><span
+              class="help-content">即“固定借位法”，新手不用选</span></label>
           <br>
           <strong>打乱公式：</strong>
           <input type="text" placeholder="" id="scrinput" maxlength="100" value="" style="text-align:left;width:18em"
-            onkeyup="codereader()" autocomplete="off"></input>
+            onkeyup="codereader();solver()" autocomplete="off"></input>
           <br>
           <span id="alartoutput1"></span>
 
@@ -218,13 +222,13 @@
   <script src="assets/js/setcode.js"></script>
   <script src="assets/js/language.js"></script>
   <script src="assets/js/reader.js"></script>
-  <script src="assets/js/solver.js"></script>
   <script src="assets/js/scrambler.js"></script>
   <script src="assets/js/codetrans.js"></script>
   <script src="assets/js/min2phase.js"></script>
   <script src="assets/js/utils.js"></script>
-  <script src="assets/js/cubing/twisty.js" type="module" defer></script>
-  <!-- <script src="https://cdn.cubing.net/js/cubing/twisty" type="module" defer></script> -->
+  <script src="assets/js/solver.js" async></script>
+  <script src="assets/js/cubing/twisty.js" type="module" async></script>
+  <!-- <script src="https://cdn.cubing.net/js/cubing/twisty" type="module" async></script> -->
 </body>
 
 </html>

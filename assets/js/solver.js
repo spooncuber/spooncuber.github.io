@@ -6,7 +6,6 @@ const jsonLoaded = jsonNameList.map((name) => $.getJSON(`assets/json/${name}.jso
 
 function codereader() {
     let scr = document.getElementById("scrinput").value;
-    document.getElementById("player").setAttribute("alg", cubeorientation() + scr);
 
     while (scr.charAt(scr.length - 1) === " ") {
         scr = scr.slice(0, -1);
@@ -14,6 +13,11 @@ function codereader() {
     while (scr.charAt(0) === " ") {
         scr = scr.slice(1);
     }
+    if (fixorientation(scr).length > 0) {
+        scr += " " + fixorientation(scr);
+    }
+    
+    document.getElementById("player").setAttribute("alg", cubeorientation() + scr);
 
     document.getElementById("edge").innerHTML = "棱块读码：" + edgeread(scr);
     document.getElementById("flip").innerHTML = "棱块翻色：" + edgeorientation(scr);
@@ -128,8 +132,6 @@ function solver() {
             }
         }
     }
-
-
     //console.log('comms', comms)
 
     document.getElementById("player").setAttribute("alg", cubeorientation() + scr + comms);
@@ -147,7 +149,6 @@ function allowDrop(event) {
 function drop(event) {
     event.preventDefault();
     event.stopPropagation();
-    //const dragHTML = solveList.dragSrcEl.innerHTML;
 
     let data = event.dataTransfer.getData("text/plain");
     const dragHTML = document.getElementById(data).innerHTML;
@@ -158,12 +159,6 @@ function drop(event) {
         targetElement = event.target.parentElement;
     }
     const targetHTML = targetElement.innerHTML;
-
-
-    // for (let j = 0; j < liList[i].children.length; j++) {
-        // let solveType = liList[i].children[j].id;
-
-
 
     if (solveList.dragSrcEl !== event.target) {
         targetElement.innerHTML = dragHTML;
@@ -203,3 +198,5 @@ function cubeorientation() {
         case 23: return "z y' ";
     }
 }
+
+

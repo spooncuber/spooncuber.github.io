@@ -18,7 +18,7 @@ const arrLang = {
         "5style": "五循环库",
         "code": "编码",
         "introduction": "说明",
-        "reader": "读码/还原助手",
+        "reader": "读码还原助手",
         "solver": "还原助手",
         "cornerHint": "请在下方输入你要查询的公式编码（例如: JAD）",
         "edgeHint": "请在下方输入你要查询的公式编码（例如: ACG）",

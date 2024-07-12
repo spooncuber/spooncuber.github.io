@@ -841,13 +841,15 @@ function edgeread(s1) {
                 edgereadpartChar = edgereadpartChar + track1(edgereadpartChar[edgereadpartChar.length - 1]);
                 edgereadChar = edgereadChar + edgereadpartChar;
                 cycleList.push(edgereadpartChar);
-                cycleOrders.push(i - 1);
+                cycleOrders.push(~~((i - 1) / 2));
             }
         }
     }
 
     let orientLast = 0;
     let edgereadOut = "";
+    let endList = "";
+    let codenum = 0;
     for (let i = 0; i < cycleList.length; i++) {
         if (i > 0) {
             orientLast += edgeCh.indexOf(cycleList[i - 1][cycleList[i - 1].length - 1]) - edgeCh.indexOf(cycleList[i - 1][0]);
@@ -865,13 +867,25 @@ function edgeread(s1) {
             if (j === cycleList[i].length - 1 && cycleOrders[i] < skipCycleNum + 1) {
                 endList += code;
             } else {
-                edgereadOut += code;
-                if (edgereadOut.length % 3 === 0) {
+                // edgereadOut += code;
+                if(i>0 && j===0){
+                    edgereadOut += `<span style='color:blue'>${code}</span>` ;
+                }else if(i>0 && j===cycleList[i].length-1){
+                    edgereadOut += `<span style='color:green'>${code}</span>`;
+                }else{
+                    edgereadOut += code;
+                }
+                codenum+=1;
+                if (codenum > 1 && codenum % 2 === 1) {
                     edgereadOut += " ";
                 }
             }
         }
     }
+    if (skipCycleNum > 0) {
+        edgereadOut += `<span style='color:green'>${endList.split('').reverse().join('')}</span>` ;
+    }
+
     edgereadOut = edgereadOut.slice(1, edgereadOut.length);
     return edgereadOut;
 }
@@ -914,6 +928,7 @@ function cornerread(s1) {
     let orientLast = 0;
     let cornerreadOut = "";
     let endList = "";
+    let codenum = 0;
     for (let i = 0; i < cycleList.length; i++) {
         if (i > 0) {
             orientLast += cornerCh.indexOf(cycleList[i - 1][cycleList[i - 1].length - 1]) - cornerCh.indexOf(cycleList[i - 1][0]);
@@ -931,15 +946,23 @@ function cornerread(s1) {
             if (j === cycleList[i].length - 1 && cycleOrders[i] < skipCycleNum + 1) {
                 endList += code;
             } else {
-                cornerreadOut += code;
-                if (cornerreadOut.length % 3 === 0) {
+                // cornerreadOut += code;
+                if(i>0 && j===0){
+                    cornerreadOut += `<span style='color:blue'>${code}</span>` ;
+                }else if(i>0 && j===cycleList[i].length-1){
+                    cornerreadOut += `<span style='color:green'>${code}</span>`;
+                }else{
+                    cornerreadOut += code;
+                }
+                codenum+=1;
+                if (codenum > 1 && codenum % 2 === 1) {
                     cornerreadOut += " ";
                 }
             }
         }
     }
     if (skipCycleNum > 0) {
-        cornerreadOut += endList.split('').reverse().join('');
+        cornerreadOut += `<span style='color:green'>${endList.split('').reverse().join('')}</span>` ;
     }
 
     cornerreadOut = cornerreadOut.slice(1, cornerreadOut.length);
@@ -1156,4 +1179,36 @@ function checkCornerOrder(){
         } 
     }
     return true;
+}
+
+function fixorientation(scr) {
+    operatealg(scr);
+    let cubeorientation = arra[1][5] + arra[5][5]; 
+
+    switch (cubeorientation) {
+        case "UF": return "";
+        case "UR": return "y'";
+        case "UB": return "y2";
+        case "UL": return "y";
+        case "DB": return "x2";
+        case "DR": return "y' x2";
+        case "DF": return "y2 x2";
+        case "DL": return "y x2";
+        case "FD": return "x'";
+        case "FR": return "y' x'";
+        case "FU": return "y2 x'";
+        case "FL": return "y x'";
+        case "BU": return "x";
+        case "BR": return "y' x";
+        case "BD": return "y2 x";
+        case "BL": return "y x";
+        case "RF": return "z";
+        case "RD": return "y' z";
+        case "RB": return "y2 z";
+        case "RU": return "y z";
+        case "LF": return "z'";
+        case "LU": return "y' z'";
+        case "LB": return "y2 z'";
+        case "LD": return "y z'";
+    }
 }
