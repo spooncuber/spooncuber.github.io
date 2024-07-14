@@ -1,4 +1,4 @@
-$.ajaxSettings.async = false;
+// $.ajaxSettings.async = false;
 const jsonNameList = ["cornerAlgToStandard", "edgeAlgToStandard", "parityAlgToInfo", "parityCornerAlgToStandard", "parityEdgeAlgToStandard", "nightmareCornerAlgToInfo", "nightmareEdgeAlgToInfo", "nightmareTwoFlipsAlgToInfo", "nightmareTwoTwistsAlgToInfo"];
 const jsonLoaded = jsonNameList.map((name) => $.getJSON(`assets/json/${name}.json`, (json) => {
     window[`${name}`] = json;
@@ -198,5 +198,3 @@ function cubeorientation() {
         case 23: return "z y' ";
     }
 }
-
-

@@ -1,6 +1,7 @@
 "use strict";
 
 function float() {
+    
     document.getElementById("outputScrs").value = "";
     document.getElementById("outputInfo").value = "输出信息统计:";
 
@@ -42,8 +43,9 @@ function float() {
         }
 
         let pos = [];
-        for(code in eBufferList.concat(eEjectList)){
-            pos.push(posChichu(code.toString()));
+        let listtemp = eBufferList.concat(eEjectList);
+        for(let i=0; i < listtemp.length; i++){
+            pos.push(posChichu(listtemp[i].toString()));
         }
         let codes = Array.from(eBufferList);
         for (let j = 0; j < ~~(Math.random() * (4 - Math.floor((eEjectList.length + 1) / 2) - parity)); j++) {
@@ -97,7 +99,7 @@ function float() {
         if (parity === 1) {
             let allpos = Array.from({ length: 11 }, (_, i) => i + 1);
             let otherpos = allpos.filter(item => !pos.includes(item));
-            let choosepos = otherpos[~~(Math.random() * 2)];
+            let choosepos = otherpos[~~(Math.random() * otherpos.length)];
             let paritycode = globalState[24+choosepos*2+~~(Math.random() * 2)];
             codes[~~(Math.random() * 2)] += paritycode;
         }
@@ -116,6 +118,7 @@ function float() {
     if (document.getElementById("outputScrs").value != "") {
         document.getElementById("copyBtn").style.display = "block";
     }
+    // console.log(document.getElementById("copyBtn").innerText)
 }
 
 function shuffle(array) {
