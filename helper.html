@@ -6,6 +6,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes" />
   <link rel="stylesheet" href="assets/css/main.css" />
+  <link rel="stylesheet" href="assets/css/utils.css" />
   <link rel="icon" href="images/logo.svg" type="image/x-icon" />
   <link rel="apple-touch-icon" href="images/logo.png" />
   <meta name="google-site-verification" content="s3hE2D_rJuuUUj4rVvWBADMHqHqiSM-bQh80mnwzDMA" />
@@ -64,17 +65,7 @@
           <input type="text" placeholder="" id="edgeorder" maxlength="11" value="GECIKMOQSWY"
             style="text-align:center;width:8em;text-transform:uppercase;" autocomplete="off"
             onkeyup="checkEdgeOrder()"></input>
-          <!-- <strong>借位习惯：</strong>
-          <select style="width:8em;text-align:center" id="orientflag">
-            <option value=0>无视色相借位</option>
-            <option value=1>保持色相借位</option>
-          </select>
-          <br>
-          <strong>借位技巧：</strong>
-          <select style="width:8em;text-align:center" id="skipcyclenum">
-            <option value=0>正常借位</option>
-            <option value=1>固定借位</option>
-          </select> -->
+
           <br>
           <strong>角块缓冲：</strong>
           <select style="width:8em;text-align:center" id="cornerbuffer" onchange="checkCornerOrder()">
@@ -90,46 +81,33 @@
           <br>
           <strong>借位顺序：</strong>
           <input type="text" placeholder="" id="cornerorder" maxlength="7" value="GADXWRO"
-            style="text-align:center;width:8em;text-transform:uppercase" autocomplete="off" onkeyup="checkCornerOrder()"></input>
+            style="text-align:center;width:8em;text-transform:uppercase" autocomplete="off"
+            onkeyup="checkCornerOrder()"></input>
           <br>
-          <input type="checkbox" id="edgeorientflag" onchange="codereader()"></input>
+          <input type="checkbox" id="edgeorientflag" onchange="helperEnter()"></input>
           <label style="line-height:1em" for="edgeorientflag" class="help">棱块保持色相借位<sup>[?]</sup><span
               class="help-content">根据教程选择</span></label>
           <br>
-          <input type="checkbox" id="cornerorientflag" onchange="codereader()"></input>
+          <input type="checkbox" id="cornerorientflag" onchange="helperEnter()"></input>
           <label style="line-height:1em" for="cornerorientflag" class="help">角块保持色相借位<sup>[?]</sup><span
               class="help-content">根据教程选择</span></label>
           <br>
-          <input type="checkbox" id="edgeskipcyclenum" onchange="codereader();"></input>
+          <input type="checkbox" id="edgeskipcyclenum" onchange="helperEnter();"></input>
           <label style="line-height:1em" for="edgeskipcyclenum" class="help">棱块跳编法<sup>[?]</sup><span
               class="help-content">即“固定借位法”，新手不用选</span></label>
           <br>
-          <input type="checkbox" id="cornerskipcyclenum" onchange="codereader()"></input>
+          <input type="checkbox" id="cornerskipcyclenum" onchange="helperEnter()"></input>
           <label style="line-height:1em" for="cornerskipcyclenum" class="help">角块跳编法<sup>[?]</sup><span
               class="help-content">即“固定借位法”，新手不用选</span></label>
           <br>
           <strong>打乱公式：</strong>
-          <input type="text" placeholder="" id="scrinput" maxlength="100" value="" style="text-align:left;width:18em"
-            onkeyup="codereader();solver()" autocomplete="off"></input>
+          <button style="transform: scale(0.75);"
+            onclick="document.getElementById('scrinput').value = getScramble();helperEnter()">随机打乱</button>
+          <br>
+          <textarea id="scrinput" placeholder="打乱必须用空格分割" onkeyup="helperEnter()" rows="1"
+            style="min-height:1em; border-bottom-color:black; resize:none;overflow: auto;"></textarea>
           <br>
           <span id="alartoutput1"></span>
-
-          <!-- <div style="display:grid;grid-template-columns: 1fr 1fr;grid-gap: 0em;place-items: center start">
-            <span id="edge">棱块读码：</span>
-            <span><button onclick="edgeprev()" style="transform: scale(0.75);"><</button><button onclick="edgenext()" style="transform: scale(0.75);">></button></span>
-          </div>
-          <div style="display:grid;grid-template-columns: 1fr 1fr;grid-gap: 0em;place-items: center start">
-            <span id="flip">棱块翻色：</span>
-            <span><button onclick="flipprev()" style="transform: scale(0.75);"><</button><button onclick="flipnext()" style="transform: scale(0.75);">></button></span>
-          </div>
-          <div style="display:grid;grid-template-columns: 1fr 1fr;grid-gap: 0em;place-items: center start">
-            <span id="corn">角块读码：</span>
-            <span><button onclick="cornprev()" style="transform: scale(0.75);"><</button><button onclick="cornnext()" style="transform: scale(0.75);">></button></span>
-          </div>
-          <div style="display:grid;grid-template-columns: 1fr 1fr;grid-gap: 0em;place-items: center start">
-            <span id="twis">角块翻色：</span>
-            <span><button onclick="twisprev()" style="transform: scale(0.75);"><</button><button onclick="twisnext()" style="transform: scale(0.75);">></button></span>
-          </div> -->
 
           <span id="edge">棱块读码：</span><br>
           <span id="flip">棱块翻色：</span><br>
@@ -137,7 +115,7 @@
           <span id="twis">角块翻色：</span><br>
 
           <strong>打乱/还原坐标：</strong>
-          <select style="width:5em;text-align:left" id="cubeorientation" onchange="codereader()">
+          <select style="width:5em;text-align:left" id="cubeorientation" onchange="helperEnter()">
             <option value=0>白顶绿前</option>
             <option value=1>白顶红前</option>
             <option value=2>白顶蓝前</option>
@@ -180,37 +158,48 @@
           <br> -->
           <br>
           <strong>请输入还原编码（拖拽可交换执行顺序）</strong>
-          <ol id = "solvelist">
-            <li id = "li1" draggable="true" ondragstart="drag(event)" ondrop="drop(event)" ondragover="allowDrop(event)">
+          <ol id="solvelist">
+            <li id="li1" draggable="true" ondragstart="drag(event)" ondrop="drop(event)" ondragover="allowDrop(event)">
               <span class="help">棱块还原<sup>[?]</sup>：<span class="help-content">例：XY为缓冲块-X-Y的三棱换</span></span>
               <input type="text" placeholder="" id="edgesolve" maxlength="100" value=""
-                style="text-align:left;width:10em;text-transform:uppercase" onkeyup="solver()" autocomplete="off"></input>
+                style="text-align:left;width:10em;text-transform:uppercase" onkeyup="helperEnter()"
+                autocomplete="off"></input>
             </li>
-            <li id = "li2" draggable="true" ondragstart="drag(event)" ondrop="drop(event)" ondragover="allowDrop(event)">
+            <li id="li2" draggable="true" ondragstart="drag(event)" ondrop="drop(event)" ondragover="allowDrop(event)">
               <span class="help">角块还原<sup>[?]</sup>：<span class="help-content">例：ZY为缓冲块-Z-Y的三角块</span></span>
               <input type="text" placeholder="" id="cornersolve" maxlength="100" value=""
-                style="text-align:left;width:10em;text-transform:uppercase" onkeyup="solver()" autocomplete="off"></input>
+                style="text-align:left;width:10em;text-transform:uppercase" onkeyup="helperEnter()"
+                autocomplete="off"></input>
             </li>
-            <li id = "li3" draggable="true" ondragstart="drag(event)" ondrop="drop(event)" ondragover="allowDrop(event)">
+            <li id="li3" draggable="true" ondragstart="drag(event)" ondrop="drop(event)" ondragover="allowDrop(event)">
               <span class="help">奇偶还原<sup>[?]</sup>：<span class="help-content">先棱后角，例：MX为棱缓冲与M交换、角缓冲与X交换。</span></span>
               <input type="text" placeholder="" id="paritysolve" maxlength="100" value=""
-               style="text-align:left;width:10em;text-transform:uppercase" onkeyup="solver()" autocomplete="off"></input>
+                style="text-align:left;width:10em;text-transform:uppercase" onkeyup="helperEnter()"
+                autocomplete="off"></input>
             </li>
-            <li id = "li4" draggable="true" ondragstart="drag(event)" ondrop="drop(event)" ondragover="allowDrop(event)">
+            <li id="li4" draggable="true" ondragstart="drag(event)" ondrop="drop(event)" ondragover="allowDrop(event)">
               <span class="help">翻棱编码<sup>[?]</sup>：<span class="help-content">例：NM为缓冲块与MN块翻棱。</span></span>
               <input type="text" placeholder="" id="flipsolve" maxlength="100" value=""
-               style="text-align:left;width:10em;text-transform:uppercase" onkeyup="solver()" autocomplete="off"></input>
+                style="text-align:left;width:10em;text-transform:uppercase" onkeyup="helperEnter()"
+                autocomplete="off"></input>
             </li>
-            <li id = "li5" draggable="true" ondragstart="drag(event)" ondrop="drop(event)" ondragover="allowDrop(event)">
+            <li id="li5" draggable="true" ondragstart="drag(event)" ondrop="drop(event)" ondragover="allowDrop(event)">
               <span class="help">翻角编码<sup>[?]</sup>：<span class="help-content">例：ZX为缓冲块逆翻与XYZ块逆翻。</span></span>
               <input type="text" placeholder="" id="twistsolve" maxlength="100" value=""
-               style="text-align:left;width:10em;text-transform:uppercase" onkeyup="solver()" autocomplete="off"></input>
+                style="text-align:left;width:10em;text-transform:uppercase" onkeyup="helperEnter()"
+                autocomplete="off"></input>
             </li>
 
           </ol>
-
           <span id="alartoutput2"></span>
+
           <twisty-player id="player" style="transform: scale(1);" alg="" control-panel="none"></twisty-player>
+
+          <div id="loader"
+            style="display:grid;grid-template-columns: 1fr 1fr;grid-gap: 0em;place-items: centre;width: 50%;">
+            <span>加载中:</span>
+            <div class="loader"></div>
+          </div>
         </div>
       </div>
     </div>
@@ -225,9 +214,9 @@
   <script src="assets/js/codetrans.js"></script>
   <script src="assets/js/min2phase.js"></script>
   <script src="assets/js/utils.js"></script>
-  <script src="assets/js/solver.js" async></script>
-  <script src="assets/js/cubing/twisty.js" type="module" async></script>
-  <!-- <script src="https://cdn.cubing.net/js/cubing/twisty" type="module" async></script> -->
+  <script src="assets/js/helper.js" async></script>
+  <!-- <script src="assets/js/cubing/twisty.js" type="module" async></script> -->
+  <script src="https://cdn.cubing.net/js/cubing/twisty" type="module" async></script>
 </body>
 
 </html>

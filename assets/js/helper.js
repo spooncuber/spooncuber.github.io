@@ -4,6 +4,12 @@ const jsonLoaded = jsonNameList.map((name) => $.getJSON(`assets/json/${name}.jso
     window[`${name}`] = json;
 }));
 
+function helperEnter() {
+    codereader();
+    solver();
+    resizeTextarea();
+}
+
 function codereader() {
     let scr = document.getElementById("scrinput").value;
 
@@ -16,7 +22,7 @@ function codereader() {
     if (fixorientation(scr).length > 0) {
         scr += " " + fixorientation(scr);
     }
-    
+
     document.getElementById("player").setAttribute("alg", cubeorientation() + scr);
 
     document.getElementById("edge").innerHTML = "棱块读码：" + edgeread(scr);
@@ -39,7 +45,7 @@ function codereader() {
 }
 
 function solver() {
-    if(checkEdgeOrder() === false || checkCornerOrder === false){
+    if (checkEdgeOrder() === false || checkCornerOrder === false) {
         return
     }
 
@@ -58,7 +64,7 @@ function solver() {
 
     let comms = " ";
 
-    if (edgecode.length % 2 === 1 || cornercode.length % 2 === 1 || paritycode.length % 2 === 1  || flipcode.length % 2 === 1  || twistcode.length % 2 === 1) {
+    if (edgecode.length % 2 === 1 || cornercode.length % 2 === 1 || paritycode.length % 2 === 1 || flipcode.length % 2 === 1 || twistcode.length % 2 === 1) {
         return;
     }
 
@@ -147,6 +153,12 @@ function allowDrop(event) {
     event.preventDefault();
 }
 function drop(event) {
+    const edgecode = document.getElementById("edgesolve").value;
+    const cornercode = document.getElementById("cornersolve").value;
+    const paritycode = document.getElementById("paritysolve").value;
+    const flipcode = document.getElementById("flipsolve").value;
+    const twistcode = document.getElementById("twistsolve").value;
+
     event.preventDefault();
     event.stopPropagation();
 
@@ -163,8 +175,14 @@ function drop(event) {
     if (solveList.dragSrcEl !== event.target) {
         targetElement.innerHTML = dragHTML;
         document.getElementById(data).innerHTML = targetHTML;
-        solver();
+        helperEnter();
     }
+    
+    document.getElementById("edgesolve").value = edgecode;
+    document.getElementById("cornersolve").value = cornercode;
+    document.getElementById("paritysolve").value = paritycode;
+    document.getElementById("flipsolve").value = flipcode;
+    document.getElementById("twistsolve").value = twistcode;
 }
 
 
@@ -196,5 +214,34 @@ function cubeorientation() {
         case 21: return "z y ";
         case 22: return "z y2 ";
         case 23: return "z y' ";
+    }
+}
+
+window.onload = function () {
+    document.getElementById("loader").style.display = "none";
+    document.getElementById("scrinput").style.width = $('html').css('max-width');
+}
+
+function resizeTextarea() {
+
+    let elem = document.getElementById("scrinput");
+
+    // 动态计算字符串宽度，手机无效
+    // const spanLable = document.createElement('span');
+    // spanLable.innerHTML = elem.value;
+    // spanLable.style.visibility = 'hidden';
+    // spanLable.style.float = 'left';
+    // spanLable.style.fontSize = '16pt';
+    // spanLable.style.fontFamily = '"Tahoma", Helvetica, sans-serif';
+    // document.body.appendChild(spanLable);
+    // const width = spanLable.offsetWidth;
+    // document.body.removeChild(spanLable);
+    // let rowsValue = Math.floor(width / elem.offsetWidth) + 1;
+
+    let rowsValue = Math.floor(elem.value.length / (elem.cols * 1.4));
+    if (rowsValue === 0) {
+        elem.rows = 1;
+    }else if(rowsValue > 0){
+        elem.rows = rowsValue;
     }
 }
