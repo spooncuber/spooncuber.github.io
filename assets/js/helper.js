@@ -1,8 +1,5 @@
 // $.ajaxSettings.async = false;
-const jsonNameList = ["cornerAlgToStandard", "edgeAlgToStandard", "parityAlgToInfo", "parityCornerAlgToStandard", "parityEdgeAlgToStandard", "nightmareCornerAlgToInfo", "nightmareEdgeAlgToInfo", "nightmareTwoFlipsAlgToInfo", "nightmareTwoTwistsAlgToInfo"];
-const jsonLoaded = jsonNameList.map((name) => $.getJSON(`assets/json/${name}.json`, (json) => {
-    window[`${name}`] = json;
-}));
+
 
 function helperEnter() {
     codereader();
@@ -65,8 +62,90 @@ function solver() {
     let comms = " ";
 
     if (edgecode.length % 2 === 1 || cornercode.length % 2 === 1 || paritycode.length % 2 === 1 || flipcode.length % 2 === 1 || twistcode.length % 2 === 1) {
-        return;
+        document.getElementById("alartoutput2").innerHTML = "&#9888 不能出现单数编码！";
+        // return;
     }
+
+    let liList = document.getElementsByTagName('li');
+    for (let i = 0; i < liList.length; i++) {
+        for (let j = 0; j < liList[i].children.length; j++) {
+            let solveType = liList[i].children[j].id;
+            switch (solveType) {
+                case "edgesolve":
+                    for (let i = 0; i < ~~(edgecode.length/2)*2; i += 2) {
+                        if (posChichu(edgecode[i].toLowerCase()) === posChichu(edgebuffer.toLowerCase()) || posChichu(edgecode[i + 1].toLowerCase()) === posChichu(edgebuffer.toLowerCase())) {
+                            document.getElementById("alartoutput2").innerHTML = "&#9888 不能出现缓冲块编码！";
+                        } else if (posChichu(edgecode[i].toLowerCase()) === posChichu(edgecode[i + 1].toLowerCase())) {
+                            document.getElementById("alartoutput2").innerHTML = "&#9888 不能出现同位置编码！";
+                        } else {
+                            let state = codeTrans((edgebuffer + edgecode[i+1] + edgecode[i]).toLowerCase(), globalState);
+                            comms += m2p(state);
+                        }
+                    }
+                    break;
+                case "flipsolve":
+                    for (let i = 0; i < ~~(flipcode.length/2)*2; i += 2) {
+                        if (posChichu(flipcode[i].toLowerCase()) === posChichu(edgebuffer.toLowerCase()) || posChichu(flipcode[i + 1].toLowerCase()) === posChichu(edgebuffer.toLowerCase())) {
+                            document.getElementById("alartoutput2").innerHTML = "&#9888 不能出现缓冲块编码！";
+                        } else if (posChichu(flipcode[i].toLowerCase()) !== posChichu(flipcode[i + 1].toLowerCase())) {
+                            document.getElementById("alartoutput2").innerHTML = "&#9888 只能出现同位置编码！";
+                        } else {
+                            let state = codeTrans((edgebuffer + flipcode[i+1] + flipcode[i]).toLowerCase(), globalState);
+                            comms += m2p(state);
+
+                        }
+                    }
+                    break;
+                case "cornersolve":
+                    for (let i = 0; i < ~~(cornercode.length/2)*2; i += 2) {
+                        if (posChichu(cornercode[i]) === posChichu(cornerbuffer) || posChichu(cornercode[i + 1]) === posChichu(cornerbuffer)) {
+                            document.getElementById("alartoutput2").innerHTML = "&#9888 不能出现缓冲块编码！";
+                        } else if (posChichu(cornercode[i]) === posChichu(cornercode[i + 1])) {
+                            document.getElementById("alartoutput2").innerHTML = "&#9888 不能出现同位置编码！";
+                        } else {
+                            let state = codeTrans((cornerbuffer + cornercode[i + 1] + cornercode[i]), globalState);
+                            comms += m2p(state);
+                        }
+                    }
+                    break;
+                case "twistsolve":
+                    for (let i = 0; i < ~~(twistcode.length/2)*2; i += 2) {
+                        if (posChichu(twistcode[i]) === posChichu(cornerbuffer) || posChichu(twistcode[i + 1]) === posChichu(cornerbuffer)) {
+                            document.getElementById("alartoutput2").innerHTML = "&#9888 不能出现缓冲块编码！";
+                        } else if (posChichu(twistcode[i]) !== posChichu(twistcode[i + 1])) {
+                            document.getElementById("alartoutput2").innerHTML = "&#9888 只能出现同位置编码！";
+                        } else {
+                            let state = codeTrans((cornerbuffer + twistcode[i+1] + twistcode[i]), globalState);
+                            comms += m2p(state);
+                        }
+                    }
+                    break;
+                case "paritysolve":
+                    for (let i = 0; i < ~~(paritycode.length/2)*2; i += 2) {
+                        if (posChichu(paritycode[i].toLowerCase()) === posChichu(edgebuffer.toLowerCase()) || posChichu(paritycode[i + 1]) === posChichu(cornerbuffer)) {
+                            document.getElementById("alartoutput2").innerHTML = "&#9888 不能出现缓冲块编码！";
+                        } else {
+                            let state1 = codeTrans((edgebuffer + paritycode[i]).toLowerCase(), globalState);
+                            let state2 = codeTrans((cornerbuffer + paritycode[i + 1]), state1);
+                            comms += m2p(state2);
+                        }
+                    }
+                    break;
+                default:
+                    break;
+            }
+        }
+    }
+    //console.log('comms', comms)
+
+    document.getElementById("player").setAttribute("alg", cubeorientation() + scr + comms);
+}
+
+function getAlgSolver() {
+    const jsonNameList = ["cornerAlgToStandard", "edgeAlgToStandard", "parityAlgToInfo", "parityCornerAlgToStandard", "parityEdgeAlgToStandard", "nightmareCornerAlgToInfo", "nightmareEdgeAlgToInfo", "nightmareTwoFlipsAlgToInfo", "nightmareTwoTwistsAlgToInfo"];
+    const jsonLoaded = jsonNameList.map((name) => $.getJSON(`assets/json/${name}.json`, (json) => {
+        window[`${name}`] = json;
+    }));
 
     let liList = document.getElementsByTagName('li');
     for (let i = 0; i < liList.length; i++) {
@@ -138,9 +217,6 @@ function solver() {
             }
         }
     }
-    //console.log('comms', comms)
-
-    document.getElementById("player").setAttribute("alg", cubeorientation() + scr + comms);
 }
 
 const solveList = document.getElementById("solvelist");
@@ -177,7 +253,7 @@ function drop(event) {
         document.getElementById(data).innerHTML = targetHTML;
         helperEnter();
     }
-    
+
     document.getElementById("edgesolve").value = edgecode;
     document.getElementById("cornersolve").value = cornercode;
     document.getElementById("paritysolve").value = paritycode;
@@ -238,10 +314,10 @@ function resizeTextarea() {
     // document.body.removeChild(spanLable);
     // let rowsValue = Math.floor(width / elem.offsetWidth) + 1;
 
-    let rowsValue = Math.floor(elem.value.length / (elem.cols * 1.4));
+    let rowsValue = Math.floor(elem.value.length / (elem.cols * 1));
     if (rowsValue === 0) {
         elem.rows = 1;
-    }else if(rowsValue > 0){
+    } else if (rowsValue > 0) {
         elem.rows = rowsValue;
     }
 }

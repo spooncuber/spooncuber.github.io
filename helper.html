@@ -44,162 +44,160 @@
         <header>
           <h2 style="text-align:center" class="lang" key="reader"></h2>
         </header>
-        <div id="innerdiv" class="inner" style="width:30em;text-align: left">
-          <strong>棱块缓冲：</strong>
-          <select style="width:8em;text-align:center" id="edgebuffer" onchange="checkEdgeOrder()">
-            <option>A</option>
-            <option>G</option>
-            <option>E</option>
-            <option>C</option>
-            <option>I</option>
-            <option>K</option>
-            <option>M</option>
-            <option>O</option>
-            <option>Q</option>
-            <option>S</option>
-            <option>W</option>
-            <option>Y</option>
-          </select>
-          <br>
-          <strong>借位顺序：</strong>
-          <input type="text" placeholder="" id="edgeorder" maxlength="11" value="GECIKMOQSWY"
-            style="text-align:center;width:8em;text-transform:uppercase;" autocomplete="off"
-            onkeyup="checkEdgeOrder()"></input>
 
-          <br>
-          <strong>角块缓冲：</strong>
-          <select style="width:8em;text-align:center" id="cornerbuffer" onchange="checkCornerOrder()">
-            <option>J</option>
-            <option>A</option>
-            <option>G</option>
-            <option>D</option>
-            <option>W</option>
-            <option>O</option>
-            <option>R</option>
-            <option>X</option>
-          </select>
-          <br>
-          <strong>借位顺序：</strong>
-          <input type="text" placeholder="" id="cornerorder" maxlength="7" value="GADXWRO"
-            style="text-align:center;width:8em;text-transform:uppercase" autocomplete="off"
-            onkeyup="checkCornerOrder()"></input>
-          <br>
-          <input type="checkbox" id="edgeorientflag" onchange="helperEnter()"></input>
-          <label style="line-height:1em" for="edgeorientflag" class="help">棱块保持色相借位<sup>[?]</sup><span
-              class="help-content">根据教程选择</span></label>
-          <br>
-          <input type="checkbox" id="cornerorientflag" onchange="helperEnter()"></input>
-          <label style="line-height:1em" for="cornerorientflag" class="help">角块保持色相借位<sup>[?]</sup><span
-              class="help-content">根据教程选择</span></label>
-          <br>
-          <input type="checkbox" id="edgeskipcyclenum" onchange="helperEnter();"></input>
-          <label style="line-height:1em" for="edgeskipcyclenum" class="help">棱块跳编法<sup>[?]</sup><span
-              class="help-content">即“固定借位法”，新手不用选</span></label>
-          <br>
-          <input type="checkbox" id="cornerskipcyclenum" onchange="helperEnter()"></input>
-          <label style="line-height:1em" for="cornerskipcyclenum" class="help">角块跳编法<sup>[?]</sup><span
-              class="help-content">即“固定借位法”，新手不用选</span></label>
-          <br>
-          <strong>打乱公式：</strong>
-          <button style="transform: scale(0.75);"
-            onclick="document.getElementById('scrinput').value = getScramble();helperEnter()">随机打乱</button>
-          <br>
-          <textarea id="scrinput" placeholder="打乱必须用空格分割" onkeyup="helperEnter()" rows="1"
-            style="min-height:1em; border-bottom-color:black; resize:none;overflow: auto;"></textarea>
-          <br>
-          <span id="alartoutput1"></span>
-
-          <span id="edge">棱块读码：</span><br>
-          <span id="flip">棱块翻色：</span><br>
-          <span id="corn">角块读码：</span><br>
-          <span id="twis">角块翻色：</span><br>
-
-          <strong>打乱/还原坐标：</strong>
-          <select style="width:5em;text-align:left" id="cubeorientation" onchange="helperEnter()">
-            <option value=0>白顶绿前</option>
-            <option value=1>白顶红前</option>
-            <option value=2>白顶蓝前</option>
-            <option value=3>白顶橙前</option>
-            <option value=4>黄顶蓝前</option>
-            <option value=5>黄顶红前</option>
-            <option value=6>黄顶绿前</option>
-            <option value=7>黄顶橙前</option>
-            <option value=8>绿顶黄前</option>
-            <option value=9>绿顶红前</option>
-            <option value=10>绿顶白前</option>
-            <option value=11>绿顶橙前</option>
-            <option value=12>蓝顶白前</option>
-            <option value=13>蓝顶红前</option>
-            <option value=14>蓝顶黄前</option>
-            <option value=15>蓝顶橙前</option>
-            <option value=16>红顶绿前</option>
-            <option value=17>红顶黄前</option>
-            <option value=18>红顶蓝前</option>
-            <option value=19>红顶白前</option>
-            <option value=20>橙顶绿前</option>
-            <option value=21>橙顶白前</option>
-            <option value=22>橙顶蓝前</option>
-            <option value=23>橙顶黄前</option>
-          </select>
-          <!-- <br>
-          <span class="help">棱块还原<sup>[?]</sup>：<span class="help-content">支持三循环和翻棱(与缓冲)编码，<br>如NM为缓冲块与NM块翻棱。</span></span>
-          <input type="text" placeholder="" id="edgesolve" maxlength="100" value=""
-            style="text-align:left;width:10em;text-transform:uppercase" onkeyup="solver()" autocomplete="off"></input>
-          <br>
-          <span class="help">角块还原<sup>[?]</sup>：<span
-              class="help-content">支持三循环和翻角(与缓冲)编码，如ZX为缓冲块逆翻与XYZ块逆翻。</span></span>
-          <input type="text" placeholder="" id="cornersolve" maxlength="100" value=""
-            style="text-align:left;width:10em;text-transform:uppercase" onkeyup="solver()" autocomplete="off"></input>
-          <br>
-          <span class="help">奇偶还原<sup>[?]</sup>：<span class="help-content">每对编码先棱后角，如MX为棱缓冲与M交换、角缓冲与X交换。</span></span>
-          <input type="text" placeholder="" id="paritysolve" maxlength="100" value=""
-            style="text-align:left;width:10em;text-transform:uppercase" onkeyup="solver()"
-            autocomplete="off"></input>
-          <br> -->
-          <br>
-          <strong>请输入还原编码（拖拽可交换执行顺序）</strong>
-          <ol id="solvelist">
-            <li id="li1" draggable="true" ondragstart="drag(event)" ondrop="drop(event)" ondragover="allowDrop(event)">
-              <span class="help">棱块还原<sup>[?]</sup>：<span class="help-content">例：XY为缓冲块-X-Y的三棱换</span></span>
-              <input type="text" placeholder="" id="edgesolve" maxlength="100" value=""
-                style="text-align:left;width:10em;text-transform:uppercase" onkeyup="helperEnter()"
-                autocomplete="off"></input>
-            </li>
-            <li id="li2" draggable="true" ondragstart="drag(event)" ondrop="drop(event)" ondragover="allowDrop(event)">
-              <span class="help">角块还原<sup>[?]</sup>：<span class="help-content">例：ZY为缓冲块-Z-Y的三角块</span></span>
-              <input type="text" placeholder="" id="cornersolve" maxlength="100" value=""
-                style="text-align:left;width:10em;text-transform:uppercase" onkeyup="helperEnter()"
-                autocomplete="off"></input>
-            </li>
-            <li id="li3" draggable="true" ondragstart="drag(event)" ondrop="drop(event)" ondragover="allowDrop(event)">
-              <span class="help">奇偶还原<sup>[?]</sup>：<span class="help-content">先棱后角，例：MX为棱缓冲与M交换、角缓冲与X交换。</span></span>
-              <input type="text" placeholder="" id="paritysolve" maxlength="100" value=""
-                style="text-align:left;width:10em;text-transform:uppercase" onkeyup="helperEnter()"
-                autocomplete="off"></input>
-            </li>
-            <li id="li4" draggable="true" ondragstart="drag(event)" ondrop="drop(event)" ondragover="allowDrop(event)">
-              <span class="help">翻棱编码<sup>[?]</sup>：<span class="help-content">例：NM为缓冲块与MN块翻棱。</span></span>
-              <input type="text" placeholder="" id="flipsolve" maxlength="100" value=""
-                style="text-align:left;width:10em;text-transform:uppercase" onkeyup="helperEnter()"
-                autocomplete="off"></input>
-            </li>
-            <li id="li5" draggable="true" ondragstart="drag(event)" ondrop="drop(event)" ondragover="allowDrop(event)">
-              <span class="help">翻角编码<sup>[?]</sup>：<span class="help-content">例：ZX为缓冲块逆翻与XYZ块逆翻。</span></span>
-              <input type="text" placeholder="" id="twistsolve" maxlength="100" value=""
-                style="text-align:left;width:10em;text-transform:uppercase" onkeyup="helperEnter()"
-                autocomplete="off"></input>
-            </li>
-
-          </ol>
-          <span id="alartoutput2"></span>
-
-          <twisty-player id="player" style="transform: scale(1);" alg="" control-panel="none"></twisty-player>
-
-          <div id="loader"
-            style="display:grid;grid-template-columns: 1fr 1fr;grid-gap: 0em;place-items: centre;width: 50%;">
-            <span>加载中:</span>
-            <div class="loader"></div>
+        <div class="flexcontainer">
+          <div class="flexitem">
+            <strong>棱块缓冲：</strong>
+            <select style="width:8em;text-align:center" id="edgebuffer" onchange="checkEdgeOrder()">
+              <option>A</option>
+              <option>G</option>
+              <option>E</option>
+              <option>C</option>
+              <option>I</option>
+              <option>K</option>
+              <option>M</option>
+              <option>O</option>
+              <option>Q</option>
+              <option>S</option>
+              <option>W</option>
+              <option>Y</option>
+            </select>
+            <br>
+            <strong>借位顺序：</strong>
+            <input type="text" placeholder="" id="edgeorder" maxlength="11" value="GECIKMOQSWY"
+              style="text-align:center;width:8em;text-transform:uppercase;" autocomplete="off"
+              onkeyup="checkEdgeOrder()"></input>
+            <br>
+            <strong>角块缓冲：</strong>
+            <select style="width:8em;text-align:center" id="cornerbuffer" onchange="checkCornerOrder()">
+              <option>J</option>
+              <option>A</option>
+              <option>G</option>
+              <option>D</option>
+              <option>W</option>
+              <option>O</option>
+              <option>R</option>
+              <option>X</option>
+            </select>
+            <br>
+            <strong>借位顺序：</strong>
+            <input type="text" placeholder="" id="cornerorder" maxlength="7" value="GADXWRO"
+              style="text-align:center;width:8em;text-transform:uppercase" autocomplete="off"
+              onkeyup="checkCornerOrder()"></input>
+            <br>
+            <input type="checkbox" id="edgeorientflag" onchange="helperEnter()"></input>
+            <label style="line-height:1em" for="edgeorientflag" class="help">棱块保持色相借位<sup>[?]</sup><span
+                class="help-content">根据教程选择</span></label>
+            <br>
+            <input type="checkbox" id="cornerorientflag" onchange="helperEnter()"></input>
+            <label style="line-height:1em" for="cornerorientflag" class="help">角块保持色相借位<sup>[?]</sup><span
+                class="help-content">根据教程选择</span></label>
+            <br>
+            <input type="checkbox" id="edgeskipcyclenum" onchange="helperEnter();"></input>
+            <label style="line-height:1em" for="edgeskipcyclenum" class="help">棱块跳编法<sup>[?]</sup><span
+                class="help-content">即“固定借位法”，新手不用选</span></label>
+            <br>
+            <input type="checkbox" id="cornerskipcyclenum" onchange="helperEnter()"></input>
+            <label style="line-height:1em" for="cornerskipcyclenum" class="help">角块跳编法<sup>[?]</sup><span
+                class="help-content">即“固定借位法”，新手不用选</span></label>
+            <br>
+            <strong>打乱公式：</strong>
+            <button style="transform: scale(0.75);"
+              onclick="document.getElementById('scrinput').value = getScramble();helperEnter()">随机打乱</button>
+            <br>
+            <textarea id="scrinput" placeholder="打乱必须用空格分割" onkeyup="helperEnter()" rows="1"
+              style="min-height:1em; border-bottom-color:black; resize:none;overflow: auto;"></textarea>
+            <br>
+            <span id="alartoutput1"></span>
           </div>
+
+          <div class="flexitem">
+            <!-- <strong>读码结果：</strong><br> -->
+            <span id="edge">棱块读码：</span><br>
+            <span id="flip">棱块翻色：</span><br>
+            <span id="corn">角块读码：</span><br>
+            <span id="twis">角块翻色：</span><br>
+
+            <strong>打乱/还原坐标：</strong>
+            <select style="width:5em;text-align:left" id="cubeorientation" onchange="helperEnter()">
+              <option value=0>白顶绿前</option>
+              <option value=1>白顶红前</option>
+              <option value=2>白顶蓝前</option>
+              <option value=3>白顶橙前</option>
+              <option value=4>黄顶蓝前</option>
+              <option value=5>黄顶红前</option>
+              <option value=6>黄顶绿前</option>
+              <option value=7>黄顶橙前</option>
+              <option value=8>绿顶黄前</option>
+              <option value=9>绿顶红前</option>
+              <option value=10>绿顶白前</option>
+              <option value=11>绿顶橙前</option>
+              <option value=12>蓝顶白前</option>
+              <option value=13>蓝顶红前</option>
+              <option value=14>蓝顶黄前</option>
+              <option value=15>蓝顶橙前</option>
+              <option value=16>红顶绿前</option>
+              <option value=17>红顶黄前</option>
+              <option value=18>红顶蓝前</option>
+              <option value=19>红顶白前</option>
+              <option value=20>橙顶绿前</option>
+              <option value=21>橙顶白前</option>
+              <option value=22>橙顶蓝前</option>
+              <option value=23>橙顶黄前</option>
+            </select>
+
+            <br>
+            <strong>请输入还原编码（拖拽可交换执行顺序）</strong>
+            <ol id="solvelist">
+              <li id="li1" draggable="true" ondragstart="drag(event)" ondrop="drop(event)"
+                ondragover="allowDrop(event)">
+                <span class="help">棱块还原<sup>[?]</sup>：<span class="help-content">例：XY为缓冲块-X-Y的三棱换</span></span>
+                <input type="text" placeholder="" id="edgesolve" maxlength="100" value=""
+                  style="text-align:left;width:10em;text-transform:uppercase" onkeyup="helperEnter()"
+                  autocomplete="off"></input>
+              </li>
+              <li id="li2" draggable="true" ondragstart="drag(event)" ondrop="drop(event)"
+                ondragover="allowDrop(event)">
+                <span class="help">角块还原<sup>[?]</sup>：<span class="help-content">例：ZY为缓冲块-Z-Y的三角块</span></span>
+                <input type="text" placeholder="" id="cornersolve" maxlength="100" value=""
+                  style="text-align:left;width:10em;text-transform:uppercase" onkeyup="helperEnter()"
+                  autocomplete="off"></input>
+              </li>
+              <li id="li3" draggable="true" ondragstart="drag(event)" ondrop="drop(event)"
+                ondragover="allowDrop(event)">
+                <span class="help">奇偶还原<sup>[?]</sup>：<span
+                    class="help-content">先棱后角，例：MX为棱缓冲与M交换、角缓冲与X交换。</span></span>
+                <input type="text" placeholder="" id="paritysolve" maxlength="100" value=""
+                  style="text-align:left;width:10em;text-transform:uppercase" onkeyup="helperEnter()"
+                  autocomplete="off"></input>
+              </li>
+              <li id="li4" draggable="true" ondragstart="drag(event)" ondrop="drop(event)"
+                ondragover="allowDrop(event)">
+                <span class="help">翻棱编码<sup>[?]</sup>：<span class="help-content">例：NM为缓冲块与MN块翻棱。</span></span>
+                <input type="text" placeholder="" id="flipsolve" maxlength="100" value=""
+                  style="text-align:left;width:10em;text-transform:uppercase" onkeyup="helperEnter()"
+                  autocomplete="off"></input>
+              </li>
+              <li id="li5" draggable="true" ondragstart="drag(event)" ondrop="drop(event)"
+                ondragover="allowDrop(event)">
+                <span class="help">翻角编码<sup>[?]</sup>：<span class="help-content">例：ZX为缓冲块逆翻与XYZ块逆翻。</span></span>
+                <input type="text" placeholder="" id="twistsolve" maxlength="100" value=""
+                  style="text-align:left;width:10em;text-transform:uppercase" onkeyup="helperEnter()"
+                  autocomplete="off"></input>
+              </li>
+
+            </ol>
+            <span id="alartoutput2"></span>
+          </div>
+          <!-- 3D cube -->
+          <div class="flexitem">
+            <twisty-player id="player" style="width: 100%;" alg="" control-panel="none"></twisty-player>
+            <div id="loader" style="display:grid;grid-template-columns: 1fr 1fr;place-items: centre;width: 60%;">
+              <span>3D魔方加载中:</span>
+              <div class="loader"></div>
+            </div>
+          </div>
+
         </div>
       </div>
     </div>
@@ -214,7 +212,7 @@
   <script src="assets/js/codetrans.js"></script>
   <script src="assets/js/min2phase.js"></script>
   <script src="assets/js/utils.js"></script>
-  <script src="assets/js/helper.js" async></script>
+  <script src="assets/js/helper.js"></script>
   <script src="assets/js/cubing/twisty.js" type="module" async></script>
   <!-- <script src="https://cdn.cubing.net/js/cubing/twisty" type="module" async></script> -->
 </body>
