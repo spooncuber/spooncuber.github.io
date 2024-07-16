@@ -1,25 +1,32 @@
 "use strict";
 
 let newCodes = [];
-let generateMode = 0;
 
 const orientFlag = Number(document.getElementById("edgeorientflag").value);
 const skipCycleNum = Number(document.getElementById("edgeskipcyclenum").value);
 const edgebuffer = String(document.getElementById("edgebuffer").value).toLowerCase();
 const edgeorder = String(document.getElementById("edgeorder").value).toLowerCase();
 
-
-
 function getEdgeScrs() {
-    if (generateMode === 0) {
+    edgeInputCheck();
+    if (Number(document.getElementById("modetype").value) === 0) {
         edgeAccurateCodes();
     } else {
         edgeRandomScrs();
     }
 }
 
+function checkMode(){
+    if (Number(document.getElementById("modetype").value) === 0) {
+        document.getElementById("sec1").style.display = "block";
+        document.getElementById("sec2").style.display = "none";
+    } else {
+        document.getElementById("sec1").style.display = "none";
+        document.getElementById("sec2").style.display = "block";
+    }
+}
+
 function edgeAccurateCodes() {
-    edgeInputCheck();
 
     document.getElementById("outputScrs").value = "";
     document.getElementById("outputInfo").value = "输出信息统计:";
@@ -194,31 +201,6 @@ function edgeInputCheck() {
     }
 }
 
-window.onload = function () {
+window.onbeforeunload = function () {
     document.getElementById("outputScrs").value = "";
-    accurateMode();
 }
-
-function accurateMode() {
-    document.getElementById("accuratemode").style.background = "white";
-    document.getElementById("randomedmode").style.background = "grey";
-    document.getElementById("accuratemode").innerHTML = "★ 精准生成模式";
-    document.getElementById("randomedmode").innerHTML = "随机生成模式";
-    generateMode = 0;
-    document.getElementById("othercodemode1").style.display = "block";
-}
-
-function randomedMode() {
-    document.getElementById("accuratemode").style.background = "grey";
-    document.getElementById("randomedmode").style.background = "white";
-    document.getElementById("randomedmode").innerHTML = "★ 随机生成模式";
-    document.getElementById("accuratemode").innerHTML = "精准生成模式";
-    generateMode = 1;
-    document.getElementById("othercodemode1").style.display = "none";
-}
-
-document.addEventListener('keydown', function (event) {
-    if (event.key === "Escape") {
-        document.getElementById('popup').style.display = 'none';
-    }
-});

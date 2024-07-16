@@ -34,17 +34,27 @@ function hidePopup() {
 }
 
 function copyScrs() {
-    var copyText = document.getElementById("outputScrs").value;
-    navigator.clipboard.writeText(copyText);
+    if (navigator.clipboard) {
+        navigator.clipboard.writeText(document.getElementById("outputScrs").value);
+        alert('一键复制成功！');
+    }else{
+        alert('当前设备暂不支持一键复制，请手动全选复制。');
+    }
 }
 
+document.addEventListener('keydown', function (event) {
+    if (event.key === "Escape" && document.getElementById('popup')) {
+        document.getElementById('popup').style.display = 'none';
+    }
+});
+
 function isPC() {
-	var sUserAgent = navigator.userAgent.toLowerCase();
-	if (/ipad|iphone|midp|rv:1.2.3.4|ucweb|android|windows ce|windows mobile/.test(sUserAgent)) {
-	    document.getElementById("innerdiv").style.width = $('html').css('max-width');      
-        alert('mobile');  
-	} else {
-	    document.getElementById("innerdiv").style.width = $('html').css('max-width') / 2;
+    var sUserAgent = navigator.userAgent.toLowerCase();
+    if (/ipad|iphone|midp|rv:1.2.3.4|ucweb|android|windows ce|windows mobile/.test(sUserAgent)) {
+        document.getElementById("innerdiv").style.width = $('html').css('max-width');
+        alert('mobile');
+    } else {
+        document.getElementById("innerdiv").style.width = $('html').css('max-width') / 2;
         alert('pc');
-	}
+    }
 }

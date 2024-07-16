@@ -363,10 +363,11 @@ const langNames = {
 
 // Check for cookie support
 // The default language is English
-let lang = getCookie("lang") || navigator.language.slice(0, 2) || navigator.userLanguage.slice(0, 2) || "en";
-if (!Object.keys(arrLang).includes(lang)) {
-    lang = "en";
-}
+// let lang = getCookie("lang") || navigator.language.slice(0, 2) || navigator.userLanguage.slice(0, 2) || "en";
+let lang = "zh";
+// if (!Object.keys(arrLang).includes(lang)) {
+//     lang = "en";
+// }
 
 document.querySelector(".language .status_circle").textContent = langNames[lang];
 if (lang === "zh") {
@@ -400,7 +401,7 @@ for (const langOther in langNames) {
 const translateBtn = document.querySelector(".language .status_circle");
 const dropdownContent = document.querySelector(".language .dropdown-content");
 
-translateBtn.textContent = langNames[lang];
+// translateBtn.textContent = langNames[lang];
 translateBtn.style.backgroundImage = `url(../../images/${lang}.png)`;
 // Add a click event listener to the translate button
 translateBtn.addEventListener("click", () => {
