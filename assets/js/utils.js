@@ -29,8 +29,7 @@ function showPopup() {
 }
 
 function hidePopup() {
-    var popup = document.getElementById("popup");
-    popup.style.display = "none";
+    document.getElementById("popup").style.display = "none";
 }
 
 function copyScrs() {

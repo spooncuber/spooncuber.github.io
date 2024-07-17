@@ -16,7 +16,7 @@ function getEdgeScrs() {
     }
 }
 
-function checkMode(){
+function checkMode() {
     if (Number(document.getElementById("modetype").value) === 0) {
         document.getElementById("sec1").style.display = "block";
         document.getElementById("sec2").style.display = "none";
@@ -87,7 +87,7 @@ function edgeAccurateCodes() {
                 }
             }
         }
-        
+
         state = codeTrans(codes, state);
         document.getElementById("outputScrs").value += (i + 1).toString() + ". " + m2p(state) + "\n";
         srcNum += 1;
@@ -186,18 +186,44 @@ function edgeInputCheck() {
     }
 
     if (newCodes.length < 11) {
-        outputInfo += '请您至少输入10组编码\n';
+        outputInfo += '请您至少输入10组编码。\n';
     }
 
     if (outputInfo === "") {
-        var popup = document.getElementById("popup");
-        popup.style.display = "none";
+        document.getElementById("popup").style.display = "none";
         document.getElementById("inputInfo").innerHTML = "<b>输入信息统计: </b>您已输入" +
             newCodes[0] + ", " + newCodes[1] + ", ... , " + newCodes.slice(-2, -1) + ", " + newCodes.slice(-1) + "共" + newCodes.length + "组编码。";
         return newCodes;
     } else {
         window.alert(outputInfo);
         return [];
+    }
+}
+
+function chooseSample() {
+
+    const edgebuffer = String(document.getElementById("edgebuffer").value).toLowerCase();
+    if (document.getElementById("choosesample").checked) {
+
+        const eList1 = 'aceg';
+        const eList2 = 'plrtxz';
+        if (eList1.indexOf(edgebuffer) === -1) {
+            alert("非顶面缓冲暂不支持U8类样例输入。");
+            document.getElementById("choosesample").checked = 0;
+            return;
+        }
+
+        for (let i = 0; i < eList1.length; i++) {
+            if (eList1[i] !== edgebuffer) {
+                for (let j = 0; j < eList2.length; j++) {
+                    document.getElementById("inputCodes").value += eList1[i].toUpperCase() + eList2[j].toUpperCase() + '\n';
+                    document.getElementById("inputCodes").value += eList2[j].toUpperCase() + eList1[i].toUpperCase() + '\n';
+                }
+            }
+        }
+
+    } else {
+        document.getElementById("inputCodes").value = '';
     }
 }
 

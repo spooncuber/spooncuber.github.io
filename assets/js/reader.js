@@ -1144,8 +1144,8 @@ function getParity(alg) {
 }
 
 function checkEdgeOrder(){
-    let edgebuffer = String(document.getElementById("edgebuffer").value).toLowerCase();
-    let edgeorder = String(document.getElementById("edgeorder").value).toLowerCase();
+    const edgebuffer = String(document.getElementById("edgebuffer").value).toLowerCase();
+    const edgeorder = String(document.getElementById("edgeorder").value).toLowerCase();
 
     if(edgeorder.length + edgebuffer.length === 12){
         let allcodes = edgebuffer + edgeorder;
@@ -1163,8 +1163,8 @@ function checkEdgeOrder(){
 }
 
 function checkCornerOrder(){
-    let cornerbuffer = String(document.getElementById("cornerbuffer").value);
-    let cornerorder = String(document.getElementById("cornerorder").value);
+    const cornerbuffer = String(document.getElementById("cornerbuffer").value);
+    const cornerorder = String(document.getElementById("cornerorder").value);
 
     if(cornerorder.length + cornerbuffer.length === 8){
         let allcodes = cornerbuffer + cornerorder;
@@ -1183,7 +1183,7 @@ function checkCornerOrder(){
 
 function fixorientation(scr) {
     operatealg(scr);
-    let cubeorientation = arra[1][5] + arra[5][5]; 
+    const cubeorientation = arra[1][5] + arra[5][5]; 
 
     switch (cubeorientation) {
         case "UF": return "";
