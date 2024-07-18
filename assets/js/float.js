@@ -118,7 +118,6 @@ function float() {
     if (document.getElementById("outputScrs").value != "") {
         document.getElementById("copyBtn").style.display = "block";
     }
-    // console.log(document.getElementById("copyBtn").innerText)
 }
 
 function shuffle(array) {

@@ -2,6 +2,9 @@
 
 
 function helperEnter() {
+    if(edgeOrderCheck()===false || cornerOrderCheck()===false){
+        return;
+    }
     codereader();
     solver();
     resizeTextarea();

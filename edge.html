@@ -47,7 +47,7 @@
 
         <div class="flexcontainer">
           <div class="flexitem">
-            <section>
+            <div>
               <strong>生成模式</strong>
               <select style="width:8em;text-align:center" id="modetype" onchange="checkMode()">
                 <option value=0>精准生成模式</option>
@@ -77,6 +77,10 @@
               <section id="sec1">
                 <input type="checkbox" id="othercodemode"></input>
                 <label style="line-height:1em" for="othercodemode" class="help">允许出现其他编码</label>
+                <br>
+                <input type="checkbox" id="cornerscramble"></input>
+                <label style="line-height:1em" for="cornerscramble" class="help">打乱角块</label>
+                
               </section>
               <section id="sec2" style="display: none;">
                 <input type="checkbox" id="edgeorientflag"></input>
@@ -86,9 +90,9 @@
                 <input type="checkbox" id="edgeskipcyclenum"></input>
                 <label style="line-height:1em" for="edgeskipcyclenum" class="help">棱块跳编法<sup>[?]</sup><span
                     class="help-content">即“固定借位法”，新手不用选</span></label>
-                <br>
               </section>
-            </section>
+              <br>
+            </div>
             <br>
             <button onclick="showPopup()">输入训练编码</button>
             <br>
@@ -112,8 +116,9 @@
 
         <div id="popup"
           style="background: rgba(0, 0, 0, 0.5);display: none; position: fixed;top: 0%; left: 0%; width:100%;height:100%;z-index: 100;">
-          <div
-            style="padding: 1em;border:black; border-style:inset; background: rgb(255, 255, 255);position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);">
+          <!-- <div class="popdiv"
+            style="padding: 1em;border:black; border-style:inset; background: rgb(255, 255, 255);position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);"> -->
+            <div class="popdiv">
             <span><b>请输入训练编码：</b></span>
             <input type="checkbox" id="choosesample" onchange="chooseSample()"></input>
             <label style="line-height:1em" for="choosesample" class="help">选中测试例（U8类）</label>

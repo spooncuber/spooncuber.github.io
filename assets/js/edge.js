@@ -9,6 +9,7 @@ const edgeorder = String(document.getElementById("edgeorder").value).toLowerCase
 
 function getEdgeScrs() {
     edgeInputCheck();
+    edgeOrderCheck();
     if (Number(document.getElementById("modetype").value) === 0) {
         edgeAccurateCodes();
     } else {
@@ -33,27 +34,34 @@ function edgeAccurateCodes() {
 
     let otherCodeMode = Number(document.getElementById("othercodemode").checked);
     let eBuffer = document.getElementById("edgebuffer").value.toLowerCase();
+    let cornerscramble = document.getElementById("cornerscramble").checked;
     let algAllList = [];
     let algSet = algSetGenerator(Array.from(eBuffer));
 
     algAllList.push(shuffle(newCodes));
 
-    var srcNum = 0;
-    var inputCodeNum = 0;
-    var otherCodeNum = 0;
+    let srcNum = 0;
+    let inputCodeNum = 0;
+    let otherCodeNum = 0;
     for (let i = 0; i < 10000; i++) {
         //var state = randomCorner(0, "");
-        var state = globalState;
 
-        var pos = [posChichu(eBuffer)];
-        var codes = "";
+        let state;
+        if(cornerscramble){
+            state = randomCorner(0);
+        }else{
+            state = globalState;
+        }
+
+        let pos = [posChichu(eBuffer)];
+        let codes = "";
         codes += eBuffer;
 
         for (let j = 0; j < 5; j++) {
-            var breakFlag = 0;
+            let breakFlag = 0;
             for (let m = 0; m < algAllList.length; m++) {
                 for (let n = 0; n < algAllList[m].length; n++) {
-                    var code = algAllList[m][n];
+                    let code = algAllList[m][n];
                     if (pos.indexOf(posChichu(code[0])) === -1 && pos.indexOf(posChichu(code[1])) === -1) {
                         pos.push(posChichu(code[0]));
                         pos.push(posChichu(code[1]));
@@ -76,7 +84,7 @@ function edgeAccurateCodes() {
             if (otherCodeMode === 1) {
                 algSet = shuffle(Array.from(algSet));
                 for (let n = 0; n < algSet.length; n++) {
-                    var code = algSet[n];
+                    let code = algSet[n];
                     if (pos.indexOf(posChichu(code[0].toString())) === -1 && pos.indexOf(posChichu(code[1].toString())) === -1) {
                         pos.push(posChichu(code[0].toString()));
                         pos.push(posChichu(code[1].toString()));
@@ -108,15 +116,15 @@ function edgeRandomScrs() {
     document.getElementById("outputScrs").value = "";
     document.getElementById("outputInfo").value = "输出信息统计:";
 
-    var scrAmount = 10000;
-    var chooseAmount = 100;
+    let scrAmount = 10000;
+    let chooseAmount = 100;
 
     for (let i = 0; i < scrAmount; i++) {
 
-        var alg = getScramble();
-        var edgeCodeList = edgeread(alg).toLowerCase().split(" ");
+        let alg = getScramble();
+        let edgeCodeList = edgeread(alg).toLowerCase().split(" ");
 
-        var hitNum = 0;
+        let hitNum = 0;
         for (let j = 0; j < edgeCodeList.length; j++) {
             if (newCodes.indexOf(edgeCodeList.at(j)) > -1) {
                 hitNum++;
@@ -127,13 +135,13 @@ function edgeRandomScrs() {
 
     const sortedDict = Object.entries(srcDict).sort((a, b) => b[1] - a[1]);
 
-    var allHitNum = 0;
-    var allAlgNum = 0;
-    var maxNum = 0;
+    let allHitNum = 0;
+    let allAlgNum = 0;
+    let maxNum = 0;
     for (let i = 0; i < chooseAmount; i++) {
         document.getElementById("outputScrs").value += (i + 1).toString() + ". " + sortedDict[i][0] + "\n";
 
-        var edgeCodeList = edgeread(sortedDict[i][0]).split(" ");
+        let edgeCodeList = edgeread(sortedDict[i][0]).split(" ");
         if (edgeCodeList.slice(-1) == "") {
             edgeCodeList.pop();
             edgeCodeList.pop();
@@ -145,7 +153,7 @@ function edgeRandomScrs() {
             maxNum += 1;
         }
     }
-    var perc = allHitNum / allAlgNum;
+    let perc = allHitNum / allAlgNum;
 
     document.getElementById("outputInfo").innerHTML =
         "<b>输出信息统计: </b>共生成100条打乱，共出现棱块公式" + allAlgNum + "条，其中训练集公式共" + allHitNum + "条，训练集公式比例为" + perc.toFixed(3) + "。";

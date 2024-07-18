@@ -1143,7 +1143,7 @@ function getParity(alg) {
     }
 }
 
-function checkEdgeOrder(){
+function edgeOrderCheck(){
     const edgebuffer = String(document.getElementById("edgebuffer").value).toLowerCase();
     const edgeorder = String(document.getElementById("edgeorder").value).toLowerCase();
 
@@ -1162,7 +1162,7 @@ function checkEdgeOrder(){
     return true;
 }
 
-function checkCornerOrder(){
+function cornerOrderCheck(){
     const cornerbuffer = String(document.getElementById("cornerbuffer").value);
     const cornerorder = String(document.getElementById("cornerorder").value);
 
