@@ -2,10 +2,11 @@
 <html>
 
 <head>
-  <title class="lang" key="corner"></title>
+  <title class="lang" key="edge"></title>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes" />
   <link rel="stylesheet" href="assets/css/main.css" />
+  <link rel="stylesheet" href="assets/css/utils.css" />
   <link rel="icon" href="images/logo.svg" type="image/x-icon" />
   <link rel="apple-touch-icon" href="images/logo.png" />
   <meta name="google-site-verification" content="s3hE2D_rJuuUUj4rVvWBADMHqHqiSM-bQh80mnwzDMA" />
@@ -40,32 +41,88 @@
         </div>
       </header>
       <div id="main">
-        <div class="inner">
-          <header>
-            <!-- <h1 style="text-align:center" class="lang" key="edgetrainer">编辑中</h1> -->
-            <h1>编辑中</h1>
-          </header>
-          <p>
-            <strong>角缓冲</strong>
-            <select style="width:3.5em;text-align:center" id="cornerbuffer">
-              <option>J</option>
-              <option>A</option>
-              <option>G</option>
-              <option>D</option>
-              <option>W</option>
-              <option>O</option>
-              <option>R</option>
-              <option>X</option>
-            </select>
-            <strong>角顺序</strong><input type="text" placeholder="" id="cornerorder" maxlength="7" value="GADZMSQ"
-              style="text-align:center;width:10em;text-transform:uppercase" autocomplete="off"></input>
-              <button style="max-width:100px" onclick="algSetGenerator()">生成</button>
-              
-          <div style="display:grid;grid-template-columns: 2fr 10fr;grid-gap: 10px;place-items: center">
-            <p>输入角块：</p>
-            <p>输出打乱：</p>
-            <textarea style="min-height:800px;border-style:inset" id="inputCodes"></textarea>
-            <textarea style="min-height:800px;border-style:inset" id="outputScrs"></textarea>
+        <header>
+          <h2 style="text-align:center" class="lang" key="cornertrainer"></h2>
+        </header>
+
+        <div class="reactdiv">
+          <div>
+            <div>
+              <strong>生成模式：</strong>
+              <select style="width:8em;text-align:center" id="modetype" onchange="checkMode()">
+                <option value=0>精准生成模式</option>
+                <option value=1>随机生成模式</option>
+              </select>
+              <br>
+              <strong>角块缓冲：</strong>
+              <select style="width:8em;text-align:center" id="cornerbuffer" onchange="cornerOrderCheck()">
+                <option>J</option>
+                <option>A</option>
+                <option>G</option>
+                <option>D</option>
+                <option>W</option>
+                <option>O</option>
+                <option>R</option>
+                <option>X</option>
+              </select>
+              <br>
+              <strong>借位顺序：</strong>
+              <input type="text" placeholder="" id="cornerorder" maxlength="7" value="GADXWRO"
+                style="text-align:center;width:8em;text-transform:uppercase" autocomplete="off"
+                onkeyup="checkCornerOrder()"></input>
+
+              <section id="sec1">
+                <input type="checkbox" id="othercodemode"></input>
+                <label style="line-height:1em" for="othercodemode" class="help">允许出现其他编码</label>
+                <br>
+                <input type="checkbox" id="edgescramble"></input>
+                <label style="line-height:1em" for="edgescramble" class="help">打乱棱块</label>
+
+              </section>
+              <section id="sec2" style="display: none;">
+                <input type="checkbox" id="cornerorientflag"></input>
+                <label style="line-height:1em" for="cornerorientflag" class="help">棱块保持色相借位<sup>[?]</sup><span
+                    class="help-content">根据教程选择</span></label>
+                <br>
+                <input type="checkbox" id="cornerskipcyclenum"></input>
+                <label style="line-height:1em" for="cornerskipcyclenum" class="help">棱块跳编法<sup>[?]</sup><span
+                    class="help-content">即“固定借位法”，新手不用选</span></label>
+              </section>
+            </div>
+            <br>
+            <button onclick="showPopup()">输入训练编码</button>
+            <br>
+            <p id="inputInfo"><b>输入信息统计: </b>请输入编码。</p>
+            <button onclick="getCornerScrs()">生成训练打乱</button>
+            <br>
+          </div>
+
+          <div>
+            <p id="outputInfo"><b>输出信息统计: </b>暂无输出打乱。</p>
+            <div>
+              <span style="padding: 1em 0;">
+                <p style="display: inline"><b>输出训练打乱：</b></p>
+                <button id="copyBtn" style="display: block; float: right;transform: scale(0.75);"
+                  onclick="copyScrs()">📝</button><br>
+              </span>
+              <textarea readonly id="outputScrs" style="resize:none;min-height:30em;border-style:inset"></textarea>
+            </div>
+          </div>
+        </div>
+
+        <div id="popup"
+          style="background: rgba(0, 0, 0, 0.5);display: none; position: fixed;top: 0%; left: 0%; width:100%;height:100%;z-index: 100;">
+          <div class="popdiv">
+            <span><b>请输入训练编码：</b></span>
+            <button onclick="addSample()">添加输入样例（U8类）</button>
+
+            <textarea style="resize: none;min-height:20em;border-style:inset" id="inputCodes"
+              placeholder="页面不会保存输入编码，请自行保存！输入编码以换行分隔，建议50组以上。可以在excel或txt中整理一列编码后粘贴。"></textarea>
+            <section style="display: grid; grid-template-columns: 1fr 1fr 1fr; grid-column-gap: 20%;">
+              <button onclick="cornerInputCheck()">确认</button>
+              <button onclick="clearPopup()">清空</button>
+              <button onclick="hidePopup()">取消</button>
+            </section>
           </div>
         </div>
       </div>
@@ -77,6 +134,10 @@
   <script src="assets/js/language.js"></script>
   <script src="assets/js/reader.js"></script>
   <script src="assets/js/scrambler.js"></script>
+  <script src="assets/js/codetrans.js"></script>
+  <script src="assets/js/corner.js"></script>
+  <script src="assets/js/min2phase.js"></script>
+  <script src="assets/js/utils.js"></script>
 </body>
 
 </html>

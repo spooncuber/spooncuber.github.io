@@ -67,6 +67,7 @@
     left: 5%;
     transform: translate(0, -50%);
 }
+
 @media screen and (min-width: 800px) {
     .popdiv {
         top: 50%;

@@ -1,10 +1,12 @@
 // $.ajaxSettings.async = false;
 
+let scr;
 
 function helperEnter() {
     if(edgeOrderCheck()===false || cornerOrderCheck()===false){
         return;
     }
+
     codereader();
     solver();
     resizeTextarea();
@@ -15,7 +17,7 @@ function codereader() {
         return;
     }
     
-    let scr = document.getElementById("scrinput").value;
+    scr = document.getElementById("scrinput").value;
 
     while (scr.charAt(scr.length - 1) === " ") {
         scr = scr.slice(0, -1);
@@ -58,8 +60,6 @@ function solver() {
     const cornerbuffer = String(document.getElementById("cornerbuffer").value).toUpperCase();
     const edgebuffer = String(document.getElementById("edgebuffer").value).toUpperCase();
 
-    let scr = document.getElementById("scrinput").value;
-
     let edgecode = document.getElementById("edgesolve").value.replace(/\s/g, "").toUpperCase();
     let cornercode = document.getElementById("cornersolve").value.replace(/\s/g, "").toUpperCase();
     let paritycode = document.getElementById("paritysolve").value.replace(/\s/g, "").toUpperCase();
@@ -80,7 +80,9 @@ function solver() {
             switch (solveType) {
                 case "edgesolve":
                     for (let i = 0; i < ~~(edgecode.length/2)*2; i += 2) {
-                        if (posChichu(edgecode[i].toLowerCase()) === posChichu(edgebuffer.toLowerCase()) || posChichu(edgecode[i + 1].toLowerCase()) === posChichu(edgebuffer.toLowerCase())) {
+                        if (!isAlphabet(edgecode[i]) || !isAlphabet(edgecode[i+1]) ) {
+                            document.getElementById("alartoutput2").innerHTML = "&#9888 输入非法编码！";
+                        }else if (posChichu(edgecode[i].toLowerCase()) === posChichu(edgebuffer.toLowerCase()) || posChichu(edgecode[i + 1].toLowerCase()) === posChichu(edgebuffer.toLowerCase())) {
                             document.getElementById("alartoutput2").innerHTML = "&#9888 不能出现缓冲块编码！";
                         } else if (posChichu(edgecode[i].toLowerCase()) === posChichu(edgecode[i + 1].toLowerCase())) {
                             document.getElementById("alartoutput2").innerHTML = "&#9888 不能出现同位置编码！";
@@ -92,7 +94,9 @@ function solver() {
                     break;
                 case "flipsolve":
                     for (let i = 0; i < ~~(flipcode.length/2)*2; i += 2) {
-                        if (posChichu(flipcode[i].toLowerCase()) === posChichu(edgebuffer.toLowerCase()) || posChichu(flipcode[i + 1].toLowerCase()) === posChichu(edgebuffer.toLowerCase())) {
+                        if (!isAlphabet(flipcode[i]) || !isAlphabet(flipcode[i+1]) ) {
+                            document.getElementById("alartoutput2").innerHTML = "&#9888 输入非法编码！";
+                        }else if (posChichu(flipcode[i].toLowerCase()) === posChichu(edgebuffer.toLowerCase()) || posChichu(flipcode[i + 1].toLowerCase()) === posChichu(edgebuffer.toLowerCase())) {
                             document.getElementById("alartoutput2").innerHTML = "&#9888 不能出现缓冲块编码！";
                         } else if (posChichu(flipcode[i].toLowerCase()) !== posChichu(flipcode[i + 1].toLowerCase())) {
                             document.getElementById("alartoutput2").innerHTML = "&#9888 只能出现同位置编码！";
@@ -105,7 +109,9 @@ function solver() {
                     break;
                 case "cornersolve":
                     for (let i = 0; i < ~~(cornercode.length/2)*2; i += 2) {
-                        if (posChichu(cornercode[i]) === posChichu(cornerbuffer) || posChichu(cornercode[i + 1]) === posChichu(cornerbuffer)) {
+                        if (!isAlphabet(cornercode[i]) || !isAlphabet(cornercode[i+1]) ) {
+                            document.getElementById("alartoutput2").innerHTML = "&#9888 输入非法编码！";
+                        }else if (posChichu(cornercode[i]) === posChichu(cornerbuffer) || posChichu(cornercode[i + 1]) === posChichu(cornerbuffer)) {
                             document.getElementById("alartoutput2").innerHTML = "&#9888 不能出现缓冲块编码！";
                         } else if (posChichu(cornercode[i]) === posChichu(cornercode[i + 1])) {
                             document.getElementById("alartoutput2").innerHTML = "&#9888 不能出现同位置编码！";
@@ -117,7 +123,9 @@ function solver() {
                     break;
                 case "twistsolve":
                     for (let i = 0; i < ~~(twistcode.length/2)*2; i += 2) {
-                        if (posChichu(twistcode[i]) === posChichu(cornerbuffer) || posChichu(twistcode[i + 1]) === posChichu(cornerbuffer)) {
+                        if (!isAlphabet(twistcode[i]) || !isAlphabet(twistcode[i+1]) ) {
+                            document.getElementById("alartoutput2").innerHTML = "&#9888 输入非法编码！";
+                        }else if (posChichu(twistcode[i]) === posChichu(cornerbuffer) || posChichu(twistcode[i + 1]) === posChichu(cornerbuffer)) {
                             document.getElementById("alartoutput2").innerHTML = "&#9888 不能出现缓冲块编码！";
                         } else if (posChichu(twistcode[i]) !== posChichu(twistcode[i + 1])) {
                             document.getElementById("alartoutput2").innerHTML = "&#9888 只能出现同位置编码！";
@@ -129,7 +137,9 @@ function solver() {
                     break;
                 case "paritysolve":
                     for (let i = 0; i < ~~(paritycode.length/2)*2; i += 2) {
-                        if (posChichu(paritycode[i].toLowerCase()) === posChichu(edgebuffer.toLowerCase()) || posChichu(paritycode[i + 1]) === posChichu(cornerbuffer)) {
+                        if (!isAlphabet(paritycode[i]) || !isAlphabet(paritycode[i+1]) ) {
+                            document.getElementById("alartoutput2").innerHTML = "&#9888 输入非法编码！";
+                        }else if (posChichu(paritycode[i].toLowerCase()) === posChichu(edgebuffer.toLowerCase()) || posChichu(paritycode[i + 1]) === posChichu(cornerbuffer)) {
                             document.getElementById("alartoutput2").innerHTML = "&#9888 不能出现缓冲块编码！";
                         } else {
                             let state1 = codeTrans((edgebuffer + paritycode[i]).toLowerCase(), globalState);

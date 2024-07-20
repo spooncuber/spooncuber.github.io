@@ -48,12 +48,12 @@
         <div class="reactdiv">
           <div>
             <div>
-              <strong>生成模式</strong>
+              <strong>生成模式：</strong>
               <select style="width:8em;text-align:center" id="modetype" onchange="checkMode()">
                 <option value=0>精准生成模式</option>
                 <option value=1>随机生成模式</option>
               </select><br>
-              <strong>棱块缓冲</strong>
+              <strong>棱块缓冲：</strong>
               <select style="width:8em;text-align:center" id="edgebuffer" onchange="checkEdgeOrder()">
                 <option>A</option>
                 <option>G</option>
@@ -69,7 +69,7 @@
                 <option>Y</option>
               </select>
               <br>
-              <strong>棱块顺序</strong>
+              <strong>借位顺序：</strong>
               <input type="text" placeholder="" id="edgeorder" maxlength="11" value="GECIKMOQSWY"
                 style="text-align:center;width:8em;text-transform:uppercase" autocomplete="off"
                 onkeyup="checkEdgeOrder()"></input>
@@ -80,7 +80,7 @@
                 <br>
                 <input type="checkbox" id="cornerscramble"></input>
                 <label style="line-height:1em" for="cornerscramble" class="help">打乱角块</label>
-                
+
               </section>
               <section id="sec2" style="display: none;">
                 <input type="checkbox" id="edgeorientflag"></input>
@@ -91,7 +91,6 @@
                 <label style="line-height:1em" for="edgeskipcyclenum" class="help">棱块跳编法<sup>[?]</sup><span
                     class="help-content">即“固定借位法”，新手不用选</span></label>
               </section>
-              <br>
             </div>
             <br>
             <button onclick="showPopup()">输入训练编码</button>
@@ -116,17 +115,17 @@
 
         <div id="popup"
           style="background: rgba(0, 0, 0, 0.5);display: none; position: fixed;top: 0%; left: 0%; width:100%;height:100%;z-index: 100;">
-          <!-- <div class="popdiv"
-            style="padding: 1em;border:black; border-style:inset; background: rgb(255, 255, 255);position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);"> -->
-            <div class="popdiv">
+          <div class="popdiv">
             <span><b>请输入训练编码：</b></span>
-            <input type="checkbox" id="choosesample" onchange="chooseSample()"></input>
-            <label style="line-height:1em" for="choosesample" class="help">选中测试例（U8类）</label>
+            <button onclick="addSample()">添加输入样例（U8类）</button>
 
             <textarea style="resize: none;min-height:20em;border-style:inset" id="inputCodes"
               placeholder="页面不会保存输入编码，请自行保存！输入编码以换行分隔，建议50组以上。可以在excel或txt中整理一列编码后粘贴。"></textarea>
-            <button style="float: left;" onclick="edgeInputCheck()">确认</button>
-            <button style="float: right;" onclick="hidePopup()">取消</button>
+            <section style="display: grid; grid-template-columns: 1fr 1fr 1fr; grid-column-gap: 20%;">
+              <button onclick="edgeInputCheck()">确认</button>
+              <button onclick="clearPopup()">清空</button>
+              <button onclick="hidePopup()">取消</button>
+            </section>
           </div>
         </div>
       </div>

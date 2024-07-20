@@ -12,7 +12,12 @@ function shuffle(array) {
 
 function isAlphabet(char) {
     const code = char.charCodeAt(0);
-    return (code >= 65 && code <= 90) || (code >= 97 && code <= 122);
+    if(code === 85 || code === 86 || code === 117 || code === 118){
+        return false;
+    }else if((code >= 65 && code <= 90) || (code >= 97 && code <= 122)){
+        return true;
+    }
+    return false;
 }
 
 function findDuplicates(arr) {
@@ -24,12 +29,18 @@ function hasUniqueElements(arr) {
 }
 
 function showPopup() {
-    var popup = document.getElementById("popup");
-    popup.style.display = "block";
+    document.getElementById("popup").style.display = "block";
 }
 
 function hidePopup() {
     document.getElementById("popup").style.display = "none";
+}
+
+function clearPopup(){    
+    let result = confirm("确认清空输入编码吗？");  
+    if (result) {
+        document.getElementById("inputCodes").value = "";
+    }
 }
 
 function copyScrs() {

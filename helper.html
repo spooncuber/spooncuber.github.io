@@ -85,39 +85,6 @@
               style="text-align:center;width:8em;text-transform:uppercase" autocomplete="off"
               onkeyup="checkCornerOrder()"></input>
             <br>
-            <input type="checkbox" id="edgeorientflag" onchange="helperEnter()"></input>
-            <label style="line-height:1em" for="edgeorientflag" class="help">棱块保持色相借位<sup>[?]</sup><span
-                class="help-content">根据教程选择</span></label>
-            <br>
-            <input type="checkbox" id="cornerorientflag" onchange="helperEnter()"></input>
-            <label style="line-height:1em" for="cornerorientflag" class="help">角块保持色相借位<sup>[?]</sup><span
-                class="help-content">根据教程选择</span></label>
-            <br>
-            <input type="checkbox" id="edgeskipcyclenum" onchange="helperEnter();"></input>
-            <label style="line-height:1em" for="edgeskipcyclenum" class="help">棱块跳编法<sup>[?]</sup><span
-                class="help-content">即“固定借位法”，新手不用选</span></label>
-            <br>
-            <input type="checkbox" id="cornerskipcyclenum" onchange="helperEnter()"></input>
-            <label style="line-height:1em" for="cornerskipcyclenum" class="help">角块跳编法<sup>[?]</sup><span
-                class="help-content">即“固定借位法”，新手不用选</span></label>
-            <br>
-            <strong>打乱公式：</strong>
-            <button style="transform: scale(0.75);"
-              onclick="document.getElementById('scrinput').value = getScramble();helperEnter()">随机打乱</button>
-            <br>
-            <textarea id="scrinput" placeholder="打乱必须用空格分割" onkeyup="helperEnter()" rows="1"
-              style="min-height:1em; border-bottom-color:black; resize:none;overflow: auto;"></textarea>
-            <br>
-            <span id="alartoutput1"></span>
-          </div>
-
-          <div class="flexitem">
-            <!-- <strong>读码结果：</strong><br> -->
-            <span id="edge">棱块读码：</span><br>
-            <span id="flip">棱块翻色：</span><br>
-            <span id="corn">角块读码：</span><br>
-            <span id="twis">角块翻色：</span><br>
-
             <strong>打乱/还原坐标：</strong>
             <select style="width:5em;text-align:left" id="cubeorientation" onchange="helperEnter()">
               <option value=0>白顶绿前</option>
@@ -145,8 +112,40 @@
               <option value=22>橙顶蓝前</option>
               <option value=23>橙顶黄前</option>
             </select>
-
             <br>
+            <input type="checkbox" id="edgeorientflag" onchange="helperEnter()"></input>
+            <label style="line-height:1em" for="edgeorientflag" class="help">棱块保持色相借位<sup>[?]</sup><span
+                class="help-content">根据教程选择</span></label>
+            <br>
+            <input type="checkbox" id="cornerorientflag" onchange="helperEnter()"></input>
+            <label style="line-height:1em" for="cornerorientflag" class="help">角块保持色相借位<sup>[?]</sup><span
+                class="help-content">根据教程选择</span></label>
+            <br>
+            <input type="checkbox" id="edgeskipcyclenum" onchange="helperEnter();"></input>
+            <label style="line-height:1em" for="edgeskipcyclenum" class="help">棱块跳编法<sup>[?]</sup><span
+                class="help-content">即“固定借位法”，新手不用选</span></label>
+            <br>
+            <input type="checkbox" id="cornerskipcyclenum" onchange="helperEnter()"></input>
+            <label style="line-height:1em" for="cornerskipcyclenum" class="help">角块跳编法<sup>[?]</sup><span
+                class="help-content">即“固定借位法”，新手不用选</span></label>
+            <br>
+            <strong>打乱公式：</strong>
+            <button style="transform: scale(0.75);"
+              onclick="document.getElementById('scrinput').value = getScramble();helperEnter()">随机打乱</button>
+            <br>
+            <textarea id="scrinput" placeholder="打乱必须用空格分割" onkeyup="helperEnter()" rows="1"
+              style="min-height:1em; border-bottom-color:black; resize:none;overflow: auto;"></textarea>
+            <br>
+            <span id="alartoutput1"></span>
+          </div>
+
+          <div class="flexitem">
+            <strong class="help">读码结果<sup>[?]</sup>：<span class="help-content">由于存在还原顺序差异，请结合实际教程学习</span></strong><br>
+            <span id="edge">棱块读码：</span><br>
+            <span id="flip">棱块翻色：</span><br>
+            <span id="corn">角块读码：</span><br>
+            <span id="twis">角块翻色：</span><br>
+
             <strong>请输入还原编码（拖拽可交换执行顺序）</strong>
             <ol id="solvelist">
               <li id="li1" draggable="true" ondragstart="drag(event)" ondrop="drop(event)"

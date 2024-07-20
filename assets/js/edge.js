@@ -28,7 +28,6 @@ function checkMode() {
 }
 
 function edgeAccurateCodes() {
-
     document.getElementById("outputScrs").value = "";
     document.getElementById("outputInfo").value = "输出信息统计:";
 
@@ -44,12 +43,11 @@ function edgeAccurateCodes() {
     let inputCodeNum = 0;
     let otherCodeNum = 0;
     for (let i = 0; i < 10000; i++) {
-        //var state = randomCorner(0, "");
 
         let state;
-        if(cornerscramble){
+        if (cornerscramble) {
             state = randomCorner(0);
-        }else{
+        } else {
             state = globalState;
         }
 
@@ -182,7 +180,7 @@ function edgeInputCheck() {
             continue;
         }
         if (!isAlphabet(newCodes[i][0]) || !isAlphabet(newCodes[i][1])) {
-            outputInfo += '您输入的第' + (i + 1).toString() + '行编码【' + newCodes[i] + '】不是字母。\n';
+            outputInfo += '您输入的第' + (i + 1).toString() + '行编码【' + newCodes[i] + '】不是合法编码。\n';
             continue;
         }
         if (posChichu(newCodes[i][0].toLowerCase()) === posChichu(buffer.toLowerCase()) || posChichu(newCodes[i][1].toLowerCase()) === posChichu(buffer.toLowerCase())) {
@@ -208,30 +206,25 @@ function edgeInputCheck() {
     }
 }
 
-function chooseSample() {
+function addSample() {
 
     const edgebuffer = String(document.getElementById("edgebuffer").value).toLowerCase();
-    if (document.getElementById("choosesample").checked) {
 
-        const eList1 = 'aceg';
-        const eList2 = 'plrtxz';
-        if (eList1.indexOf(edgebuffer) === -1) {
-            alert("非顶面缓冲暂不支持U8类样例输入。");
-            document.getElementById("choosesample").checked = 0;
-            return;
-        }
+    const eList1 = 'aceg';
+    const eList2 = 'plrtxz';
+    if (eList1.indexOf(edgebuffer) === -1) {
+        alert("非顶面缓冲暂不支持U8类样例输入。");
+        document.getElementById("choosesample").checked = 0;
+        return;
+    }
 
-        for (let i = 0; i < eList1.length; i++) {
-            if (eList1[i] !== edgebuffer) {
-                for (let j = 0; j < eList2.length; j++) {
-                    document.getElementById("inputCodes").value += eList1[i].toUpperCase() + eList2[j].toUpperCase() + '\n';
-                    document.getElementById("inputCodes").value += eList2[j].toUpperCase() + eList1[i].toUpperCase() + '\n';
-                }
+    for (let i = 0; i < eList1.length; i++) {
+        if (eList1[i] !== edgebuffer) {
+            for (let j = 0; j < eList2.length; j++) {
+                document.getElementById("inputCodes").value += eList1[i].toUpperCase() + eList2[j].toUpperCase() + '\n';
+                document.getElementById("inputCodes").value += eList2[j].toUpperCase() + eList1[i].toUpperCase() + '\n';
             }
         }
-
-    } else {
-        document.getElementById("inputCodes").value = '';
     }
 }
 

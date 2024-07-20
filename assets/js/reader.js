@@ -819,6 +819,7 @@ function edgeread(s1) {
     let cycleOrders = [];
     let edgereadChar = "";
     let edgereadpartChar = "";
+    let sumorient = 0;
 
     const orientFlag = Number(document.getElementById("edgeorientflag").checked);
     const skipCycleNum = Number(document.getElementById("edgeskipcyclenum").checked);
@@ -843,6 +844,7 @@ function edgeread(s1) {
                 cycleList.push(edgereadpartChar);
                 cycleOrders.push(~~((i - 1) / 2));
             }
+            sumorient += edgeCh.indexOf(edgereadpartChar[edgereadpartChar.length - 1]) - edgeCh.indexOf(edgereadpartChar[0]);            
         }
     }
 
@@ -856,16 +858,21 @@ function edgeread(s1) {
         }
         //跳编法如果按借位绝对顺序跳（如跳一次则只跳G，G已经被还原就算有小循环也不再跳）则需要使用cycleOrders[i]，如果按小循环出现的顺序跳，直接用i即可。
         for (let j = 0; j < cycleList[i].length; j++) {
-            var code = cycleList[i][j];
-            if (i > 0 && (orientFlag === 1 || (orientFlag === 0 && cycleOrders[i] < skipCycleNum))) {
+            let code = cycleList[i][j];
+            if (i > 0 && (orientFlag === 1 || (orientFlag === 0 && cycleOrders[i] <= skipCycleNum))) {
                 for (let k = 0; k < orientLast; k++) {
                     code = nearedge(code);
                 }
             }
             //丑陋，要改
             if (j === cycleList[i].length - 1 && cycleOrders[i] === 0) continue;
-            if (j === cycleList[i].length - 1 && cycleOrders[i] < skipCycleNum + 1) {
-                endList += code;
+            if (j === cycleList[i].length - 1 && cycleOrders[i] <= skipCycleNum) {
+                //先将跳过的编码加到最后，默认为高级色编码，需要再根据色相总和进行处理
+                let lastcode = eglobalState[~~posChichu(code.toLowerCase())*2].toUpperCase();
+                for (let k = 0; k < sumorient % 2; k++) {
+                    lastcode = nearedge(lastcode);
+                }
+                endList += lastcode;
             } else {
                 // edgereadOut += code;
                 if(i>0 && j===0){
@@ -907,6 +914,7 @@ function cornerread(s1) {
     let cycleOrders = [];
     let cornerreadChar = "";
     let cornerreadpartChar = "";
+    let sumorient = 0;
 
     for (let i = 1; i <= 24; i = i + 3) {
         if (cornerreadChar.indexOf(cornerCh[i]) === -1 && cornerreadChar.indexOf(cornerCh[i + 1]) === -1 && cornerreadChar.indexOf(cornerCh[i + 2]) === -1) {
@@ -922,6 +930,7 @@ function cornerread(s1) {
                 cycleList.push(cornerreadpartChar);
                 cycleOrders.push(~~((i - 1) / 3));
             }
+            sumorient += cornerCh.indexOf(cornerreadpartChar[cornerreadpartChar.length - 1]) - cornerCh.indexOf(cornerreadpartChar[0]);      
         }
     }
 
@@ -935,16 +944,20 @@ function cornerread(s1) {
         }
         //跳编法如果按借位绝对顺序跳（如跳一次则只跳G，G已经被还原就算有小循环也不再跳）则需要使用cycleOrders[i]，如果按小循环出现的顺序跳，直接用i即可。
         for (let j = 0; j < cycleList[i].length; j++) {
-            var code = cycleList[i][j];
-            if (i > 0 && (orientFlag === 1 || (orientFlag === 0 && cycleOrders[i] < skipCycleNum))) {
+            let code = cycleList[i][j];
+            if (i > 0 && (orientFlag === 1 || (orientFlag === 0 && cycleOrders[i] <= skipCycleNum))) {
                 for (let k = 0; k < orientLast; k++) {
                     code = nearcorner(code);
                 }
             }
             //丑陋，要改
             if (j === cycleList[i].length - 1 && cycleOrders[i] === 0) continue;
-            if (j === cycleList[i].length - 1 && cycleOrders[i] < skipCycleNum + 1) {
-                endList += code;
+            if (j === cycleList[i].length - 1 && cycleOrders[i] <= skipCycleNum) {
+                let lastcode = cglobalState[~~posChichu(code)*3];
+                for (let k = 0; k < sumorient % 3; k++) {
+                    lastcode = nearcorner(lastcode);
+                }
+                endList += lastcode;
             } else {
                 // cornerreadOut += code;
                 if(i>0 && j===0){
