@@ -11,6 +11,10 @@ function helperEnter() {
 }
 
 function codereader() {
+    if(edgeOrderCheck()===false || cornerOrderCheck()===false){
+        return;
+    }
+    
     let scr = document.getElementById("scrinput").value;
 
     while (scr.charAt(scr.length - 1) === " ") {
@@ -45,8 +49,8 @@ function codereader() {
 }
 
 function solver() {
-    if (checkEdgeOrder() === false || checkCornerOrder === false) {
-        return
+    if(edgeOrderCheck()===false || cornerOrderCheck()===false){
+        return;
     }
 
     document.getElementById("alartoutput2").innerHTML = "";

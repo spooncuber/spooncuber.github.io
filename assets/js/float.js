@@ -120,36 +120,6 @@ function float() {
     }
 }
 
-function shuffle(array) {
-    let res = [], random;
-    while (array.length) {
-        random = Math.floor(Math.random() * array.length);
-        res.push(array[random]);
-        array.splice(random, 1);
-    }
-    return res;
-}
-
-function isAlphabet(char) {
-    const code = char.charCodeAt(0);
-    return (code >= 65 && code <= 90) || (code >= 97 && code <= 122);
-}
-
-function showPopup() {
-    var popup = document.getElementById("popup");
-    popup.style.display = "block";
-}
-
-function hidePopup() {
-    var popup = document.getElementById("popup");
-    popup.style.display = "none";
-}
-
-function copyScrs() {
-    var copyText = document.getElementById("outputScrs").value;
-    navigator.clipboard.writeText(copyText);
-}
-
 window.onload = function () {
     document.getElementById("outputScrs").value = "";
     document.getElementById("outputInfo").value = "<b>输出信息统计: </b>";

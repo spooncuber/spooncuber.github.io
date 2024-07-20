@@ -45,8 +45,8 @@
           <h2 style="text-align:center" class="lang" key="edgetrainer"></h2>
         </header>
 
-        <div class="flexcontainer">
-          <div class="flexitem">
+        <div class="reactdiv">
+          <div>
             <div>
               <strong>生成模式</strong>
               <select style="width:8em;text-align:center" id="modetype" onchange="checkMode()">
@@ -101,7 +101,7 @@
             <br>
           </div>
 
-          <div class="flexitem">
+          <div>
             <p id="outputInfo"><b>输出信息统计: </b>暂无输出打乱。</p>
             <div>
               <span style="padding: 1em 0;">
@@ -124,7 +124,7 @@
             <label style="line-height:1em" for="choosesample" class="help">选中测试例（U8类）</label>
 
             <textarea style="resize: none;min-height:20em;border-style:inset" id="inputCodes"
-              placeholder="编码以换行分隔，最少10组，建议50组以上。可以在excel或txt中整理一列编码后粘贴。"></textarea>
+              placeholder="页面不会保存输入编码，请自行保存！输入编码以换行分隔，建议50组以上。可以在excel或txt中整理一列编码后粘贴。"></textarea>
             <button style="float: left;" onclick="edgeInputCheck()">确认</button>
             <button style="float: right;" onclick="hidePopup()">取消</button>
           </div>

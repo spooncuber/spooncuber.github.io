@@ -193,8 +193,8 @@ function edgeInputCheck() {
         }
     }
 
-    if (newCodes.length < 11) {
-        outputInfo += '请您至少输入10组编码。\n';
+    if (newCodes.length < 5) {
+        outputInfo += '请您至少输入5组编码。\n';
     }
 
     if (outputInfo === "") {
