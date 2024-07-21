@@ -2,10 +2,11 @@
 <html>
 
 <head>
-  <title class="lang" key="float"></title>
+  <title class="lang" key="edgefloat"></title>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes" />
   <link rel="stylesheet" href="assets/css/main.css" />
+  <link rel="stylesheet" href="assets/css/utils.css" />
   <link rel="icon" href="images/logo.svg" type="image/x-icon" />
   <link rel="apple-touch-icon" href="images/logo.png" />
   <meta name="google-site-verification" content="s3hE2D_rJuuUUj4rVvWBADMHqHqiSM-bQh80mnwzDMA" />
@@ -41,9 +42,9 @@
       </header>
       <div id="main">
         <header>
-          <h2 style="text-align:center" class="lang" key="float"></h2>
+          <h2 style="text-align:center" class="lang" key="edgefloat"></h2>
         </header>
-        <div class="inner" style="width:30em;text-align: left">
+        <div class="reactdiv">
           <strong>浮动顺序：</strong>
           <input type="text" placeholder="" id="edgefloatorder" maxlength="2" value="AE"
             style="text-align:center;width:6em;text-transform:uppercase" autocomplete="off"></input>
@@ -52,7 +53,7 @@
           <input type="text" placeholder="" id="edgeejectpos" maxlength="4" value="G"
             style="text-align:center;width:6em;text-transform:uppercase" autocomplete="off"></input>
           <br>
-          <strong>奇偶性:</strong>
+          <strong>奇偶状态：</strong>
           <select style="width:6em;text-align:center" id="parity">
             <option value=0>无奇偶</option>
             <option value=1>有奇偶</option>
@@ -63,18 +64,28 @@
           <label style="line-height:1em" for="cornerscramble" class="help">打乱角块<sup>[?]</sup><span
               class="help-content">生成状态有奇偶则会交换UFR-UBR角块</span></label>
           <br>
-          <button onclick="float()">生成</button>
+          <button onclick="edgefloat()">生成浮动训练</button>
           <p id="outputInfo"><b>输出信息统计: </b>暂无输出打乱。</p>
-          <div style="max-width:30em;">
+          <div>
             <span style="display: block; padding: 1em 0;">
               <p style="display: inline"><b>输出训练打乱：</b></p>
               <button id="copyBtn" style="display: none; float: right;transform: scale(0.75);"
                 onclick="copyScrs()">📝</button><br>
             </span>
-            <textarea readonly id="outputScrs"
-              style="resize:none;min-height:30em;max-width:30em;border-style:inset"></textarea>
+            <textarea readonly id="outputScrs" style="resize:none;min-height:30em;border-style:inset"></textarea>
           </div>
         </div>
+        <footer id="footer" style="text-align: center;">
+          <div class="inner">
+            <ul class="copyright">
+              <li>© 2024 Zhi Qiao. All rights reserved.</li>
+              <li>Github: <a href="https://github.com/spooncuber/spooncuber.github.io">bldtrainer</a></li>
+              <li>License: <a href="https://www.gnu.org/licenses">GPL-3.0 license</a></li>
+              <li>Powered by <a href="http://html5up.net">HTML5 UP</a></li>
+              <li class="lang" key="version"></li>
+            </ul>
+          </div>
+        </footer>
       </div>
     </div>
   </div>
@@ -85,7 +96,7 @@
   <script src="assets/js/reader.js"></script>
   <script src="assets/js/scrambler.js"></script>
   <script src="assets/js/codetrans.js"></script>
-  <script src="assets/js/float.js"></script>
+  <script src="assets/js/edgefloat.js"></script>
   <script src="assets/js/min2phase.js"></script>
   <script src="assets/js/utils.js"></script>
 </body>

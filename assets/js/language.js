@@ -1,12 +1,15 @@
 const arrLang = {    
     "zh": {
-        "title": "三盲训练器(V-0.2)",
+        "title": "三盲训练器(V-0.2.0)",
+        "version": "Version: 0.2.0 UpdateTime: 202407211450",
         "edgetrainer": "棱块公式训练",
         "cornertrainer": "角块公式训练",
         'ltcttrainer': "奇偶带翻训练",
         'twisttrainer': "翻角公式训练",
+        'fliptrainer': "翻棱公式训练",
         "ltct":"奇偶带翻",
-        "float":"棱块浮动训练",
+        "edgefloat":"棱块浮动训练",
+        "cornerfloat":"角块浮动训练",
         "description": "三盲训练器的在线网页版本。",
         "corner": "角块",
         "twists": "翻角公式库",

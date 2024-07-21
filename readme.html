@@ -5,6 +5,9 @@
   <title class="lang" key="introduction"></title>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes" />
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
   <link rel="stylesheet" href="assets/css/main.css" />
   <link rel="stylesheet" href="assets/css/utils.css" />
   <link rel="icon" href="images/logo.svg" type="image/x-icon" />
@@ -45,29 +48,30 @@
           <header>
             <h1 style="text-align:center" class="lang" key="introduction"></h1>
           </header>
-          <div class="reactdiv" style="left: 0%;">
+          <div class="reactdiv">
             <div>
               <div>
                 <strong class="lang" key="title"></strong>
                 <p><b>&#8226 目前为公测第一版，作者勺子（2009QIAO03/乔智），感谢魔友王子兴提供的网站模板及技术支持(｡･ω･｡)ﾉ&#9829;。<br>
-                  &#8226 注意：a.所有页面打乱坐标均为还原坐标；b.编码为彳亍编码（后期会支持自定义编码）；c.暂不设置cookie，所有输入内容请自行保存。</b><br>              
-                  &#8226 网站开发的主要目的是生成贴近实战的打乱公式，从而更高效地进行特定内容的练习。目前主要功能是棱块公式训练、角块公式训练、读码还原助手，其他页面陆续优化新增中。
+                    &#8226 注意：a.所有页面打乱坐标均为还原坐标；b.编码为彳亍编码（后期会支持自定义编码）；c.暂不设置cookie，所有输入内容请自行保存。</b><br>
+                  &#8226 网站开发的主要目的是生成贴近实战的打乱公式并尽快遍历目标训练内容，从而更高效地进行特定内容的练习。目前主要功能是棱块公式训练、角块公式训练、读码还原助手，其他页面陆续优化新增中。
                 </p>
               </div>
               <div>
                 <strong>1.读码还原助手</strong>
                 <p>&#8226 主要功能为两项：a.输入打乱，输出盲拧编码；b.输入盲拧编码，输出魔方状态（并有3D魔方显示）。<br>
                   &#8226 此页面主要为了解决初学者编码容易编错的问题，最初是为了提供一个比APP通用性更好的读码工具。
-                  后来又加入了还原功能，可以尝试不同的编码方法，如果3D魔方最后被还原了则说明编码正确，是一个入门时能确定编码是否有问题的工具。
-                  初学者复盘或者遇到问题时，还可以每做一条公式就同步输入还原编码，核对3D魔方的状态是否一致，从而快速定位问题。<br>
+                  后来又加入了还原功能，可以尝试不同的编码方法，如果3D魔方最后被还原了则说明编码正确，编码不熟时可以确定编码是否存在问题。
+                  另外，初学者复盘或者遇到问题时，还可以每做一条公式就同步输入还原编码，核对3D魔方的状态是否一致，从而快速定位问题。<br>
                   &#8226 默认缓冲为棱A(UF)角J(UFR)，修改缓冲块时，需要注意调整借位位置，借位位置与缓冲位置不能重复。<br>
-                  &#8226 保持色相借位根据教程选择即可，<a href="http://bbs.mf8-china.com/forum.php?mod=viewthread&tid=110455&mobile=no">跳编法（即固定借位法）</a>，初学者不需要选。
+                  &#8226 保持色相借位根据教程选择即可，<a
+                    href="http://bbs.mf8-china.com/forum.php?mod=viewthread&tid=110455&mobile=no">跳编法（即固定借位法）</a>，初学者不需要选。
                 </p>
               </div>
               <div>
                 <strong>2.棱块公式训练：</strong>
                 <p>&#8226 主要功能为输入需要练习的公式、输出比较贴近实战的打乱。<br>
-                  a. 精准生成模式：从输入训练公式中优先选取出现次数较少的公式，构造状态并求解打乱公式（生成的打乱没有小循环），当输入训练公式全部出现至少一次则停止生成并输出打乱及信息。<br>
+                  a. 精准生成模式：从输入训练公式中优先选取出现次数较少的公式，构造状态并求解打乱公式（生成的打乱没有小循环），当输入训练公式全部出现至少一次，则停止生成并输出打乱及信息。<br>
                   b. 随机生成模式：随机生成打乱并读码，从中挑选出包含较多输入训练公式的打乱。每次点击生成随机生成1万条打乱，最终输出训练公式数量排名较前的100条打乱。</p>
               </div>
               <div>
@@ -75,29 +79,52 @@
                 <p>&#8226 功能同棱块训练。</p>
               </div>
               <div>
-                <strong>4.翻角训练：</strong>
-                <p>&#8226 无奇偶，角块会出现除缓冲块之外的两个翻角，方向任意，棱块为还原状态。</p>
+                <strong>4.翻角公式训练：</strong>
+                <p>&#8226 无奇偶，角块会出现除缓冲块之外的两个翻角，方向任意。<br>
               </div>
               <div>
-                <strong>5.棱块浮动训练：</strong>
+                <strong>5.翻棱公式训练：</strong>
+                <p>&#8226 功能同翻角训练。</p>
+              </div>
+              <div>
+                <strong>6.棱块浮动训练：</strong>
                 <p>&#8226 【浮动顺序】目前仅支持输入两个字母，第一位为主缓冲编码，第二位为副缓冲编码。
                   脚本会从输入副缓冲公式中优先选取出现次数较少的公式，直到所有副缓冲公式全部出现至少一次则停止生成并输出打乱及信息。<br>
-                   &#8226 【排除位置】为不会被打乱的棱块位置。
-                   比如用户已经会了4个缓冲并且顺序是AEGC，现在想练习第三第四缓冲，则在【排除位置】中输入AE，在【浮动顺序】中输入GC即可。
+                  &#8226 【排除位置】为不会被打乱的棱块位置。
+                  比如用户已经会了4个缓冲并且顺序是AEGC，现在想练习第三第四缓冲，则在【排除位置】中输入AE，在【浮动顺序】中输入GC即可。<br>
                 </p>
               </div>
               <div>
-                <strong>6.奇偶带翻训练：</strong>
+                <strong>7.角块浮动训练：</strong>
+                <p>&#8226 【浮动顺序】输入功能同棱块浮动训练。<br>
+                  &#8226 暂不支持奇偶状态选择及排除位置输入。</p>
+                </p>
+              </div>
+              <div>
+                <strong>8.奇偶带翻训练：</strong>
                 <p>&#8226 输入奇偶带翻编码（第一位为奇偶码，第二位为翻色码），生成相同数量的随机打乱，所有输入的奇偶带翻情况均会出现1次，棱块随机打乱。</p>
               </div>
               <div>
                 <strong>其他：</strong>
-                <p>&#8226 目前服务器在github.io，部分用户会出现连接不上的问题，后面会考虑在国内服务器也布一个镜像站。PC用户可以自行下载github代码，运行index.html即可。<br>
-                  &#8226 反馈BUG及提出改进意见请加QQ群207101317并备注“三盲训练器”。<br>
-                  &#8226 由于作者要备战818安静赛(&#10026w&#10026)，所以这一个月可能不会及时响应需求-20240720记。</p>
+                <p>&#8226 目前服务器在github.io，部分用户会出现连接不上的问题，后面会考虑相应解决方案。PC用户可以自行下载github代码，运行index.html即可。<br>
+                  &#8226 网站处于测试阶段，部分即时更新的功能需要强制刷新页面才能同步，可以观察某页面右下角的版本号和本页说明文档中的版本号是否一致来确定某页面是不是最新版。<br>
+                  &#8226 网站计算性能取决于用户设备。目前所有操作在CPU为AMD5600G的台式机上均可在2秒内完成（目前最慢操作为棱块浮动训练中的有奇偶生成），如遇到页面不正常卡顿可以向作者反馈。<br>
+                  &#8226 反馈BUG、交流使用方法、提出改进意见请加QQ群 <b>207101317</b> 并备注“三盲训练器”，或者直接加作者QQ <b>709430186</b> 。<br>
+                  &#8226 PS：由于作者要备战818安静赛(&#10026w&#10026)，所以这一个月可能不会及时响应需求--20240720记。</p>
               </div>
             </div>
           </div>
+          <footer id="footer" style="text-align: center;">
+            <div class="inner">
+              <ul class="copyright">
+                <li>© 2024 Zhi Qiao. All rights reserved.</li>
+                <li>Github: <a href="https://github.com/spooncuber/spooncuber.github.io">bldtrainer</a></li>
+                <li>License: <a href="https://www.gnu.org/licenses">GPL-3.0 license</a></li>
+                <li>Powered by <a href="http://html5up.net">HTML5 UP</a></li>
+                <li class="lang" key="version"></li>
+              </ul>
+            </div>
+          </footer>
         </div>
       </div>
     </div>

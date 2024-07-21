@@ -1,9 +1,10 @@
 "use strict";
 
 function twist() {
-    var cBuffer = document.getElementById("cornerbuffer").value.toUpperCase();
+    let cBuffer = document.getElementById("cornerbuffer").value.toUpperCase();
+    let edgescramble = document.getElementById("edgescramble").checked;
     document.getElementById("outputScrs").value = "";
-    document.getElementById("outputInfo").innerHTML = "输出信息统计:";
+    document.getElementById("outputInfo").innerHTML = "<b>输出信息统计:</b>";
 
     let inputCodeStr = 'BCEFHIKLMNPQSTYZ';
     let inputCodeList = [];
@@ -18,53 +19,40 @@ function twist() {
 
     inputCodeList = shuffle(Array.from(inputCodeList));
 
-    var times = 0;
+    let times = 0;
     for (let i = 0; i < inputCodeList.length; i++) {
         if (posChichu(inputCodeList[i][0]) === posChichu(cBuffer) || posChichu(inputCodeList[i][1]) === posChichu(cBuffer)) {
             continue;
         }
 
-        var flipnum = 0;
-        while (flipnum !== 2) {
-            var eState = randomEdge(0);
-            var cState = randomCorner1(0, inputCodeList[i], eState);
+        let twistnum = 0;
+        let cState;
+        while (twistnum !== 2) {
+            let eState;
+            if (edgescramble) {
+                eState = randomEdge(0);
+            } else {
+                eState = globalState;
+            }
+            cState = randomCorner1(0, inputCodeList[i], eState);
             cState = exCode([cBuffer, inputCodeList[i][0]], cState);
             cState = exCode([cBuffer, globalState[3 * posChichu(inputCodeList[i][0])]], cState);
             cState = exCode([cBuffer, inputCodeList[i][1]], cState);
             cState = exCode([cBuffer, globalState[3 * posChichu(inputCodeList[i][1])]], cState);
 
-            flipnum = 0;
+            twistnum = 0;
             for (let j = 0; j < 24; j += 3) {
                 if (posChichu(cState[j]) === posChichu(globalState[j])) {
-                    flipnum += 1;
+                    twistnum += 1;
                 }
             }
         }
 
-        document.getElementById("outputScrs").value += (times + 1).toString() + ". " + m2p(cState) + "\n";
         times += 1;
+        document.getElementById("outputScrs").value += times.toString() + ". " + m2p(cState) + "\n";
+        
     }
-    document.getElementById("outputInfo").innerHTML = "<b>输出信息统计: </b> 随机生成" + times + "条打乱。";
-}
-
-function shuffle(array) {
-    let res = [], random;
-    while (array.length) {
-        random = Math.floor(Math.random() * array.length);
-        res.push(array[random]);
-        array.splice(random, 1);
-    }
-    return res;
-}
-
-function isAlphabet(char) {
-    const code = char.charCodeAt(0);
-    return (code >= 65 && code <= 90) || (code >= 97 && code <= 122);
-}
-
-function copyScrs() {
-    var copyText = document.getElementById("outputScrs").value;
-    navigator.clipboard.writeText(copyText);
+    document.getElementById("outputInfo").innerHTML = "<b>输出信息统计: </b> 随机生成" + times + "条打乱，遍历缓冲外存在两个翻角的情况。";
 }
 
 window.onload = function () {

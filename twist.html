@@ -6,6 +6,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes" />
   <link rel="stylesheet" href="assets/css/main.css" />
+  <link rel="stylesheet" href="assets/css/utils.css" />
   <link rel="icon" href="images/logo.svg" type="image/x-icon" />
   <link rel="apple-touch-icon" href="images/logo.png" />
   <meta name="google-site-verification" content="s3hE2D_rJuuUUj4rVvWBADMHqHqiSM-bQh80mnwzDMA" />
@@ -43,8 +44,8 @@
         <header>
           <h2 style="text-align:center" class="lang" key="twisttrainer"></h2>
         </header>
-        <div class="inner" style="max-width:40em;place-items: centre">
-          <strong>角缓冲</strong>
+        <div class="reactdiv">
+          <strong>角块缓冲：</strong>
           <select style="width:3.5em;text-align:center" id="cornerbuffer">
             <option>J</option>
             <option>A</option>
@@ -55,12 +56,26 @@
             <option>R</option>
             <option>X</option>
           </select>
-          <button onclick="twist()">生成</button>          
-          <p id="inputInfo"><b>输入信息统计: </b>请输入编码。</p>
+          <br>
+          <input type="checkbox" id="edgescramble"></input>
+          <label style="line-height:1em" for="edgescramble" class="help">打乱棱块</label>
+          <br>
+          <button onclick="twist()">生成翻角训练</button>          
           <p id="outputInfo"><b>输出信息统计: </b>暂无输出打乱。</p>
           <text><b>输出训练打乱：</b></text>
           <textarea style="resize: none;min-height:30em;border-style:inset" id="outputScrs" readonly></textarea>
         </div>
+        <footer id="footer" style="text-align: center;">
+          <div class="inner">
+            <ul class="copyright">
+              <li>© 2024 Zhi Qiao. All rights reserved.</li>
+              <li>Github: <a href="https://github.com/spooncuber/spooncuber.github.io">bldtrainer</a></li>
+              <li>License: <a href="https://www.gnu.org/licenses">GPL-3.0 license</a></li>
+              <li>Powered by <a href="http://html5up.net">HTML5 UP</a></li>
+              <li class="lang" key="version"></li>
+            </ul>
+          </div>
+        </footer>
       </div>
     </div>
   </div>
@@ -68,7 +83,7 @@
   <script src="assets/js/main.js"></script>
   <script src="assets/js/setcode.js"></script>
   <script src="assets/js/language.js"></script>
-  <script src="assets/js/bldhelper.js"></script>
+  <script src="assets/js/reader.js"></script>
   <script src="assets/js/twist.js"></script>
   <script src="assets/js/codetrans.js"></script>
   <script src="assets/js/min2phase.js"></script>

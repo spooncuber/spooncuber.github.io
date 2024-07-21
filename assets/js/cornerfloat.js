@@ -1,54 +1,40 @@
 "use strict";
 
-function float() {
+function cornerfloat() {
     
     document.getElementById("outputScrs").value = "";
     document.getElementById("outputInfo").value = "输出信息统计:";
 
-    let eBufferList = document.getElementById("edgefloatorder").value.toLowerCase().split("");
-    let eEjectList = document.getElementById("edgeejectpos").value.toLowerCase().split("");
-    let cornerscramble = document.getElementById("cornerscramble").checked;
+    let cBufferList = document.getElementById("cornerfloatorder").value.split("");
+    let edgeScramble = document.getElementById("edgescramble").checked;
     let algAllList1 = [];
     let algAllList0 = [];
-    let algSet = algSetGenerator(eBufferList+eEjectList);
+    let algSet = algSetGenerator(cBufferList);
     algSet = shuffle(algSet);
     algAllList1.push(algSet);
     
-    let algSet0 = algSetGenerator(eBufferList+eEjectList);
+    let algSet0 = algSetGenerator(cBufferList);
     algSet0 = shuffle(algSet0);
     algAllList0.push(algSet0);
 
     let times = 0;
     for (let i = 0; i < 10000; i++) {
-        let parity = 0;
-        switch (Number(document.getElementById("parity").value)) {
-            case 0:
-                parity = 0;
-                break;
-            case 1:
-                parity = 1;
-                break;
-            case 2:
-                parity = ~~(Math.random() * 2);
-                break;
-        }
 
-        let state = globalState;
-        if(cornerscramble){
-            state = randomCorner(parity);
+        let state;
+        if(edgeScramble){
+            state = randomEdge(0);
         }else{
-            if(parity){
-                state = codeTrans("JG", state);
-            }
+            state = globalState;
         }
 
         let pos = [];
-        let listtemp = eBufferList.concat(eEjectList);
+        let listtemp = cBufferList.concat(cBufferList);
         for(let i=0; i < listtemp.length; i++){
             pos.push(posChichu(listtemp[i].toString()));
         }
-        let codes = Array.from(eBufferList);
-        for (let j = 0; j < ~~(Math.random() * (4 - Math.floor((eEjectList.length + 1) / 2) - parity)); j++) {
+
+        let codes = Array.from(cBufferList);
+        for (let j = 0; j < ~~(Math.random() * 2 + 1); j++) {
             let breakFlag = 0;
             for (let m = 0; m < algAllList1.length; m++) {
                 for (let n = 0; n < algAllList1[m].length; n++) {
@@ -72,7 +58,7 @@ function float() {
             }
         }
 
-        for (let j = 0; j < (11 - eEjectList.length - codes[1].length) / 2 - parity; j++) {
+        for (let j = 0; j < (8 - codes[1].length) / 2; j++) {
             var breakFlag = 0;
             for (let m = 0; m < algAllList0.length; m++) {
                 for (let n = 0; n < algAllList0[m].length; n++) {
@@ -96,25 +82,18 @@ function float() {
             }
         }
 
-        if (parity === 1) {
-            let allpos = Array.from({ length: 11 }, (_, i) => i + 1);
-            let otherpos = allpos.filter(item => !pos.includes(item));
-            let choosepos = otherpos[~~(Math.random() * otherpos.length)];
-            let paritycode = globalState[24+choosepos*2+~~(Math.random() * 2)];
-            codes[~~(Math.random() * 2)] += paritycode;
-        }
-
         state = codeTrans(codes[1], state);
         state = codeTrans(codes[0], state);
         document.getElementById("outputScrs").value += (i + 1).toString() + ". " + m2p(state) + "\n";
         times += 1;
         // console.log(codes[0], codes[1], algAllList1, algAllList1[0].length, algAllList1[0]);
+        // console.log('algAllList1[0].length',algAllList1[0].length);
         if (algAllList1[0].length === 0) {
             break;
         }
     }
 
-    document.getElementById("outputInfo").innerHTML = "<b>输出信息统计: </b>已生成遍历副缓冲" + eBufferList[1].toUpperCase() + "全部公式的" + times + "条打乱。";
+    document.getElementById("outputInfo").innerHTML = "<b>输出信息统计: </b>已生成遍历副缓冲" + cBufferList[1].toUpperCase() + "全部公式的" + times + "条打乱。";
     if (document.getElementById("outputScrs").value != "") {
         document.getElementById("copyBtn").style.display = "block";
     }

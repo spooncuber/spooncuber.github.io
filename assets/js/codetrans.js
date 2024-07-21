@@ -179,6 +179,33 @@ function randomEdge(parity) {
     return output_state;
 }
 
+function randomEdge1(parity, codeList, output_state) {
+    var exTimes = 0;
+    if (parity === 0) {
+        exTimes = 24;
+    } else {
+        exTimes = 25;
+    }
+
+    let posList = Array.from({ length: 12 }, (_, i) => i);;
+    if (codeList.length > 0) {
+        let inputList = [];
+        for (let i = 0; i < codeList.length; i++) {
+            inputList.push(posChichu(codeList[i]));
+        }
+        posList = posList.filter(item => !inputList.includes(item));
+    }
+    var pos0 = posList[0];
+    posList.splice(0, 1);
+
+    for (let i = 0; i < exTimes; i++) {
+        var pos = posList[~~(Math.random() * posList.length)];
+        var code = eglobalState[pos * 2 + ~~(Math.random() * 2)];
+        output_state = exCode([eglobalState[pos0 * 2], code], output_state);
+    }
+
+    return output_state;
+}
 
 function randomCorner(parity) {
     var exTimes = 0;
