@@ -45,6 +45,9 @@ function ltct() {
         times+=1;
     }
     document.getElementById("outputInfo").innerHTML = "<b>输出信息统计: </b> 随机生成"+times+"条打乱。";
+    if (document.getElementById("outputScrs").value != "") {
+        document.getElementById("copyBtn").style.display = "block";
+    }
 }
 
 function ltctInputCheck(){
@@ -80,6 +83,10 @@ function ltctInputCheck(){
         if(posChichu(newCodes[i][0]) === posChichu(newCodes[i][1])){
             outputInfo += '您输入的第'+(i+1).toString()+'行编码【'+newCodes[i]+'】存在位置冲突。\n';
         }
+    }
+
+    if (newCodes.length < 5) {
+        outputInfo += '请您至少输入5组编码。\n';
     }
     
     if(outputInfo === ""){

@@ -1,7 +1,7 @@
 const arrLang = {    
     "zh": {
-        "title": "三盲训练器(V-0.2.0)",
-        "version": "Version: 0.2.0 UpdateTime: 202407211450",
+        "title": "三盲训练器(V-0.2.1)",
+        "version": "Version: 0.2.1 UpdateTime: 202407212210",
         "edgetrainer": "棱块公式训练",
         "cornertrainer": "角块公式训练",
         'ltcttrainer': "奇偶带翻训练",

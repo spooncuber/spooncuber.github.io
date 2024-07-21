@@ -28,7 +28,7 @@
     <div id="wrapper">
       <header id="header">
         <div class="inner">
-          <a href="./" class="logo">
+          <a href="index.html" class="logo">
             <span class="symbol"><img src="images/logo.svg" alt="" /></span><span class="title">bldtrainer</span>
           </a>
           <div class="language">
@@ -72,7 +72,11 @@
               <button style="float: right;" onclick="hidePopup()">取消</button>
             </div>
           </div>
-          <text><b>输出训练打乱：</b></text>
+          <span style="padding: 1em 0;">
+            <p style="display: inline"><b>输出训练打乱：</b></p>
+            <button id="copyBtn" style="display: none; float: right;transform: scale(0.75);"
+              onclick="copyScrs()">📝</button><br>
+          </span>
           <textarea style="resize: none;min-height:30em;border-style:inset" id="outputScrs" readonly></textarea>
         </div>
         <footer id="footer" style="text-align: center;">
@@ -97,6 +101,7 @@
   <script src="assets/js/ltct.js"></script>
   <script src="assets/js/codetrans.js"></script>
   <script src="assets/js/min2phase.js"></script>
+  <script src="assets/js/utils.js"></script>
 </body>
 
 </html>

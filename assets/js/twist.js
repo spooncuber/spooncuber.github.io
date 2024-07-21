@@ -53,6 +53,9 @@ function twist() {
         
     }
     document.getElementById("outputInfo").innerHTML = "<b>输出信息统计: </b> 随机生成" + times + "条打乱，遍历缓冲外存在两个翻角的情况。";
+    if (document.getElementById("outputScrs").value != "") {
+        document.getElementById("copyBtn").style.display = "block";
+    }
 }
 
 window.onload = function () {
