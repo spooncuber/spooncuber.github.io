@@ -1168,7 +1168,7 @@ function edgeOrderCheck(){
         }       
         let posSet = new Set(allpos);
         if(posSet.size !== 12){
-            window.alert("您输入的缓冲与棱顺序有误，请检查。");
+            window.alert("您输入的棱缓冲与棱顺序有误，请检查。");
             return false;
         } 
     }
@@ -1176,8 +1176,9 @@ function edgeOrderCheck(){
 }
 
 function cornerOrderCheck(){
-    const cornerbuffer = String(document.getElementById("cornerbuffer").value);
-    const cornerorder = String(document.getElementById("cornerorder").value);
+    const cornerbuffer = String(document.getElementById("cornerbuffer").value).toUpperCase();
+    const cornerorder = String(document.getElementById("cornerorder").value).toUpperCase();
+
 
     if(cornerorder.length + cornerbuffer.length === 8){
         let allcodes = cornerbuffer + cornerorder;
@@ -1187,7 +1188,7 @@ function cornerOrderCheck(){
         }       
         let posSet = new Set(allpos);
         if(posSet.size !== 8){
-            window.alert("您输入的缓冲与角顺序有误，请检查。");
+            window.alert("您输入的角缓冲与角顺序有误，请检查。");
             return false;
         } 
     }
