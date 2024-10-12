@@ -2,7 +2,7 @@
 <html>
 
 <head>
-  <title class="lang" key="cornerfloat"></title>
+  <title class="lang" key="codetrainer"></title>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes" />
   <link rel="stylesheet" href="assets/css/main.css" />
@@ -28,7 +28,7 @@
     <div id="wrapper">
       <header id="header">
         <div class="inner">
-          <a href="index.html" class="logo">
+          <a href="./" class="logo">
             <span class="symbol"><img src="images/logo.svg" alt="" /></span><span class="title">bldtrainer</span>
           </a>
           <div class="language">
@@ -42,28 +42,19 @@
       </header>
       <div id="main">
         <header>
-          <h2 style="text-align:center" class="lang" key="cornerfloat"></h2>
+          <h2 style="text-align:center" class="lang" key="codetrainer"></h2>
         </header>
-        <div class="reactdiv">
-          <strong>浮动顺序：</strong>
-          <input type="text" placeholder="" id="cornerfloatorder" maxlength="2" value="JG"
-            style="text-align:center;width:6em;text-transform:uppercase" autocomplete="off"></input>
-          <br>
-          <input type="checkbox" id="twocorner"></input>
-          <label style="line-height:1em" for="twocorner" class="help">2C互换模式</label>
-          <br>
-          <input type="checkbox" id="edgescramble"></input>
-          <label style="line-height:1em" for="edgescramble" class="help">打乱棱块</label>
-          <br>
-          <button onclick="cornerfloat()">生成浮动训练</button>
-          <p id="outputInfo"><b>输出信息统计: </b>暂无输出打乱。</p>
-          <div>
-            <span style="display: block; padding: 1em 0;">
-              <p style="display: inline"><b>输出训练打乱：</b></p>
-              <button id="copyBtn" style="display: none; float: right;transform: scale(0.75);"
-                onclick="copyScrs()">📝</button><br>
-            </span>
-            <textarea readonly id="outputScrs" style="resize:none;min-height:30em;border-style:inset"></textarea>
+        <div class="reactdiv" style="text-align:center">
+          <div id="stopwatch" style="font-size: larger;"></div>
+          <canvas id="myCanvas" width="500" height="500"></canvas>
+          <div style="display: grid; grid-template-columns: 1fr 1fr;grid-template-rows: 1fr 1fr;grid-gap:5em 10em" style="text-align:center">
+            <button id="code0" style="font-size: larger;" onclick="nextBlock()"></button>
+            <button id="code1" style="font-size: larger;" onclick="nextBlock()"></button>
+            <button id="code2" style="font-size: larger;" onclick="nextBlock()"></button>
+            <button id="code3" style="font-size: larger;" onclick="nextBlock()"></button>
+            <button id="cancel" style="font-size: larger;">取消</button>
+            <button id="next" style="font-size: larger;" onclick="nextBlock()">下一个</button>
+
           </div>
         </div>
         <footer id="footer" style="text-align: center;">
@@ -85,9 +76,9 @@
   <script src="assets/js/setcode.js"></script>
   <script src="assets/js/language.js"></script>
   <script src="assets/js/reader.js"></script>
-  <script src="assets/js/scrambler.js"></script>
+  <script src="assets/js/block.js"></script>
+  <script src="assets/js/clock.js"></script>
   <script src="assets/js/codetrans.js"></script>
-  <script src="assets/js/cornerfloat.js"></script>
   <script src="assets/js/min2phase.js"></script>
   <script src="assets/js/utils.js"></script>
 </body>

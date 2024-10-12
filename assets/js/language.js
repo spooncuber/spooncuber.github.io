@@ -11,6 +11,7 @@ const arrLang = {
         "edgefloat":"棱块浮动训练",
         "cornerfloat":"角块浮动训练",
         "description": "三盲训练器的在线网页版本。",
+        "codetrainer": "编码识别训练",
         "corner": "角块",
         "twists": "翻角公式库",
         "edge": "棱块",
