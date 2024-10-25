@@ -44,19 +44,55 @@
         <header>
           <h2 style="text-align:center" class="lang" key="codetrainer"></h2>
         </header>
-        <div class="reactdiv" style="text-align:center">
-          <div id="stopwatch" style="font-size: larger;"></div>
-          <canvas id="myCanvas" width="500" height="500"></canvas>
-          <div style="display: grid; grid-template-columns: 1fr 1fr;grid-template-rows: 1fr 1fr;grid-gap:5em 10em" style="text-align:center">
-            <button id="code0" style="font-size: larger;" onclick="nextBlock()"></button>
-            <button id="code1" style="font-size: larger;" onclick="nextBlock()"></button>
-            <button id="code2" style="font-size: larger;" onclick="nextBlock()"></button>
-            <button id="code3" style="font-size: larger;" onclick="nextBlock()"></button>
-            <button id="cancel" style="font-size: larger;">取消</button>
-            <button id="next" style="font-size: larger;" onclick="nextBlock()">下一个</button>
 
+        <div id="modeset" class="reactdiv" style="text-align:center">
+          <strong>练习模式</strong>
+          <select style="width:6em;text-align:center" id="practicemode">
+            <option value=0>角块位置</option>
+          </select>
+          <br>
+          <br>
+          <strong>练习数量</strong>
+          <input type="text" id="practicenum" maxlength="4" value="10" style="text-align:center;width:6em"></input>
+          <br>
+          <br>
+          <button onclick="beginPractice()">开始练习</button>
+        </div>
+
+        <div id="canvasContainer" class="reactdiv" style="text-align:center; display:none;">
+          <div id="stopwatch" style="font-size: larger;"></div>
+          <canvas id="myCanvas" width="250" height="250"></canvas>
+          <div style="display: grid; grid-template-columns: 1fr 1fr;grid-template-rows: 1fr 1fr;grid-gap:2em 2em"
+            style="text-align:center">
+            <button id="code0" style="font-size: larger;" onclick="nextBlock0()"></button>
+            <button id="code1" style="font-size: larger;" onclick="nextBlock1()"></button>
+            <button id="code2" style="font-size: larger;" onclick="nextBlock2()"></button>
+            <button id="code3" style="font-size: larger;" onclick="nextBlock3()"></button>
+            <!-- <button id="cancel" style="font-size: larger;">跳过</button> -->
+          </div>
+          <br>
+          <button id="next" style="font-size: larger;" onclick="exitPractice()">退出</button>
+        </div>
+
+        <div id="popup"
+          style="background: rgba(0, 0, 0, 0.5);display: none; position: fixed;top: 0%; left: 0%; width:100%;height:100%;z-index: 100;">
+          <div class="popdiv" style="text-align:center;">
+            <strong id="resulttext"></strong>
+            <br>
+            <br>
+            <table id="resulttable" style="border:5px ;margin: auto;">
+              <tr>
+                <th>编号</th>
+                <th>编码</th>
+                <th>耗时</th>
+                <th>对错</th>
+              </tr>
+            </table>
+            <br>
+            <button onclick="hidePopupBlock()">关闭</button>
           </div>
         </div>
+
         <footer id="footer" style="text-align: center;">
           <div class="inner">
             <ul class="copyright">

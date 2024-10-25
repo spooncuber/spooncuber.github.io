@@ -1,16 +1,21 @@
 "use strict";
 
+let startTime;
+let timer;
 
 function start() {
-    let startTime = new Date();
-    let timer = setInterval(function () {
+    startTime = new Date();
+    timer = setInterval(function () {
         let endTime = new Date();
         let timeDifference = endTime - startTime;
-        // var seconds = Math.floor((timeDifference % 60000) / 1000);
-        //var milliseconds = ('0' + Math.floor((timeDifference % 1000))).slice(-3);
-        var seconds = Math.floor((timeDifference % 60000) / 1000);
-        var milliseconds = Math.floor((timeDifference % 1000)/100);
-        document.getElementById('stopwatch').innerText = seconds + '.' + milliseconds;
+        let minutes = Math.floor(timeDifference / 60000);
+        let seconds = Math.floor((timeDifference % 60000) / 1000);
+        let milliseconds = Math.floor((timeDifference % 1000)/100);
+        if(minutes == 0){
+            document.getElementById('stopwatch').innerText = seconds + '.' + milliseconds;
+        }else{
+            document.getElementById('stopwatch').innerText = minutes + ":" + seconds + '.' + milliseconds;
+        }
     }, 0);
 }
 

@@ -236,6 +236,16 @@ function getAlgSolver() {
     }
 }
 
+function randomScramble(){
+    document.getElementById('scrinput').value = getScramble();
+    document.getElementById("edgesolve").value = "";
+    document.getElementById("cornersolve").value = "";
+    document.getElementById("paritysolve").value = "";
+    document.getElementById("flipsolve").value = "";
+    document.getElementById("twistsolve").value = "";
+    helperEnter();
+}
+
 const solveList = document.getElementById("solvelist");
 
 function drag(event) {

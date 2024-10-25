@@ -131,7 +131,7 @@
             <br>
             <strong>打乱公式：</strong>
             <button style="transform: scale(0.75);"
-              onclick="document.getElementById('scrinput').value = getScramble();helperEnter()">随机打乱</button>
+              onclick="randomScramble()">随机打乱</button>
             <br>
             <textarea id="scrinput" placeholder="打乱必须用空格分割" onkeyup="helperEnter()" rows="1"
               style="min-height:1em; border-bottom-color:black; resize:none;overflow: auto;"></textarea>
@@ -179,7 +179,7 @@
               </li>
               <li id="li5" draggable="true" ondragstart="drag(event)" ondrop="drop(event)"
                 ondragover="allowDrop(event)">
-                <span class="help">翻角编码<sup>[?]</sup>：<span class="help-content">例：ZX为缓冲块逆翻与XYZ块逆翻。</span></span>
+                <span class="help">翻角编码<sup>[?]</sup>：<span class="help-content">例：ZX为缓冲块逆翻与XYZ块顺翻。</span></span>
                 <input type="text" placeholder="" id="twistsolve" maxlength="100" value=""
                   style="text-align:left;width:10em;text-transform:uppercase" onkeyup="helperEnter()"
                   autocomplete="off"></input>
