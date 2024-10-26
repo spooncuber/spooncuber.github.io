@@ -145,24 +145,32 @@ function nextBlock(){
     let code2 = codecode[2+orient];
     //console.log(code0,code1,code2);
     //console.log(colorMap[code0]);
-
-    let canvas=document.getElementById('myCanvas');
-    let ctx=canvas.getContext('2d');
-    ctx.imageSmoothingEnabled = false;
-    ctx.lineJoin = "round";
     
+    // mysvg = document.getElementById('mysvg');
+    // mysvg.setAttribute("width", 400);
+
+    let face0=document.getElementById('face0');
+    let face1=document.getElementById('face1');
+    let face2=document.getElementById('face2');
+    face0.setAttribute("fill", colorMap[code0]);
+    face1.setAttribute("fill", colorMap[code1]);
+    face2.setAttribute("fill", colorMap[code2]);
+
+
+    // let canvas=document.getElementById('myCanvas');
+    // let ctx=canvas.getContext('2d');
+    // ctx.imageSmoothingEnabled = false;
+    // ctx.lineJoin = "round";    
     // let centerP = [250,200];
     // let topP = [250,20];
     // let bottomP = [250,430];
     // let leftAP = [50,100];
     // let leftBP = [60,315];
     // let rightAP = [450,100];
-    // let rightBP = [440,315];
-    
+    // let rightBP = [440,315];    
     // drawPoly(ctx,[topP,leftAP,centerP,rightAP],'#999999',10);
     // drawPoly(ctx,[rightAP,rightBP,bottomP,centerP],'#999999',10);
     // drawPoly(ctx,[leftAP,leftBP,bottomP,centerP],'#999999',10);
-
     // let pointList;
     // pointList = [[topP[0],topP[1]+8],[rightAP[0]-25,rightAP[1]-3],[centerP[0],centerP[1]-15],[leftAP[0]+25,leftAP[1]-3]];
     // drawPoly(ctx,pointList,colorMap[code0],5);
@@ -170,38 +178,34 @@ function nextBlock(){
     // drawPoly(ctx,pointList,colorMap[code1],5);
     // pointList = [[centerP[0]+10,centerP[1]+10],[rightAP[0]-12,rightAP[1]+20],[rightBP[0]-10,rightBP[1]-8],[bottomP[0]+10,bottomP[1]-20]];
     // drawPoly(ctx,pointList,colorMap[code2],5);
-
-    let centerP = [125,100];
-    let topP = [125,10];
-    let bottomP = [125,215];
-    let leftAP = [25,50];
-    let leftBP = [30,158];
-    let rightAP = [225,50];
-    let rightBP = [220,158];
-    
-    drawPoly(ctx,[topP,leftAP,centerP,rightAP],'#999999',4);
-    drawPoly(ctx,[rightAP,rightBP,bottomP,centerP],'#999999',4);
-    drawPoly(ctx,[leftAP,leftBP,bottomP,centerP],'#999999',4);
-
-    let pointList;
-    pointList = [[topP[0],topP[1]+4],[rightAP[0]-12,rightAP[1]-2],[centerP[0],centerP[1]-8],[leftAP[0]+12,leftAP[1]-2]];
-    drawPoly(ctx,pointList,colorMap[code0],2);
-    pointList = [[centerP[0]-5,centerP[1]+5],[leftAP[0]+6,leftAP[1]+10],[leftBP[0]+5,leftBP[1]-4],[bottomP[0]-5,bottomP[1]-10]];
-    drawPoly(ctx,pointList,colorMap[code1],2);
-    pointList = [[centerP[0]+5,centerP[1]+5],[rightAP[0]-6,rightAP[1]+10],[rightBP[0]-5,rightBP[1]-4],[bottomP[0]+5,bottomP[1]-10]];
-    drawPoly(ctx,pointList,colorMap[code2],2);
-
+    // let centerP = [125,100];
+    // let topP = [125,10];
+    // let bottomP = [125,215];
+    // let leftAP = [25,50];
+    // let leftBP = [30,158];
+    // let rightAP = [225,50];
+    // let rightBP = [220,158];    
+    // drawPoly(ctx,[topP,leftAP,centerP,rightAP],'#999999',4);
+    // drawPoly(ctx,[rightAP,rightBP,bottomP,centerP],'#999999',4);
+    // drawPoly(ctx,[leftAP,leftBP,bottomP,centerP],'#999999',4);
+    // let pointList;
+    // pointList = [[topP[0],topP[1]+4],[rightAP[0]-12,rightAP[1]-2],[centerP[0],centerP[1]-8],[leftAP[0]+12,leftAP[1]-2]];
+    // drawPoly(ctx,pointList,colorMap[code0],2);
+    // pointList = [[centerP[0]-5,centerP[1]+5],[leftAP[0]+6,leftAP[1]+10],[leftBP[0]+5,leftBP[1]-4],[bottomP[0]-5,bottomP[1]-10]];
+    // drawPoly(ctx,pointList,colorMap[code1],2);
+    // pointList = [[centerP[0]+5,centerP[1]+5],[rightAP[0]-6,rightAP[1]+10],[rightBP[0]-5,rightBP[1]-4],[bottomP[0]+5,bottomP[1]-10]];
+    // drawPoly(ctx,pointList,colorMap[code2],2);
 }
 
-function drawPoly(ctx,pointList,color,lineWidth){
-    ctx.lineWidth = lineWidth;
-    ctx.fillStyle=color;
-    ctx.beginPath();
-    ctx.moveTo(pointList[0][0],pointList[0][1])
-    for(let i = 1; i< pointList.length; i++){
-        ctx.lineTo(pointList[i][0],pointList[i][1]); 
-    }
-    ctx.closePath();
-    ctx.stroke(); //绘制路径。
-    ctx.fill();
-}
+// function drawPoly(ctx,pointList,color,lineWidth){
+//     ctx.lineWidth = lineWidth;
+//     ctx.fillStyle=color;
+//     ctx.beginPath();
+//     ctx.moveTo(pointList[0][0],pointList[0][1])
+//     for(let i = 1; i< pointList.length; i++){
+//         ctx.lineTo(pointList[i][0],pointList[i][1]); 
+//     }
+//     ctx.closePath();
+//     ctx.stroke(); //绘制路径。
+//     ctx.fill();
+// }
