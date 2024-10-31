@@ -46,14 +46,26 @@
         </header>
         <div class="reactdiv">
           <strong>浮动顺序：</strong>
-          <input type="text" placeholder="" id="cornerfloatorder" maxlength="2" value="JG"
+          <input type="text" placeholder="" id="cornerfloatorder" maxlength="2" value="GD"
             style="text-align:center;width:6em;text-transform:uppercase" autocomplete="off"></input>
           <br>
-          <input type="checkbox" id="twocorner"></input>
+          <strong>排除位置：</strong>
+          <input type="text" placeholder="" id="cornerejectpos" maxlength="4" value="J"
+            style="text-align:center;width:6em;text-transform:uppercase" autocomplete="off"></input>
+          <br>
+          <!-- <input type="checkbox" id="twocorner"></input>
           <label style="line-height:1em" for="twocorner" class="help">2C互换模式</label>
+          <br> -->
+          <strong>奇偶状态：</strong>
+          <select style="width:6em;text-align:center" id="parity">
+            <option value=0>无奇偶</option>
+            <option value=1>有奇偶</option>
+            <option value=2>随机</option>
+          </select>
           <br>
           <input type="checkbox" id="edgescramble"></input>
-          <label style="line-height:1em" for="edgescramble" class="help">打乱棱块</label>
+          <label style="line-height:1em" for="edgescramble" class="help">打乱棱块<sup>[?]</sup><span
+              class="help-content">生成状态有奇偶则会交换UF-UR棱块</span></label>
           <br>
           <button onclick="cornerfloat()">生成浮动训练</button>
           <p id="outputInfo"><b>输出信息统计: </b>暂无输出打乱。</p>

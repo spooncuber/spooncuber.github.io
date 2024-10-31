@@ -129,8 +129,9 @@ function edgefloat() {
         for(let i=0; i < listtemp.length; i++){
             pos.push(posChichu(listtemp[i].toString()));
         }
+
         let codes = Array.from(eBufferList);
-        for (let j = 0; j < ~~(Math.random() * (4 - Math.floor((eEjectList.length + 1) / 2) - parity)); j++) {
+        for (let j = 0; j < ~~(Math.random() * (6 - Math.floor((eEjectList.length + 1) / 2) - parity)); j++) {
             let breakFlag = 0;
             for (let m = 0; m < algAllList1.length; m++) {
                 for (let n = 0; n < algAllList1[m].length; n++) {
