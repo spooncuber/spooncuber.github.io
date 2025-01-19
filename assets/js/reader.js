@@ -675,7 +675,7 @@ function operatealg(s1) {
             operate(arr[i]);
         } else {
             initialize();
-            return false;
+            //return false;
         }
     }
 }

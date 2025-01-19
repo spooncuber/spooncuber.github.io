@@ -1,11 +1,24 @@
 // $.ajaxSettings.async = false;
 
-let scr;
+let scr="";
 
 function helperEnter() {
     if(edgeOrderCheck()===false || cornerOrderCheck()===false){
         return;
     }
+    scr = document.getElementById("scrinput").value;
+
+    var regex = /(([URFBLD])(w?)(['2]?))|([EMSxyzurfbld](['2]?))/g;
+    scr.replace(/\s+/g, "");
+    var res = scr.match(regex);
+    if(res.length === null){
+        scr = "";
+    }else{
+        scr = res.join(' ');
+    }
+
+    //console.log("RES",res);
+    console.log("scr",scr);
 
     codereader();
     solver();
@@ -17,14 +30,12 @@ function codereader() {
         return;
     }
     
-    scr = document.getElementById("scrinput").value;
-
-    while (scr.charAt(scr.length - 1) === " ") {
-        scr = scr.slice(0, -1);
-    }
-    while (scr.charAt(0) === " ") {
-        scr = scr.slice(1);
-    }
+    // while (scr.charAt(scr.length - 1) === " ") {
+    //     scr = scr.slice(0, -1);
+    // }
+    // while (scr.charAt(0) === " ") {
+    //     scr = scr.slice(1);
+    // }
     if (fixorientation(scr).length > 0) {
         scr += " " + fixorientation(scr);
     }
