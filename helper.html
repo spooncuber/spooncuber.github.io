@@ -48,7 +48,7 @@
         <div class="flexcontainer">
           <div class="flexitem">
             <strong>棱块缓冲：</strong>
-            <select style="width:8em;text-align:center" id="edgebuffer" onchange="edgeOrderCheck()">
+            <select style="width:8em;text-align:center" id="edgebuffer" onchange="helperEnter()">
               <option>A</option>
               <option>G</option>
               <option>E</option>
@@ -66,10 +66,10 @@
             <strong>借位顺序：</strong>
             <input type="text" placeholder="" id="edgeorder" maxlength="11" value="GECIKMOQSWY"
               style="text-align:center;width:8em;text-transform:uppercase;" autocomplete="off"
-              onkeyup="checkEdgeOrder()"></input>
+              onkeyup="helperEnter()"></input>
             <br>
             <strong>角块缓冲：</strong>
-            <select style="width:8em;text-align:center" id="cornerbuffer" onchange="cornerOrderCheck()">
+            <select style="width:8em;text-align:center" id="cornerbuffer" onchange="helperEnter()">
               <option>J</option>
               <option>A</option>
               <option>G</option>
@@ -83,7 +83,7 @@
             <strong>借位顺序：</strong>
             <input type="text" placeholder="" id="cornerorder" maxlength="7" value="GADXWRO"
               style="text-align:center;width:8em;text-transform:uppercase" autocomplete="off"
-              onkeyup="checkCornerOrder()"></input>
+              onkeyup="helperEnter()"></input>
             <br>
             <strong>打乱/还原坐标：</strong>
             <select style="width:5em;text-align:left" id="cubeorientation" onchange="helperEnter()">
