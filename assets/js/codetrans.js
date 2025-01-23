@@ -251,3 +251,7 @@ function randomCorner1(parity, codeList, output_state) {
 
     return output_state;
 }
+
+function mergeState(cornerstate, edgestate) {
+    return cornerstate.substr(0,24).concat(edgestate.substr(24,24)).concat('123456');
+}

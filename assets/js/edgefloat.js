@@ -87,6 +87,15 @@ function edgefloat() {
     document.getElementById("outputScrs").value = "";
     document.getElementById("outputInfo").value = "输出信息统计:";
 
+    if(document.getElementById("edgefloatorder").value === ""){
+        ejectfloat();
+    }else{
+        normalfloat();
+    }
+}
+
+function normalfloat(){
+
     let eBufferList = document.getElementById("edgefloatorder").value.toLowerCase().split("");
     let eEjectList = document.getElementById("edgeejectpos").value.toLowerCase().split("");
     let cornerScramble = document.getElementById("cornerscramble").checked;
@@ -201,6 +210,51 @@ function edgefloat() {
     if (document.getElementById("outputScrs").value != "") {
         document.getElementById("copyBtn").style.display = "block";
     }
+}
+
+function ejectfloat(){
+    let eEjectList = document.getElementById("edgeejectpos").value.toLowerCase().split("");
+    let cornerScramble = document.getElementById("cornerscramble").checked;
+
+    let times = 0;
+    for (let i = 0; i < 500; i++) {
+        let parity = 0;
+        switch (Number(document.getElementById("parity").value)) {
+            case 0:
+                parity = 0;
+                break;
+            case 1:
+                parity = 1;
+                break;
+            case 2:
+                parity = ~~(Math.random() * 2);
+                break;
+        }
+
+        let state1 = globalState;
+        if(cornerScramble){
+            state1 = randomCorner(parity);
+        }else{
+            if(parity){
+                state1 = codeTrans("JG", state1);
+            }
+        }
+        let state2 = randomEdge1(parity,eEjectList,globalState);
+
+        let state = mergeState(state1,state2);
+
+        document.getElementById("outputScrs").value += (i + 1).toString() + ". " + m2p(state) + "\n";
+        times += 1;
+        
+    }
+
+    document.getElementById("outputInfo").innerHTML = "<b>输出信息统计: </b>已生成排除模式的500条打乱。";
+    if (document.getElementById("outputScrs").value != "") {
+        document.getElementById("copyBtn").style.display = "block";
+    }
+
+
+
 }
 
 window.onload = function () {

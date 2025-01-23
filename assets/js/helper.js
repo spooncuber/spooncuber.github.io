@@ -9,8 +9,8 @@ function helperEnter() {
     scr = document.getElementById("scrinput").value;
 
     var regex = /(([URFBLD])(w?)(['2]?))|([EMSxyzurfbld](['2]?))/g;
-    scr.replace(/\s+/g, "");
-    var res = scr.match(regex);
+    var temp = scr.replace(/\s+/g, "");
+    var res = temp.match(regex);
     if(res.length === null){
         scr = "";
     }else{
