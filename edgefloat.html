@@ -67,14 +67,45 @@
           <button onclick="edgefloat()">生成浮动训练</button>
           <p id="outputInfo"><b>输出信息统计: </b>暂无输出打乱。</p>
           <div>
-            <span style="display: block; padding: 1em 0;">
-              <p style="display: inline"><b>输出训练打乱：</b></p>
-              <button id="copyBtn" style="display: none; float: right;transform: scale(0.75);"
-                onclick="copyScrs()">📝</button><br>
-            </span>
+            <div style="display: grid; grid-template-columns:4fr 1fr 1fr;">
+              <!-- <p style="display: inline"><b>输出训练打乱：</b></p> -->
+              输出训练打乱：
+              <button id="jumpBtn" style="display: none; transform: scale(0.75);">⏰</button>
+              <button id="copyBtn" style="display: none; transform: scale(0.75);" onclick="copyScrs()">📝</button>
+            </div>
             <textarea readonly id="outputScrs" style="resize:none;min-height:30em;border-style:inset"></textarea>
           </div>
         </div>
+
+        <div id="jumpdiv"
+          style="background: rgba(0, 0, 0, 0.5);display: none; position: fixed;top: 0%; left: 0%; width:100%;height:100%;z-index: 100;">
+          <div class="popdiv">
+            <span><b>请选择训练集公式占比：</b><output id="percNum" for="percent"></output><span>%</span></span><br>
+            <input style="background-color: pink;" type="range" id="percent" value="100" min="20" max="100" step="5"
+              onchange="percNum.value=this.value"></input>
+            <br>
+            <b>其他打乱</b>
+            <input type="checkbox" id="jumpcorner"></input>
+            <label style="line-height:1em" for="randomcorner" class="help">打乱角块</label>
+            <br>
+            <input type="checkbox" id="jumpedge"></input>
+            <label style="line-height:1em" for="randomedge" class="help">打乱棱块</label>
+            <br>
+            <span>奇偶状态：</span>
+            <select style="width:6em;text-align:center" id="jumpparity">
+              <option value=0>无奇偶</option>
+              <option value=1>有奇偶</option>
+              <option value=2>随机</option>
+            </select>
+            <br>
+            <br>
+            <section style="display: grid; grid-template-columns: 1fr 1fr; grid-column-gap: 10%;">
+              <button id="gotoTimer">计时器</button>
+              <button onclick="hideJump()">取消</button>
+            </section>
+          </div>
+        </div>
+
         <footer id="footer" style="text-align: center;">
           <div class="inner">
             <ul class="copyright">

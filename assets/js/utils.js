@@ -43,6 +43,10 @@ function clearPopup(){
     }
 }
 
+function hideJump() {
+    document.getElementById("jumpdiv").style.display = "none";
+}
+
 function copyScrs() {
     if (navigator.clipboard) {
         navigator.clipboard.writeText(document.getElementById("outputScrs").value);

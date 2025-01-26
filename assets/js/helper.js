@@ -289,7 +289,6 @@ function drop(event) {
     if (solveList.dragSrcEl !== event.target) {
         targetElement.innerHTML = dragHTML;
         document.getElementById(data).innerHTML = targetHTML;
-        helperEnter();
     }
 
     document.getElementById("edgesolve").value = edgecode;
@@ -297,6 +296,7 @@ function drop(event) {
     document.getElementById("paritysolve").value = paritycode;
     document.getElementById("flipsolve").value = flipcode;
     document.getElementById("twistsolve").value = twistcode;
+    helperEnter();
 }
 
 

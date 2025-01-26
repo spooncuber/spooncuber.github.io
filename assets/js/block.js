@@ -18,7 +18,7 @@ function beginPractice(){
     timeA = new Date();
     document.getElementById('modeset').style.display = "none";
     document.getElementById('canvasContainer').style.display = "block";
-    nextBlock();  
+    nextBlock();
     start();
 }
 

@@ -1,7 +1,7 @@
 "use strict";
 
 // function edgefloat() {
-    
+
 //     document.getElementById("outputScrs").value = "";
 //     document.getElementById("outputInfo").value = "输出信息统计:";
 
@@ -31,7 +31,7 @@
 //         for(let j=0; j < listtemp.length; j++){
 //             pos.push(posChichu(listtemp[j].toString()));
 //         }
-        
+
 //         let codes = Array.from(eBufferList);
 //         let chooseNumList = [];
 //         for(let j=0; j<eBufferList.length; j++){
@@ -82,30 +82,33 @@
 //     }
 // }
 
+let scrList = [];
+
 function edgefloat() {
-    
+
     document.getElementById("outputScrs").value = "";
     document.getElementById("outputInfo").value = "输出信息统计:";
+    scrList = [];
 
-    if(document.getElementById("edgefloatorder").value === ""){
+    if (document.getElementById("edgefloatorder").value === "") {
         ejectfloat();
-    }else{
+    } else {
         normalfloat();
     }
 }
 
-function normalfloat(){
+function normalfloat() {
 
     let eBufferList = document.getElementById("edgefloatorder").value.toLowerCase().split("");
     let eEjectList = document.getElementById("edgeejectpos").value.toLowerCase().split("");
     let cornerScramble = document.getElementById("cornerscramble").checked;
     let algAllList1 = [];
     let algAllList0 = [];
-    let algSet = algSetGenerator(eBufferList+eEjectList);
+    let algSet = algSetGenerator(eBufferList + eEjectList);
     algSet = shuffle(algSet);
     algAllList1.push(algSet);
-    
-    let algSet0 = algSetGenerator(eBufferList+eEjectList);
+
+    let algSet0 = algSetGenerator(eBufferList + eEjectList);
     algSet0 = shuffle(algSet0);
     algAllList0.push(algSet0);
 
@@ -125,17 +128,17 @@ function normalfloat(){
         }
 
         let state = globalState;
-        if(cornerScramble){
+        if (cornerScramble) {
             state = randomCorner(parity);
-        }else{
-            if(parity){
+        } else {
+            if (parity) {
                 state = codeTrans("JG", state);
             }
         }
 
         let pos = [];
         let listtemp = eBufferList.concat(eEjectList);
-        for(let i=0; i < listtemp.length; i++){
+        for (let i = 0; i < listtemp.length; i++) {
             pos.push(posChichu(listtemp[i].toString()));
         }
 
@@ -192,13 +195,14 @@ function normalfloat(){
             let allpos = Array.from({ length: 11 }, (_, i) => i + 1);
             let otherpos = allpos.filter(item => !pos.includes(item));
             let choosepos = otherpos[~~(Math.random() * otherpos.length)];
-            let paritycode = globalState[24+choosepos*2+~~(Math.random() * 2)];
+            let paritycode = globalState[24 + choosepos * 2 + ~~(Math.random() * 2)];
             codes[~~(Math.random() * 2)] += paritycode;
         }
 
         state = codeTrans(codes[1], state);
         state = codeTrans(codes[0], state);
         document.getElementById("outputScrs").value += (i + 1).toString() + ". " + m2p(state) + "\n";
+        scrList.push(m2p(state));
         times += 1;
         // console.log(codes[0], codes[1], algAllList1, algAllList1[0].length, algAllList1[0]);
         if (algAllList1[0].length === 0) {
@@ -212,11 +216,10 @@ function normalfloat(){
     }
 }
 
-function ejectfloat(){
+function ejectfloat() {
     let eEjectList = document.getElementById("edgeejectpos").value.toLowerCase().split("");
     let cornerScramble = document.getElementById("cornerscramble").checked;
 
-    let times = 0;
     for (let i = 0; i < 500; i++) {
         let parity = 0;
         switch (Number(document.getElementById("parity").value)) {
@@ -232,30 +235,79 @@ function ejectfloat(){
         }
 
         let state1 = globalState;
-        if(cornerScramble){
+        if (cornerScramble) {
             state1 = randomCorner(parity);
-        }else{
-            if(parity){
+        } else {
+            if (parity) {
                 state1 = codeTrans("JG", state1);
             }
         }
-        let state2 = randomEdge1(parity,eEjectList,globalState);
+        let state2 = randomEdge1(parity, eEjectList, globalState);
 
-        let state = mergeState(state1,state2);
+        let state = mergeState(state1, state2);
 
         document.getElementById("outputScrs").value += (i + 1).toString() + ". " + m2p(state) + "\n";
-        times += 1;
-        
+        scrList.push(m2p(state));
     }
 
     document.getElementById("outputInfo").innerHTML = "<b>输出信息统计: </b>已生成排除模式的500条打乱。";
     if (document.getElementById("outputScrs").value != "") {
         document.getElementById("copyBtn").style.display = "block";
     }
-
-
-
 }
+
+document.getElementById('jumpBtn').addEventListener('click', function () {
+    document.getElementById("jumpdiv").style.display = 'block';
+    document.getElementById("percent").value = 100;
+    document.getElementById("percNum").innerHTML = document.getElementById("percent").value;
+    document.getElementById("jumpcorner").checked = document.getElementById("cornerscramble").checked;
+    document.getElementById("jumpedge").checked = 1;
+    document.getElementById("jumpparity").value = document.getElementById("parity").value;
+});
+
+document.getElementById('gotoTimer').addEventListener('click', function () {
+    let cornerScramble = document.getElementById("jumpcorner").checked;
+    let edgeScramble = document.getElementById("jumpedge").checked;
+    let perc = document.getElementById("percent").value;
+    let otherNum = ~~(scrList.length / perc * (100 - perc));
+
+    for (let i = 0; i < otherNum; i++) {
+        switch (Number(document.getElementById("jumpparity").value)) {
+            case 0:
+                parity = 0;
+                break;
+            case 1:
+                parity = 1;
+                break;
+            case 2:
+                parity = ~~(Math.random() * 2);
+                break;
+        }
+        let state1 = globalState;
+        if (cornerScramble) {
+            state1 = randomCorner(parity);
+        } else {
+            if (parity) {
+                state1 = codeTrans("JG", state1);
+            }
+        }
+        let state2 = globalState;
+        if (edgeScramble) {
+            state2 = randomEdge(parity);
+        } else {
+            if (parity) {
+                state2 = codeTrans("ag", state2);
+            }
+        }
+        let state = mergeState(state1, state2);
+        scrList.push(m2p(state));
+    }
+    scrList = shuffle(scrList);
+
+    let scrListString = JSON.stringify(scrList);
+    localStorage.setItem('scrListString', scrListString);
+    window.location.href = 'timer.html';
+});
 
 window.onload = function () {
     document.getElementById("outputScrs").value = "";
