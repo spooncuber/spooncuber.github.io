@@ -1,6 +1,62 @@
 "use strict";
 
+let scrList = [];
+
 function cornerfloat() {
+
+    document.getElementById("outputScrs").value = "";
+    document.getElementById("outputInfo").value = "输出信息统计:";
+    scrList = [];
+
+    if (document.getElementById("cornerfloatorder").value === "") {
+        ejectfloat();
+    } else {
+        normalfloat();
+    }
+}
+
+
+function ejectfloat() {
+    let cEjectList = document.getElementById("cornerejectpos").value.toUpperCase().split("");
+    let edgeScramble = document.getElementById("edgescramble").checked;
+
+    for (let i = 0; i < 500; i++) {
+        let parity = 0;
+        switch (Number(document.getElementById("parity").value)) {
+            case 0:
+                parity = 0;
+                break;
+            case 1:
+                parity = 1;
+                break;
+            case 2:
+                parity = ~~(Math.random() * 2);
+                break;
+        }
+
+        let state1 = globalState;
+        if (edgeScramble) {
+            state1 = randomEdge(parity);
+        } else {
+            if (parity) {
+                state1 = codeTrans("ag", state1);
+            }
+        }
+        let state2 = randomCorner1(parity, cEjectList, globalState);
+
+        let state = mergeState(state2, state1);
+
+        document.getElementById("outputScrs").value += (i + 1).toString() + ". " + m2p(state) + "\n";
+        scrList.push(m2p(state));
+    }
+
+    document.getElementById("outputInfo").innerHTML = "<b>输出信息统计: </b>已生成排除模式的500条打乱。";
+    if (document.getElementById("outputScrs").value != "") {
+        document.getElementById("copyBtn").style.display = "block";
+    }
+}
+
+function normalfloat() {
 
     document.getElementById("outputScrs").value = "";
     document.getElementById("outputInfo").value = "输出信息统计:";
