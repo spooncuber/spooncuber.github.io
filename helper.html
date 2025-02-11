@@ -184,7 +184,6 @@
                   style="text-align:left;width:10em;text-transform:uppercase" onkeyup="helperEnter()"
                   autocomplete="off"></input>
               </li>
-
             </ol>
             <span id="alartoutput2"></span>
           </div>
@@ -195,6 +194,17 @@
               <span>3D魔方加载中:</span>
               <div class="loader"></div>
             </div>
+            <br>
+            
+          <div>
+            <div style="display: grid; grid-template-columns:1fr 1fr;">
+              <button style="transform: scale(0.75);" onclick="getNowScramble()">生成当前状态打乱</button>
+              <button id="copyBtn" style="display: none; transform: scale(0.75);" onclick="copyScrs()">复制打乱</button>
+            </div>
+            <textarea readonly id="outputScrs" style="resize:none;min-height:3em;border-style:dashed;padding-left: 0.5em;"></textarea>
+          </div>
+
+
           </div>
 
         </div>

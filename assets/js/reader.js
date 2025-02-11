@@ -674,10 +674,12 @@ function operatealg(s1) {
         if (validMoves.indexOf(arr[i]) > -1) {
             operate(arr[i]);
         } else {
-            initialize();
+            //initialize();
             //return false;
         }
     }
+    let outarr = arra;
+    return outarr;
 }
 
 function track1(track1Str) {
@@ -1225,4 +1227,23 @@ function fixorientation(scr) {
         case "LB": return "y2 z'";
         case "LD": return "y z'";
     }
+}
+
+function inverse_scramble(s) {
+	var arr = s.split(" ");
+	var result = "";
+	for (var i = 0; i < arr.length; i++)
+	{
+		var it = arr[i];
+		if (it.length == 0)
+			continue;
+		if (it[it.length - 1] == '2')
+			result = it + " " + result;
+		else if (it[it.length - 1] == '\'')
+			result = it.substr(0, it.length - 1) + " " + result;
+		else
+			result = it + "' " + result;
+	}
+	
+	return result;
 }

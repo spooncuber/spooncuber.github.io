@@ -27,6 +27,54 @@ function m2p(input_state) {
     return ret;
 }
 
+
+function mover2scr(mover) {
+    let inputArr = operatealg(mover);
+    let transArr = [[], [], [], [], [], []];
+    transArr[0] = inputArr[1].slice(1);
+    transArr[1] = inputArr[4].slice(1);
+    transArr[2] = inputArr[5].slice(1);
+    transArr[3] = inputArr[2].slice(1);
+    transArr[4] = inputArr[3].slice(1);
+    transArr[5] = inputArr[6].slice(1);
+
+    transArr[0][4] = "1";
+    transArr[1][4] = "5";
+    transArr[2][4] = "3";
+    transArr[3][4] = "2";
+    transArr[4][4] = "6";
+    transArr[5][4] = "4";
+
+    for (let i = 0; i < 6; i += 1) {
+        for (let j = 1; j < 9; j += 2) {
+            transArr[i][j] = transArr[i][j].toLowerCase();
+        }
+    }
+
+    let input_code = transArr.flat().join("");
+
+    // globalState is cube's code in chichu with chichu's order
+    // cube's code in CE with chichu's order
+    var face = 'uuuuuuuuurrrrrrrrrfffffffffdddddddddlllllllllbbbbbbbbb';
+    // code's code in chichu with CE's order (the face's order is urfdlb）
+    var order = 'DeGc1gAaJKhIr5zZpSBbLs3qNjYWiXk2oOmREdCx6tQlMHfFy4wTnP';
+    // DeGc1gAaJ KhIr5zZpS BbLs3qNjY WiXk2oOmR EdCx6tQlM HfFy4wTnP (this line is set to check clearly)
+
+    var m2pCodeList = [];
+
+    for (let i = 0; i < input_code.length; i += 1) {
+        m2pCodeList.push(face[order.indexOf(input_code[i])]);
+    }
+
+    var m2pCode = m2pCodeList.join("").toUpperCase();
+
+    var search = new min2phase.Search();
+    var ret = search.solution(m2pCode, 21);
+    ret = ret.replaceAll("  ", " ");
+    
+    return inverse_scramble(ret);
+}
+
 function integreteCode(first_input, second_input, input_state) {
 
     var output_state = codeTrans(first_input, input_state);
@@ -253,5 +301,5 @@ function randomCorner1(parity, codeList, output_state) {
 }
 
 function mergeState(cornerstate, edgestate) {
-    return cornerstate.substr(0,24).concat(edgestate.substr(24,24)).concat('123456');
+    return cornerstate.substr(0, 24).concat(edgestate.substr(24, 24)).concat('123456');
 }
