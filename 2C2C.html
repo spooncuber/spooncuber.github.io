@@ -1,0 +1,227 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+  <title class="lang" key="2c2ctrainer"></title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes" />
+  <link rel="stylesheet" href="assets/css/main.css" />
+  <link rel="stylesheet" href="assets/css/utils.css" />
+  <link rel="icon" href="images/logo.svg" type="image/x-icon" />
+  <link rel="apple-touch-icon" href="images/logo.png" />
+  <meta name="google-site-verification" content="s3hE2D_rJuuUUj4rVvWBADMHqHqiSM-bQh80mnwzDMA" />
+</head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-7X9DPS593M"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+
+  function gtag() {
+    dataLayer.push(arguments);
+  }
+  gtag('js', new Date());
+  gtag('config', 'G-7X9DPS593M');
+</script>
+
+<body>
+  <div class="allscreen">
+    <div id="wrapper">
+      <header id="header">
+        <div class="inner">
+          <a href="index.html" class="logo">
+            <span class="symbol"><img src="images/logo.svg" alt="" /></span><span class="title">bldtrainer</span>
+          </a>
+          <div class="language">
+            <div class="status_circle">
+            </div>
+            <div class="dropdown-content">
+              <div class="status_circle" data-lang="zh">简体中文</div>
+            </div>
+          </div>
+        </div>
+      </header>
+      <div id="main">
+        <header>
+          <h2 style="text-align:center" class="lang" key="2c2ctrainer"></h2>
+        </header>
+        <div class="reactdiv">
+          <strong>角块缓冲：</strong>
+          <select style="width:3.5em;text-align:center" id="cornerbuffer">
+            <option>J</option>
+            <option>A</option>
+            <option>G</option>
+            <option>D</option>
+            <option>W</option>
+            <option>O</option>
+            <option>R</option>
+            <option>X</option>
+          </select>
+          <br>
+          <input type="checkbox" id="edgescramble"></input>
+          <label style="line-height:1em" for="edgescramble" class="help">打乱棱块</label>
+          <br>
+          <input type="checkbox" id="twiststate"></input>
+          <label style="line-height:1em" for="twiststate" class="help">是否带翻</label>
+          <br>
+          <button onclick="showPopup()">输入训练编码</button>
+          <br>
+          <p id="inputInfo"><b>输入信息统计: </b>请输入编码。</p>
+          <br>
+
+          <div id="popup"
+          style="background: rgba(0, 0, 0, 0.5);display: none; position: fixed;top: 0%; left: 0%; width:100%;height:100%;z-index: 100;">
+          <div  style="min-width: 30em;" class="popdiv">
+            <span><b>请输入训练编码：</b></span>
+            <section style="display: grid; grid-template-columns: 1fr 1fr; grid-column-gap: 20%;">
+              <button onclick="selectAll()">全选</button>
+              <button onclick="clearAll()">清空</button>
+            </section>
+
+            <div id="codeselect" style="width:100%; display: grid; grid-template-columns: repeat(3, 1fr); grid-template-rows:repeat(9, 1fr); grid-column-gap: 10%;">
+              <p>.</p>
+              <p>.</p>
+              <p>.</p>
+              <section>
+                <input type="checkbox" id="A"></input>
+                <label style="line-height:1em" for="A" class="help">A</label>
+              </section>
+              <section>
+                <input type="checkbox" id="B"></input>
+                <label style="line-height:1em" for="B" class="help">B</label>
+              </section>
+              <section>
+                <input type="checkbox" id="C"></input>
+                <label style="line-height:1em" for="C" class="help">C</label>
+              </section>
+              <section>
+                <input type="checkbox" id="D"></input>
+                <label style="line-height:1em" for="D" class="help">D</label>
+              </section>
+              <section>
+                <input type="checkbox" id="E"></input>
+                <label style="line-height:1em" for="E" class="help">E</label>
+              </section>
+              <section>
+                <input type="checkbox" id="F"></input>
+                <label style="line-height:1em" for="F" class="help">F</label>
+              </section>
+              <section>
+                <input type="checkbox" id="G"></input>
+                <label style="line-height:1em" for="G" class="help">G</label>
+              </section>
+              <section>
+                <input type="checkbox" id="H"></input>
+                <label style="line-height:1em" for="H" class="help">H</label>
+              </section>
+              <section>
+                <input type="checkbox" id="I"></input>
+                <label style="line-height:1em" for="I" class="help">I</label>
+              </section>
+              <section>
+                <input type="checkbox" id="J"></input>
+                <label style="line-height:1em" for="J" class="help">J</label>
+              </section>
+              <section>
+                <input type="checkbox" id="K"></input>
+                <label style="line-height:1em" for="K" class="help">K</label>
+              </section>
+              <section>
+                <input type="checkbox" id="L"></input>
+                <label style="line-height:1em" for="L" class="help">L</label>
+              </section>
+              <section>
+                <input type="checkbox" id="W"></input>
+                <label style="line-height:1em" for="W" class="help">W</label>
+              </section>
+              <section>
+                <input type="checkbox" id="M"></input>
+                <label style="line-height:1em" for="M" class="help">M</label>
+              </section>
+              <section>
+                <input type="checkbox" id="N"></input>
+                <label style="line-height:1em" for="N" class="help">N</label>
+              </section>
+              <section>
+                <input type="checkbox" id="O"></input>
+                <label style="line-height:1em" for="O" class="help">O</label>
+              </section>
+              <section>
+                <input type="checkbox" id="P"></input>
+                <label style="line-height:1em" for="P" class="help">P</label>
+              </section>
+              <section>
+                <input type="checkbox" id="Q"></input>
+                <label style="line-height:1em" for="Q" class="help">Q</label>
+              </section>
+              <section>
+                <input type="checkbox" id="R"></input>
+                <label style="line-height:1em" for="R" class="help">R</label>
+              </section>
+              <section>
+                <input type="checkbox" id="S"></input>
+                <label style="line-height:1em" for="S" class="help">S</label>
+              </section>
+              <section>
+                <input type="checkbox" id="T"></input>
+                <label style="line-height:1em" for="T" class="help">T</label>
+              </section>
+              <section>
+                <input type="checkbox" id="X"></input>
+                <label style="line-height:1em" for="X" class="help">X</label>
+              </section>
+              <section>
+                <input type="checkbox" id="Y"></input>
+                <label style="line-height:1em" for="Y" class="help">Y</label>
+              </section>
+              <section>
+                <input type="checkbox" id="Z"></input>
+                <label style="line-height:1em" for="Z" class="help">Z</label>
+              </section>            
+            </div>
+            <br>
+
+            <section style="display: grid; grid-template-columns: 1fr 1fr; grid-column-gap: 20%;">
+              <button onclick="input()">确认</button>
+              <button onclick="hidePopup()">取消</button>
+            </section>
+          </div>
+        </div>
+
+
+          <button onclick="twoCornerGenerator()">生成训练打乱</button>          
+          <p id="outputInfo"><b>输出信息统计: </b>暂无输出打乱。</p>
+
+          <span style="padding: 1em 0;">
+            <p style="display: inline"><b>输出训练打乱：</b></p>
+            <button id="copyBtn" style="display: none; float: right;transform: scale(0.75);"
+              onclick="copyScrs()">📝</button><br>
+          </span>
+          
+          <textarea style="resize: none;min-height:30em;border-style:inset" id="outputScrs" readonly></textarea>
+        </div>
+        <footer id="footer" style="text-align: center;">
+          <div class="inner">
+            <ul class="copyright">
+              <li>© 2024 Zhi Qiao. All rights reserved.</li>
+              <li>Github: <a href="https://github.com/spooncuber/spooncuber.github.io">bldtrainer</a></li>
+              <li>License: <a href="https://www.gnu.org/licenses">GPL-3.0 license</a></li>
+              <li>Powered by <a href="http://html5up.net">HTML5 UP</a></li>
+              <li class="lang" key="version"></li>
+            </ul>
+          </div>
+        </footer>
+      </div>
+    </div>
+  </div>
+  <script src="assets/js/jquery.min.js"></script>
+  <script src="assets/js/main.js"></script>
+  <script src="assets/js/setcode.js"></script>
+  <script src="assets/js/language.js"></script>
+  <script src="assets/js/reader.js"></script>
+  <script src="assets/js/2C2C.js"></script>
+  <script src="assets/js/codetrans.js"></script>
+  <script src="assets/js/min2phase.js"></script>
+  <script src="assets/js/utils.js"></script>
+</body>
+
+</html>

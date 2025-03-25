@@ -1,7 +1,7 @@
 const arrLang = {    
     "zh": {
-        "title": "三盲训练器(V-0.2.13)",
-        "version": "Version: 0.2.13 UpdateTime: 202502111620",
+        "title": "三盲训练器(V-0.2.14)",
+        "version": "Version: 0.2.14 UpdateTime: 202503250930",
         "resources": "盲拧资源汇总",
         "download": "文件下载页面",
         "timer": "计时器",
@@ -10,6 +10,7 @@ const arrLang = {
         'ltcttrainer': "奇偶带翻训练",
         'twisttrainer': "翻角公式训练",
         'fliptrainer': "翻棱公式训练",
+        '2c2ctrainer': "2C2C训练",
         "ltct":"奇偶带翻",
         "edgefloat":"棱块浮动训练",
         "cornerfloat":"角块浮动训练",
