@@ -6,6 +6,7 @@ function twoCornerGenerator() {
     let cBuffer = document.getElementById("cornerbuffer").value.toUpperCase();
     let edgescramble = document.getElementById("edgescramble").checked;
     let twiststate = document.getElementById("twiststate").checked;
+    let donwstate = document.getElementById("donwstate").checked;
 
     document.getElementById("outputScrs").value = "";
     document.getElementById("outputInfo").innerHTML = "<b>输出信息统计:</b>";
@@ -17,6 +18,19 @@ function twoCornerGenerator() {
 
     for (let i = 0; i < inputcode.length; i++) {
         let temparr = [cBuffer, inputcode[i]];
+        
+        if(donwstate){
+            let poslist = [posChichu(cBuffer),inputcode[i]]
+            let allpos = Array.from({ length: 4 }, (_, i) => i);
+            let otherpos = allpos.filter(item => !poslist.includes(item));
+            if(otherpos.length > 0){
+                for (let x = 0; x < otherpos.length; x ++) {
+                    temparr.push(globalState[3 * otherpos[x]]);
+                }
+            }
+        }
+
+
         let algSet = algSetGenerator(temparr);
 
         let tempalgset = [];
