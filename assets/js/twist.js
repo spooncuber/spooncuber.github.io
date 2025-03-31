@@ -3,6 +3,7 @@
 function twist() {
     let cBuffer = document.getElementById("cornerbuffer").value.toUpperCase();
     let edgescramble = document.getElementById("edgescramble").checked;
+
     let twotwist = document.getElementById("twotwist").checked;
     let threetwist = document.getElementById("threetwist").checked;
 
@@ -10,11 +11,11 @@ function twist() {
     let alldown = document.getElementById("alldown").checked;
     let updown = document.getElementById("updown").checked;
 
-    if (twotwist === 0 && threetwist === 0) {
+    if (twotwist === false && threetwist === false) {
         alert("请至少勾选一类方向状态");
         return;
     }
-    if (allup === 0 && alldown === 0) {
+    if (allup === false && alldown === false && updown === false) {
         alert("请至少勾选一类位置状态");
         return;
     }
