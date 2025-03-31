@@ -60,6 +60,23 @@
           <input type="checkbox" id="edgescramble"></input>
           <label style="line-height:1em" for="edgescramble" class="help">打乱棱块</label>
           <br>
+          <strong>方向分类：</strong><br>
+          <input type="checkbox" id="twotwist" checked></input>
+          <label style="line-height:1em" for="twotwist" class="help">缓冲外二角翻</label>
+          <br>
+          <input type="checkbox" id="threetwist" checked></input>
+          <label style="line-height:1em" for="threetwist" class="help">带缓冲三角翻</label>
+          <br>
+          <strong>位置分类：</strong><br>
+          <input type="checkbox" id="allup" checked></input>
+          <label style="line-height:1em" for="allup" class="help">纯顶层</label>
+          <br>
+          <input type="checkbox" id="alldown" checked></input>
+          <label style="line-height:1em" for="alldown" class="help">纯底层</label>
+          <br>
+          <input type="checkbox" id="updown" checked></input>
+          <label style="line-height:1em" for="updown" class="help">顶层+底层</label>
+          <br>
           <button onclick="twist()">生成翻角训练</button>          
           <p id="outputInfo"><b>输出信息统计: </b>暂无输出打乱。</p>
 

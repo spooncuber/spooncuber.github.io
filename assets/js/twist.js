@@ -3,20 +3,81 @@
 function twist() {
     let cBuffer = document.getElementById("cornerbuffer").value.toUpperCase();
     let edgescramble = document.getElementById("edgescramble").checked;
+    let twotwist = document.getElementById("twotwist").checked;
+    let threetwist = document.getElementById("threetwist").checked;
+
+    let allup = document.getElementById("allup").checked;
+    let alldown = document.getElementById("alldown").checked;
+    let updown = document.getElementById("updown").checked;
+
+    if (twotwist === 0 && threetwist === 0) {
+        alert("请至少勾选一类方向状态");
+        return;
+    }
+    if (allup === 0 && alldown === 0) {
+        alert("请至少勾选一类位置状态");
+        return;
+    }
+
     document.getElementById("outputScrs").value = "";
     document.getElementById("outputInfo").innerHTML = "<b>输出信息统计:</b>";
 
     let inputCodeStr = 'BCEFHIKLMNPQSTYZ';
     let inputCodeList = [];
+    // let inputCodeList3uu = [];
+    // let inputCodeList2uu = [];
+    // let inputCodeList3ud = [];
+    // let inputCodeList2ud = [];
+    // let inputCodeList3dd = [];
+    // let inputCodeList2dd = [];
 
     for (let m = 0; m < inputCodeStr.length; m++) {
         for (let n = 0; n < m; n++) {
             if (posChichu(inputCodeStr[m]) !== posChichu(inputCodeStr[n])) {
-                inputCodeList.push([inputCodeStr[m], inputCodeStr[n]]);
+                // if ((m + n) % 2 === 0 && m < 4 && n < 4) {
+                //     inputCodeList3uu.push([inputCodeStr[m], inputCodeStr[n]]);
+                // }
+
+                if (m < 8 && n < 8) {
+                    if (allup) {
+                        if (threetwist && (m + n) % 2 === 0) {
+                            inputCodeList.push([inputCodeStr[m], inputCodeStr[n]]);
+                        }
+                        if (twotwist && (m + n) % 2 === 1) {
+                            inputCodeList.push([inputCodeStr[m], inputCodeStr[n]]);
+                        }
+                    }
+
+                } else if (m >= 8 && n >= 8) {
+                    if (alldown) {
+                        if (threetwist && (m + n) % 2 === 0) {
+                            inputCodeList.push([inputCodeStr[m], inputCodeStr[n]]);
+                        }
+                        if (twotwist && (m + n) % 2 === 1) {
+                            inputCodeList.push([inputCodeStr[m], inputCodeStr[n]]);
+                        }
+                    }
+                } else {
+                    if (updown) {
+                        if (threetwist && (m + n) % 2 === 0) {
+                            inputCodeList.push([inputCodeStr[m], inputCodeStr[n]]);
+                        }
+                        if (twotwist && (m + n) % 2 === 1) {
+                            inputCodeList.push([inputCodeStr[m], inputCodeStr[n]]);
+                        }
+                    }
+                }
             }
         }
     }
 
+    // if (twotwist) {
+    //     inputCodeList = inputCodeList.concat(inputCodeList2);
+    // }
+
+    // if (threetwist) {
+    //     inputCodeList = inputCodeList.concat(inputCodeList1);
+    // }
     inputCodeList = shuffle(Array.from(inputCodeList));
 
     let times = 0;
@@ -50,7 +111,6 @@ function twist() {
 
         times += 1;
         document.getElementById("outputScrs").value += times.toString() + ". " + m2p(cState) + "\n";
-        
     }
     document.getElementById("outputInfo").innerHTML = "<b>输出信息统计: </b> 随机生成" + times + "条打乱，遍历缓冲外存在两个翻角的情况。";
     if (document.getElementById("outputScrs").value != "") {
