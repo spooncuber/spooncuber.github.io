@@ -1,7 +1,7 @@
 const arrLang = {    
     "zh": {
-        "title": "三盲训练器(V-0.2.15)",
-        "version": "Version: 0.2.15 UpdateTime: 202503312300",
+        "title": "三盲训练器(V-0.2.16)",
+        "version": "Version: 0.2.16 UpdateTime: 202504080843",
         "resources": "盲拧资源汇总",
         "download": "文件下载页面",
         "timer": "计时器",

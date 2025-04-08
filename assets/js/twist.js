@@ -25,20 +25,10 @@ function twist() {
 
     let inputCodeStr = 'BCEFHIKLMNPQSTYZ';
     let inputCodeList = [];
-    // let inputCodeList3uu = [];
-    // let inputCodeList2uu = [];
-    // let inputCodeList3ud = [];
-    // let inputCodeList2ud = [];
-    // let inputCodeList3dd = [];
-    // let inputCodeList2dd = [];
 
     for (let m = 0; m < inputCodeStr.length; m++) {
         for (let n = 0; n < m; n++) {
-            if (posChichu(inputCodeStr[m]) !== posChichu(inputCodeStr[n])) {
-                // if ((m + n) % 2 === 0 && m < 4 && n < 4) {
-                //     inputCodeList3uu.push([inputCodeStr[m], inputCodeStr[n]]);
-                // }
-
+            if (posChichu(inputCodeStr[m]) !== posChichu(inputCodeStr[n])) {                
                 if (m < 8 && n < 8) {
                     if (allup) {
                         if (threetwist && (m + n) % 2 === 0) {
@@ -48,7 +38,6 @@ function twist() {
                             inputCodeList.push([inputCodeStr[m], inputCodeStr[n]]);
                         }
                     }
-
                 } else if (m >= 8 && n >= 8) {
                     if (alldown) {
                         if (threetwist && (m + n) % 2 === 0) {

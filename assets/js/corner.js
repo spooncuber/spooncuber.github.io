@@ -169,7 +169,7 @@ function cornerInputCheck() {
         if (inputCodes[i] === "") {
             continue;
         }
-        newCodes.push(inputCodes[i]);
+        newCodes.push(inputCodes[i].toUpperCase());
     }
 
     var outputInfo = "";
