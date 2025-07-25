@@ -1,8 +1,12 @@
 "use strict";
+document.getElementById("edgescramble").checked = true;
+document.getElementById("cornerscramble").checked = true;
 
 function ltct() {
     var inputCodes = document.getElementById("inputCodes").value.split('\n');
     var cBuffer = document.getElementById("cornerbuffer").value.toUpperCase();
+    let edgescramble = document.getElementById("edgescramble").checked;
+    let cornerscramble = document.getElementById("cornerscramble").checked;
 
     var inputCodes = ltctInputCheck(inputCodes,cBuffer);
     if(inputCodes.length === 0){
@@ -15,7 +19,12 @@ function ltct() {
 
     var times = 0;
     for (let i = 0; i < inputCodes.length; i++) {
-        var state = randomEdge(1);
+        let state;
+        if(edgescramble){
+            state = randomEdge(1);
+        }else{
+            state = exCode(["a","g"], globalState);
+        }
         var algSet = algSetGenerator(inputCodes[i].concat([cBuffer]));
 
         algSet = shuffle(algSet);
@@ -34,9 +43,10 @@ function ltct() {
             }
         }
         
-        console.log(i,codes);
-
-        state = codeTrans(codes,state);
+        //console.log(i,codes);
+        if(cornerscramble){
+            state = codeTrans(codes,state);
+        }
         state = exCode([cBuffer, inputCodes[i][0]], state);
         state = exCode([cBuffer, inputCodes[i][1]], state);
         state = exCode([cBuffer, globalState[3 * posChichu(inputCodes[i][1])]], state);

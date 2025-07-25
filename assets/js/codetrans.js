@@ -196,17 +196,18 @@ function algSetGenerator(codes) {
 }
 
 function posChichu(input_code) {
-    var pos;
+    if(globalState.indexOf(input_code) === -1){
+        return -1;
+    }
     if (input_code.charCodeAt() >= 65 && input_code.charCodeAt() <= 90) {
-        pos = ~~(globalState.indexOf(input_code) / 3);
+        return ~~(globalState.indexOf(input_code) / 3);
     }
     else if (input_code.charCodeAt() >= 97 && input_code.charCodeAt() <= 122) {
-        pos = ~~((globalState.indexOf(input_code) - 24) / 2);
+        return ~~((globalState.indexOf(input_code) - 24) / 2);
     }
     else {
-        pos = globalState.indexOf(input_code) - 48;
+        return globalState.indexOf(input_code) - 48;
     }
-    return pos;
 }
 
 

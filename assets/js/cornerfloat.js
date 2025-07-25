@@ -61,7 +61,7 @@ function normalfloat() {
     document.getElementById("outputScrs").value = "";
     document.getElementById("outputInfo").value = "输出信息统计:";
 
-    let cBufferList = document.getElementById("cornerfloatorder").value.split("");
+    let cBufferList = document.getElementById("cornerfloatorder").value.toUpperCase().split("");
     let cEjectList = document.getElementById("cornerejectpos").value.toUpperCase().split("");
     let edgeScramble = document.getElementById("edgescramble").checked;
 

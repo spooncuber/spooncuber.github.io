@@ -57,7 +57,14 @@
             <option>X</option>
           </select>
           <button onclick="showPopup()">输入训练编码</button>
-          <button onclick="ltct()">生成</button>          
+          <button onclick="ltct()">生成</button>    
+          <br>
+          <input type="checkbox" id="edgescramble"></input>
+          <label style="line-height:1em" for="edgescramble" class="help">打乱棱块</label>
+          <br>
+          <input type="checkbox" id="cornerscramble"></input>
+          <label style="line-height:1em" for="cornerscramble" class="help">打乱其他角块</label>
+          <br>
           <p id="inputInfo"><b>输入信息统计: </b>请输入编码。</p>
           <p id="outputInfo"><b>输出信息统计: </b>暂无输出打乱。</p>
 
