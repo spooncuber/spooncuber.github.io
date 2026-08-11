@@ -1,7 +1,7 @@
 const arrLang = {    
     "zh": {
-        "title": "三盲训练器(V-0.2.18)",
-        "version": "Version: 0.2.18 UpdateTime: 202601092103",
+        "title": "三盲训练器(V-0.3.1)",
+        "version": "Version: 0.3.1 UpdateTime: 202608111608",
         "resources": "盲拧资源汇总",
         "download": "文件下载页面",
         "timer": "计时器",
@@ -130,7 +130,14 @@ const arrLang = {
         "wing": "翼棱公式库",
         "midge": "中棱公式库",
         "xcenter": "角心公式库",
-        "tcenter": "边心公式库"
+        "tcenter": "边心公式库",
+        "time": "时间",
+        "delete": "删除",
+        "clearrecords": "清空成绩",
+        "best": "最快",
+        "mean": "平均",
+        "timerhint": "按住空格键准备，松开开始计时，按任意键停止",
+        "noscr": "暂无打乱，请先在训练页面生成打乱"
     },
     "en": {
         "title": "3BLD Algorithms Database",
@@ -246,7 +253,14 @@ const arrLang = {
         "midge": "Midge",
         "xcenter": "X-center",
         "tcenter": "+-center",
-        "edgetrainer": "Edge Trainer"
+        "edgetrainer": "Edge Trainer",
+        "time": "Time",
+        "delete": "Del",
+        "clearrecords": "Clear",
+        "best": "Best",
+        "mean": "Mean",
+        "timerhint": "Hold SPACE to get ready, release to start, press any key to stop",
+        "noscr": "No scramble. Please generate scrambles in a trainer page first."
     },
     "ja": {
         "title": "3BLD手順データベース",
@@ -361,7 +375,14 @@ const arrLang = {
         "wing": "Wing",
         "midge": "Midge",
         "xcenter": "X-center",
-        "tcenter": "+-center"
+        "tcenter": "+-center",
+        "time": "タイム",
+        "delete": "削除",
+        "clearrecords": "クリア",
+        "best": "ベスト",
+        "mean": "平均",
+        "timerhint": "スペースキーを押し続けて準備、離してスタート、任意のキーでストップ",
+        "noscr": "スクランブルがありません。先にトレーナーページで生成してください。"
     }
 };
 

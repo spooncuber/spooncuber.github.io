@@ -161,7 +161,7 @@ function edgeRandomScrs() {
 }
 
 function edgeInputCheck() {
-    var inputCodes = document.getElementById("inputCodes").value.split('\n');
+    var inputCodes = document.getElementById("inputCodes").value.replace(/[^a-zA-Z\n]/g, '').split('\n');
     var buffer = document.getElementById("edgebuffer").value;
 
     newCodes = [];

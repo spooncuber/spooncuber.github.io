@@ -44,10 +44,50 @@
         <header>
           <h2 style="text-align:center" class="lang" key="timer"></h2>
         </header>
-        <div class="reactdiv" style="display: flex; height: 30em;">
-          <div id="scrshow"></div>
-          
-          <div id="stopwatch" style="display: grid;place-items: center; font-size: larger;flex-grow: 1">0.00</div>
+        <div class="timerlayout">
+          <div class="timermain">
+            <div id="scrwrap">
+              <span id="scrindex"></span>
+              <span id="scrshow"></span>
+            </div>
+            <div id="stopwatchwrap">
+              <div id="stopwatch">0.00</div>
+              <div id="timerhint" class="lang" key="timerhint"></div>
+            </div>
+          </div>
+          <div id="timespanel">
+            <div id="timestats">
+              <div class="statcard">
+                <div class="statlabel lang" key="best"></div>
+                <div class="statvalue" id="statbest">-</div>
+              </div>
+              <div class="statcard">
+                <div class="statlabel lang" key="mean"></div>
+                <div class="statvalue" id="statmean">-</div>
+              </div>
+              <div class="statcard">
+                <div class="statlabel">ao5</div>
+                <div class="statvalue" id="statao5">-</div>
+              </div>
+              <div class="statcard">
+                <div class="statlabel">ao12</div>
+                <div class="statvalue" id="statao12">-</div>
+              </div>
+            </div>
+            <div id="timeslist">
+              <table id="timestable">
+                <thead>
+                  <tr>
+                    <th class="lang" key="no"></th>
+                    <th class="lang" key="time"></th>
+                    <th class="lang" key="delete"></th>
+                  </tr>
+                </thead>
+                <tbody id="timestbody"></tbody>
+              </table>
+            </div>
+            <button id="timesclear" class="small lang" key="clearrecords"></button>
+          </div>
         </div>
         <footer id="footer" style="text-align: center;">
           <div class="inner">

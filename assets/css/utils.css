@@ -38,6 +38,136 @@
     margin-right: 10%;
 }
 
+/* Timer page */
+.timerlayout {
+    display: flex;
+    gap: 2em;
+    margin: 0 4%;
+    height: calc(100vh - 19em);
+    min-height: 30em;
+}
+
+.timermain {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+#scrwrap {
+    background: rgba(0, 0, 0, 0.04);
+    border-radius: 8px;
+    padding: 0.7em 1.2em;
+    text-align: center;
+    font-size: 1.1em;
+    line-height: 1.6;
+    word-break: break-all;
+}
+
+#scrindex {
+    display: block;
+    font-size: 0.7em;
+    color: #999;
+    letter-spacing: 0.15em;
+}
+
+#stopwatchwrap {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+#stopwatch {
+    font-size: clamp(3em, 9vw, 6em);
+    font-weight: 700;
+    font-variant-numeric: tabular-nums;
+    line-height: 1.1;
+    -webkit-user-select: none;
+    user-select: none;
+}
+
+#timerhint {
+    margin-top: 1.5em;
+    color: #999;
+    font-size: 0.9em;
+    text-align: center;
+}
+
+#timespanel {
+    width: 19em;
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    max-height: 100%;
+    border-left: 1px solid rgba(0, 0, 0, 0.1);
+    padding-left: 2em;
+}
+
+#timestats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.6em;
+    padding-bottom: 1em;
+}
+
+.statcard {
+    background: rgba(0, 0, 0, 0.04);
+    border-radius: 8px;
+    padding: 0.45em 0.5em;
+    text-align: center;
+}
+
+.statlabel {
+    font-size: 0.7em;
+    color: #999;
+    letter-spacing: 0.1em;
+}
+
+.statvalue {
+    font-size: 1.2em;
+    font-weight: 700;
+    font-variant-numeric: tabular-nums;
+}
+
+#timeslist {
+    overflow-y: auto;
+    flex: 1;
+}
+
+#timestable {
+    margin: 0 auto;
+}
+
+#timesclear {
+    margin-top: 1em;
+    align-self: center;
+}
+
+.timedelete {
+    cursor: pointer;
+    color: red;
+    font-weight: 900;
+}
+
+@media screen and (max-width: 800px) {
+    .timerlayout {
+        flex-direction: column;
+        height: auto;
+    }
+
+    #timespanel {
+        width: 100%;
+        border-left: none;
+        padding-left: 0;
+    }
+
+    #stopwatchwrap {
+        min-height: 6em;
+    }
+}
+
 @media screen and (min-width: 800px) {
     .flexcontainer {
         max-width: 100vw;

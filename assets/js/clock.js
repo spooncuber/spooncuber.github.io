@@ -6,21 +6,22 @@ let timer;
 function start() {
     startTime = new Date();
     timer = setInterval(function () {
-        let endTime = new Date();
-        let timeDifference = endTime - startTime;
-        let minutes = Math.floor(timeDifference / 60000);
-        let seconds = Math.floor((timeDifference % 60000) / 1000);
-        let milliseconds = Math.floor((timeDifference % 1000)/100);
-        if(minutes == 0){
-            document.getElementById('stopwatch').innerText = seconds + '.' + milliseconds;
-        }else{
-            document.getElementById('stopwatch').innerText = minutes + ":" + seconds + '.' + milliseconds;
-        }
+        let timeDifference = new Date() - startTime;
+        document.getElementById('stopwatch').innerText = formatElapsed(timeDifference);
     }, 0);
 }
 
 function stop() {
     clearInterval(timer);
+}
+
+function formatElapsed(ms) {
+    const minutes = Math.floor(ms / 60000);
+    const seconds = Math.floor((ms % 60000) / 1000);
+    const centiseconds = Math.floor((ms % 1000) / 10);
+    const secStr = minutes > 0 ? String(seconds).padStart(2, '0') : String(seconds);
+    const csStr = String(centiseconds).padStart(2, '0');
+    return minutes > 0 ? minutes + ':' + secStr + '.' + csStr : secStr + '.' + csStr;
 }
 
 function reset() {
